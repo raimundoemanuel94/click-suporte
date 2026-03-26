@@ -131,7 +131,9 @@ span { color: var(--primary-cyan); }
 }
 .navbar .container { display: flex; justify-content: space-between; align-items: center; gap: 24px; width: 100%; }
 
-.logo { font-size: 1.6rem; font-weight: 800; color: var(--white); letter-spacing: -0.04em; flex-shrink: 0; }
+.logo { font-size: 1.6rem; font-weight: 800; color: var(--white); letter-spacing: -0.04em; flex-shrink: 0; display: flex; align-items: center; }
+.logo-img { height: 42px; width: auto; display: block; filter: drop-shadow(0 0 10px rgba(0, 242, 255, 0.2)); }
+#footer-logo .logo-img { height: 36px; filter: grayscale(1) brightness(2); opacity: 0.9; }
 .logo span { color: var(--primary-cyan); animation: pulse-cyan 2.5s infinite ease-in-out; }
 
 @keyframes pulse-cyan {
