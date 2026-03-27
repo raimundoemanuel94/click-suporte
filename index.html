@@ -1,71 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Click Suporte – Assistência Técnica Premium em Sorriso-MT</title>
-<meta name="description" content="Assistência técnica especializada em Sorriso-MT. Conserto de notebooks, desktops, celulares e redes. Atendimento rápido e garantia assegurada.">
-<meta name="keywords" content="assistência técnica, Sorriso MT, conserto notebook, manutenção computador, suporte técnico">
-<meta property="og:title" content="Click Suporte – Assistência Técnica Premium">
-<meta property="og:description" content="Suporte técnico especializado em Sorriso-MT. Rápido, confiável e com garantia.">
-<meta property="og:type" content="website">
-<link rel="manifest" href="#" />
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Click Suporte",
-  "description": "Assistência técnica premium em Sorriso-MT",
-  "address": {"@type": "PostalAddress", "addressLocality": "Sorriso", "addressRegion": "MT", "addressCountry": "BR"},
-  "telephone": "+55-66-99999-9999",
-  "openingHours": "Mo-Sa 08:00-18:00"
-}
-</script>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click Suporte | Assistência Técnica Premium em Sorriso-MT</title>
+    <meta name="description" content="Suporte técnico especializado em software, otimização e segurança para seu computador ou notebook. Atendimento em Sorriso e região.">
+    <meta name="keywords" content="suporte técnico, formatação, otimização pc, antivírus, backup, Sorriso MT">
+    <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
+    <link rel="manifest" href="manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
 /* =====================================================
-   DESIGN SYSTEM — CLICK SUPORTE
-   Aesthetic: Dark-tech / neon-glass / SaaS premium
+   CLICK SUPORTE — STYLE SYSTEM (MONOLITHIC v4.8)
+   Theme: SaaS Dark-Tech / Neon-Cyan / Glassmorphism
    ===================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
-
 :root {
-  /* Core palette */
   --bg:          #050810;
   --bg-2:        #080d1a;
   --surface:     rgba(255,255,255,0.04);
   --surface-hi:  rgba(255,255,255,0.08);
   --border:      rgba(255,255,255,0.07);
   --border-hi:   rgba(100,200,255,0.25);
-
-  /* Neon accent */
   --cyan:        #00e5ff;
   --cyan-dim:    rgba(0,229,255,0.12);
   --cyan-glow:   rgba(0,229,255,0.35);
   --blue:        #2563eb;
   --blue-light:  #60a5fa;
   --violet:      #7c3aed;
-
-  /* Text */
-  --text-1:  #f0f6ff;
-  --text-2:  #8b9bba;
-  --text-3:  #4f617a;
-
-  /* Spacing / radius */
+  --text-1:      #f0f6ff;
+  --text-2:      #8b9bba;
+  --text-3:      #4f617a;
   --r-sm:   8px;
   --r-md:   14px;
   --r-lg:   22px;
   --r-xl:   32px;
-
-  /* Font */
   --ff-head: 'Syne', sans-serif;
   --ff-body: 'DM Sans', sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; font-size: 16px; }
-
 body {
   background: var(--bg);
   color: var(--text-1);
@@ -75,1227 +51,523 @@ body {
   cursor: none;
 }
 
-/* ─── CUSTOM CURSOR ─────────────────────────────── */
+/* ─── CURSOR ─────────────────────────────────────── */
 #cursor-ring, #cursor-dot {
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  border-radius: 50%;
-  transform: translate(-50%,-50%);
-  transition: opacity .3s;
+  position: fixed; pointer-events: none; z-index: 9999; border-radius: 50%;
+  transform: translate(-50%,-50%); transition: opacity .3s;
 }
-#cursor-ring {
-  width: 36px; height: 36px;
-  border: 1.5px solid var(--cyan);
-  opacity: .5;
-  transition: width .2s, height .2s, border-color .2s, opacity .3s;
-}
-#cursor-dot {
-  width: 6px; height: 6px;
-  background: var(--cyan);
-  box-shadow: 0 0 8px var(--cyan);
-}
-body.cursor-hover #cursor-ring {
-  width: 52px; height: 52px;
-  border-color: var(--cyan);
-  opacity: .9;
-  background: var(--cyan-dim);
-}
+#cursor-ring { width: 36px; height: 36px; border: 1.5px solid var(--cyan); opacity: .5; transition: width .2s, height .2s; }
+#cursor-dot { width: 6px; height: 6px; background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
+body.cursor-hover #cursor-ring { width: 52px; height: 52px; border-color: var(--cyan); opacity: .9; background: var(--cyan-dim); }
 
 /* ─── PLEXUS CANVAS ─────────────────────────────── */
-#plexus {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  opacity: .55;
-}
+#plexus { position: fixed; inset: 0; z-index: 0; opacity: .55; pointer-events: none; }
 
 /* ─── LAYOUT HELPERS ────────────────────────────── */
-.container {
-  max-width: 1160px;
-  margin: 0 auto;
-  padding: 0 clamp(20px, 5vw, 60px);
-}
-section { position: relative; z-index: 1; }
+.container { max-width: 1160px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 60px); }
+section { position: relative; z-index: 1; padding: 100px 0; }
 
 /* ─── HEADER ────────────────────────────────────── */
 header {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  padding: 0 clamp(20px, 5vw, 60px);
-  height: 68px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: background .4s, backdrop-filter .4s, border-bottom .4s;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 0 clamp(20px, 5vw, 60px); height: 68px; display: flex;
+  align-items: center; justify-content: space-between; transition: all .4s;
 }
-header.scrolled {
-  background: rgba(5,8,16,.75);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-}
-.logo {
-  font-family: var(--ff-head);
-  font-size: 1.35rem;
-  font-weight: 800;
-  letter-spacing: -.02em;
-  color: var(--text-1);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+header.scrolled { background: rgba(5,8,16,.75); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+.logo { font-family: var(--ff-head); font-size: 1.35rem; font-weight: 800; color: var(--text-1); text-decoration: none; display: flex; align-items: center; gap: 10px; }
 .logo span { color: var(--cyan); }
 .logo-icon {
-  width: 30px; height: 30px;
+  width: 32px; height: 32px;
   background: linear-gradient(135deg, var(--cyan), var(--blue));
-  border-radius: 8px;
+  border-radius: 10px;
   display: grid;
   place-items: center;
-  font-size: .8rem;
+  font-size: .85rem;
+  color: #000;
+  font-weight: 800;
+  box-shadow: 0 0 15px var(--cyan-glow);
 }
 nav { display: flex; align-items: center; gap: 32px; }
 nav a {
   font-size: .85rem;
-  font-weight: 400;
-  color: var(--text-2);
+  font-weight: 500;
+  color: rgba(255,255,255,0.75);
   text-decoration: none;
   letter-spacing: .02em;
-  transition: color .2s;
+  transition: all .3s;
 }
-nav a:hover { color: var(--text-1); }
-.btn-nav {
-  font-family: var(--ff-body);
-  font-size: .82rem;
-  font-weight: 500;
-  color: var(--bg);
-  background: var(--cyan);
-  padding: 8px 20px;
-  border-radius: 99px;
-  text-decoration: none;
-  transition: box-shadow .2s, transform .2s;
-}
-.btn-nav:hover {
-  box-shadow: 0 0 24px var(--cyan-glow);
-  transform: translateY(-1px);
-}
+nav a:hover { color: var(--cyan); text-shadow: 0 0 10px var(--cyan-glow); }
+.btn-nav { font-size: .82rem; font-weight: 600; color: #000; background: var(--cyan); padding: 8px 20px; border-radius: 99px; text-decoration: none; transition: all .2s; }
+.btn-nav:hover { box-shadow: 0 0 24px var(--cyan-glow); transform: translateY(-1px); }
 
 /* ─── HERO ──────────────────────────────────────── */
-#hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: 120px 0 80px;
-  overflow: hidden;
-}
-.hero-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-}
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: .72rem;
-  font-weight: 500;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--cyan);
-  background: var(--cyan-dim);
-  border: 1px solid rgba(0,229,255,.2);
-  padding: 6px 14px;
-  border-radius: 99px;
-  margin-bottom: 24px;
-}
-.hero-badge::before {
-  content: '';
-  width: 6px; height: 6px;
-  background: var(--cyan);
-  border-radius: 50%;
-  box-shadow: 0 0 8px var(--cyan);
-  animation: pulse 2s infinite;
-}
-@keyframes pulse {
-  0%,100% { opacity: 1; transform: scale(1); }
-  50% { opacity: .4; transform: scale(.7); }
-}
-.hero-title {
-  font-family: var(--ff-head);
-  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
-  font-weight: 800;
-  line-height: 1.08;
-  letter-spacing: -.03em;
-  margin-bottom: 22px;
-}
-.hero-title em {
-  font-style: normal;
-  background: linear-gradient(90deg, var(--cyan), var(--blue-light));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.hero-sub {
-  font-size: clamp(.95rem, 1.5vw, 1.1rem);
-  color: var(--text-2);
-  line-height: 1.7;
-  max-width: 480px;
-  margin-bottom: 40px;
-}
-.hero-cta {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--ff-body);
-  font-size: .9rem;
-  font-weight: 500;
-  color: var(--bg);
-  background: linear-gradient(135deg, var(--cyan), #00b0cc);
-  padding: 14px 28px;
-  border-radius: 12px;
-  text-decoration: none;
-  transition: box-shadow .25s, transform .2s;
-}
-.btn-primary:hover {
-  box-shadow: 0 0 40px var(--cyan-glow), 0 8px 32px rgba(0,229,255,.2);
-  transform: translateY(-2px);
-}
-.btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--ff-body);
-  font-size: .9rem;
-  font-weight: 400;
-  color: var(--text-1);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  padding: 14px 28px;
-  border-radius: 12px;
-  text-decoration: none;
-  transition: background .2s, border-color .2s;
-}
-.btn-ghost:hover {
-  background: var(--surface-hi);
-  border-color: var(--border-hi);
-}
-
-/* Hero visual — carousel */
-.hero-visual {
-  position: relative;
-  height: clamp(340px, 45vw, 520px);
-  border-radius: var(--r-xl);
-  overflow: hidden;
-}
-.hero-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 1.2s ease;
-}
+#hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 0 80px; overflow: hidden; }
+.hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.hero-title { font-family: var(--ff-head); font-size: clamp(2.4rem, 4.5vw, 3.8rem); font-weight: 800; line-height: 1.08; margin-bottom: 22px; }
+.hero-title em { font-style: normal; background: linear-gradient(90deg, var(--cyan), var(--blue-light)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.hero-sub { font-size: 1.1rem; color: var(--text-2); margin-bottom: 40px; max-width: 480px; line-height: 1.7; }
+.btn-primary { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; color: #000; background: var(--cyan); padding: 14px 28px; border-radius: 12px; text-decoration: none; transition: all .25s; }
+.hero-visual { position: relative; height: 520px; border-radius: var(--r-xl); overflow: hidden; border: 1px solid var(--border); }
+.hero-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.2s; }
 .hero-slide.active { opacity: 1; }
-.hero-slide-img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transform-origin: center;
-  animation: kenburns 10s ease infinite alternate;
-}
-@keyframes kenburns {
-  from { transform: scale(1); }
-  to   { transform: scale(1.06); }
-}
-.hero-slide-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg,
-    rgba(5,8,16,.7) 0%,
-    rgba(0,100,180,.15) 100%);
-}
-/* shimmer sweep */
-.hero-visual::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(105deg,
-    transparent 30%,
-    rgba(0,229,255,.07) 50%,
-    transparent 70%);
-  background-size: 200% 100%;
-  animation: shimmer 4s linear infinite;
-  pointer-events: none;
-}
-@keyframes shimmer {
-  from { background-position: -200% 0; }
-  to   { background-position: 200% 0; }
-}
-.hero-visual-label {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  right: 20px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: rgba(5,8,16,.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--border);
-  border-radius: var(--r-md);
-  padding: 12px 16px;
-  z-index: 2;
-}
-.carousel-dots {
-  display: flex; gap: 6px; margin-left: auto;
-}
-.carousel-dots span {
-  width: 6px; height: 6px;
-  background: var(--text-3);
-  border-radius: 50%;
-  transition: background .3s, transform .3s;
-  cursor: pointer;
-}
-.carousel-dots span.active {
-  background: var(--cyan);
-  transform: scale(1.4);
-}
+.hero-slide-img { width: 100%; height: 100%; object-fit: cover; animation: kenburns 10s infinite alternate; }
+@keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.1); } }
 
-/* ─── STATS BAR ─────────────────────────────────── */
-#stats {
-  padding: 56px 0;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  background: linear-gradient(180deg, var(--bg-2), var(--bg));
-}
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-}
-.stat-item {
-  text-align: center;
-  padding: 0 24px;
-  border-right: 1px solid var(--border);
-}
-.stat-item:last-child { border-right: none; }
-.stat-num {
-  font-family: var(--ff-head);
-  font-size: clamp(2rem, 3.5vw, 3rem);
-  font-weight: 800;
-  color: var(--cyan);
-  line-height: 1;
-  letter-spacing: -.03em;
-}
-.stat-label {
-  font-size: .8rem;
-  color: var(--text-2);
-  margin-top: 6px;
-  letter-spacing: .04em;
-  text-transform: uppercase;
-}
-
-/* ─── SECTION HEADER ────────────────────────────── */
-.section-header {
-  text-align: center;
-  max-width: 620px;
-  margin: 0 auto 56px;
-}
-.section-tag {
-  display: inline-block;
-  font-size: .7rem;
-  font-weight: 500;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--cyan);
-  margin-bottom: 14px;
-}
-.section-title {
-  font-family: var(--ff-head);
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
-  font-weight: 800;
-  letter-spacing: -.025em;
-  line-height: 1.15;
-  margin-bottom: 16px;
-}
-.section-sub {
-  font-size: .95rem;
-  color: var(--text-2);
-  line-height: 1.7;
-}
+/* ─── STATS ─────────────────────────────────────── */
+#stats { padding: 60px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg-2); }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.stat-item { text-align: center; }
+.stat-num { font-family: var(--ff-head); font-size: 3rem; font-weight: 800; color: var(--cyan); line-height: 1; }
+.stat-label { font-size: .8rem; color: var(--text-2); margin-top: 10px; text-transform: uppercase; letter-spacing: 1px; }
 
 /* ─── SERVICES ──────────────────────────────────── */
-#services { padding: 100px 0; }
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-.service-card {
-  position: relative;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r-lg);
-  padding: 32px 28px;
-  overflow: hidden;
-  transition: border-color .3s, transform .3s;
-  cursor: default;
-}
-.service-card::before {
-  content: '';
-  position: absolute;
-  width: 200px; height: 200px;
-  background: radial-gradient(circle, var(--cyan-glow), transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity .4s;
-  transform: translate(-50%, -50%);
-  left: var(--mx, 50%);
-  top: var(--my, 50%);
-}
-.service-card:hover::before { opacity: 1; }
-.service-card:hover {
-  border-color: var(--border-hi);
-  transform: translateY(-4px);
-}
-.service-icon {
-  width: 48px; height: 48px;
-  border-radius: var(--r-sm);
-  background: linear-gradient(135deg, var(--cyan-dim), transparent);
-  border: 1px solid rgba(0,229,255,.2);
-  display: grid;
-  place-items: center;
-  font-size: 1.4rem;
-  margin-bottom: 20px;
-}
-.service-card h3 {
-  font-family: var(--ff-head);
-  font-size: 1.05rem;
-  font-weight: 700;
-  margin-bottom: 10px;
-  letter-spacing: -.01em;
-}
-.service-card p {
-  font-size: .85rem;
-  color: var(--text-2);
-  line-height: 1.65;
-}
-.service-tag {
-  display: inline-block;
-  margin-top: 18px;
-  font-size: .7rem;
-  font-weight: 500;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: var(--cyan);
-  background: var(--cyan-dim);
-  padding: 4px 10px;
-  border-radius: 99px;
-}
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.service-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 40px 32px; transition: all .3s; position: relative; overflow: hidden; }
+.service-card:hover { border-color: var(--border-hi); transform: translateY(-5px); }
+.service-icon { font-size: 2rem; margin-bottom: 24px; color: var(--cyan); }
+.service-card h3 { font-family: var(--ff-head); font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; }
+.service-card p { font-size: .95rem; color: var(--text-2); line-height: 1.6; }
 
-/* ─── PROCESS ───────────────────────────────────── */
-#process {
-  padding: 100px 0;
-  background: linear-gradient(180deg, transparent, var(--bg-2) 30%, var(--bg-2) 70%, transparent);
-}
-.process-steps {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  position: relative;
-}
-.process-steps::before {
-  content: '';
-  position: absolute;
-  top: 36px; left: 12.5%; right: 12.5%;
-  height: 1px;
-  background: linear-gradient(90deg,
-    transparent, var(--border-hi), var(--cyan-dim), var(--border-hi), transparent);
-  z-index: 0;
-}
-.step {
-  text-align: center;
-  padding: 0 16px;
-  position: relative;
-  z-index: 1;
-}
-.step-num {
-  width: 72px; height: 72px;
-  border-radius: 50%;
-  background: var(--bg);
-  border: 1.5px solid var(--border-hi);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 20px;
-  font-family: var(--ff-head);
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: var(--cyan);
-  position: relative;
-}
-.step-num::after {
-  content: '';
-  position: absolute;
-  inset: -4px;
-  border-radius: 50%;
-  background: conic-gradient(var(--cyan) calc(var(--p,0)*1%), transparent 0%);
-  z-index: -1;
-  opacity: .35;
-}
-.step h4 {
-  font-family: var(--ff-head);
-  font-size: .95rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-.step p {
-  font-size: .82rem;
-  color: var(--text-2);
-  line-height: 1.6;
-}
-
-/* ─── TESTIMONIALS ──────────────────────────────── */
-#testimonials { padding: 100px 0; }
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-.tcard {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r-lg);
-  padding: 28px;
-  transition: border-color .3s;
-}
-.tcard:hover { border-color: var(--border-hi); }
-.tcard-stars {
-  color: #fbbf24;
-  font-size: .9rem;
-  margin-bottom: 14px;
-  letter-spacing: 2px;
-}
-.tcard p {
-  font-size: .88rem;
-  color: var(--text-2);
-  line-height: 1.7;
-  margin-bottom: 20px;
-  font-style: italic;
-}
-.tcard-author {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.tcard-avatar {
-  width: 38px; height: 38px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--cyan), var(--blue));
-  display: grid;
-  place-items: center;
-  font-family: var(--ff-head);
-  font-size: .85rem;
-  font-weight: 700;
-  color: var(--bg);
-  flex-shrink: 0;
-}
-.tcard-name {
-  font-size: .85rem;
-  font-weight: 500;
-}
-.tcard-role {
-  font-size: .75rem;
-  color: var(--text-3);
-}
-
-/* Specialist badge */
-.specialist-block {
-  margin-top: 48px;
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  background: var(--surface);
-  border: 1px solid var(--border-hi);
-  border-radius: var(--r-lg);
-  padding: 28px 32px;
-  max-width: 640px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.specialist-avatar {
-  width: 64px; height: 64px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--cyan), var(--violet));
-  flex-shrink: 0;
-  display: grid;
-  place-items: center;
-  font-size: 1.8rem;
-}
-.specialist-info h4 {
-  font-family: var(--ff-head);
-  font-size: 1.05rem;
-  font-weight: 700;
-  margin-bottom: 4px;
-}
-.specialist-info p { font-size: .85rem; color: var(--text-2); }
-.verified-badge {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: .75rem;
-  font-weight: 500;
-  color: var(--cyan);
-  background: var(--cyan-dim);
-  border: 1px solid rgba(0,229,255,.2);
-  padding: 6px 14px;
-  border-radius: 99px;
-  white-space: nowrap;
-}
-
-/* ─── FAQ ───────────────────────────────────────── */
-#faq { padding: 100px 0; background: linear-gradient(180deg, transparent, var(--bg-2) 30%, var(--bg-2) 70%, transparent); }
-.faq-list {
-  max-width: 720px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.faq-item {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r-md);
-  overflow: hidden;
-  transition: border-color .3s;
-}
-.faq-item.open { border-color: var(--border-hi); }
-.faq-q {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 24px;
-  cursor: pointer;
-  font-size: .9rem;
-  font-weight: 500;
-  gap: 12px;
-  user-select: none;
-}
-.faq-chevron {
-  width: 24px; height: 24px;
-  border-radius: 6px;
-  background: var(--surface-hi);
-  border: 1px solid var(--border);
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-  font-size: .75rem;
-  transition: transform .3s, background .3s;
-}
-.faq-item.open .faq-chevron {
-  transform: rotate(180deg);
-  background: var(--cyan-dim);
-  border-color: rgba(0,229,255,.3);
-}
-.faq-a {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height .4s ease, padding .3s;
-  font-size: .87rem;
-  color: var(--text-2);
-  line-height: 1.7;
-  padding: 0 24px;
-}
-.faq-item.open .faq-a {
-  max-height: 300px;
-  padding: 0 24px 20px;
-}
-
-/* ─── FOOTER / CTA SECTION ──────────────────────── */
-#cta-final {
-  padding: 100px 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-#cta-final::before {
-  content: '';
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px; height: 600px;
-  background: radial-gradient(ellipse, rgba(0,229,255,.08) 0%, transparent 65%);
-  pointer-events: none;
-}
-.cta-final-title {
-  font-family: var(--ff-head);
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 800;
-  letter-spacing: -.03em;
-  margin-bottom: 18px;
-}
-.cta-final-sub {
-  font-size: 1rem;
-  color: var(--text-2);
-  margin-bottom: 36px;
-  max-width: 440px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.cta-final-btns {
-  display: flex;
-  gap: 14px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-footer {
-  border-top: 1px solid var(--border);
-  padding: 32px 0;
-  text-align: center;
-}
-footer p {
-  font-size: .78rem;
-  color: var(--text-3);
-}
-
-/* ─── WHATSAPP FLOAT ────────────────────────────── */
-#wa-float {
-  position: fixed;
-  bottom: 28px;
-  right: 28px;
-  z-index: 200;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 10px;
-}
-#wa-tooltip {
-  background: var(--bg-2);
-  border: 1px solid var(--border-hi);
-  color: var(--text-1);
-  font-size: .8rem;
-  padding: 10px 16px;
-  border-radius: var(--r-md);
-  max-width: 200px;
-  text-align: right;
-  position: relative;
-  box-shadow: 0 8px 32px rgba(0,0,0,.4);
-  animation: floatUp .4s ease both;
-}
-#wa-tooltip::after {
-  content: '';
-  position: absolute;
-  bottom: -7px; right: 20px;
-  width: 12px; height: 12px;
-  background: var(--bg-2);
-  border-right: 1px solid var(--border-hi);
-  border-bottom: 1px solid var(--border-hi);
-  transform: rotate(45deg);
-}
-@keyframes floatUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-#wa-btn {
-  width: 56px; height: 56px;
-  background: #25d366;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  text-decoration: none;
-  font-size: 1.5rem;
-  box-shadow: 0 4px 20px rgba(37,211,102,.4);
-  transition: transform .2s, box-shadow .2s;
-  animation: pulse-wa 3s ease infinite;
-}
-@keyframes pulse-wa {
-  0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,.4); }
-  50%      { box-shadow: 0 4px 36px rgba(37,211,102,.7); }
-}
-#wa-btn:hover { transform: scale(1.1); }
-#wa-close {
-  position: absolute;
-  top: -8px; right: -8px;
-  width: 20px; height: 20px;
-  background: var(--text-3);
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-size: .6rem;
-  cursor: pointer;
-  color: var(--text-1);
-  border: none;
-}
-
-/* ─── REVEAL ANIMATIONS ─────────────────────────── */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity .6s ease, transform .6s ease;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+/* ─── REVEAL ENGINE ─────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(30px); transition: all .8s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 .reveal-delay-1 { transition-delay: .1s; }
 .reveal-delay-2 { transition-delay: .2s; }
 .reveal-delay-3 { transition-delay: .3s; }
-.reveal-delay-4 { transition-delay: .4s; }
-.reveal-delay-5 { transition-delay: .5s; }
 
-/* ─── RESPONSIVE ────────────────────────────────── */
-@media (max-width: 900px) {
-  .hero-inner { grid-template-columns: 1fr; }
-  .hero-visual { height: 280px; }
-  .services-grid,
-  .testimonials-grid { grid-template-columns: 1fr 1fr; }
-  .stats-grid { grid-template-columns: repeat(2,1fr); }
-  .stat-item:nth-child(2) { border-right: none; }
-  .stat-item:nth-child(3),
-  .stat-item:nth-child(4) { border-top: 1px solid var(--border); margin-top: 24px; padding-top: 24px; }
-  .process-steps { grid-template-columns: 1fr 1fr; gap: 32px; }
-  .process-steps::before { display: none; }
-  nav { display: none; }
+/* ─── SPECIALIST (3D TILT) ──────────────────────── */
+.specialist-block {
+    display: flex; align-items: center; gap: 32px; background: var(--surface); border: 1px solid var(--border-hi);
+    border-radius: var(--r-lg); padding: 32px 40px; max-width: 680px; margin: 60px auto;
+    transform-style: preserve-3d; transition: transform 0.1s ease; position: relative;
+    cursor: default; overflow: hidden;
 }
-@media (max-width: 560px) {
-  .services-grid,
-  .testimonials-grid { grid-template-columns: 1fr; }
-  .specialist-block { flex-direction: column; text-align: center; }
-  .verified-badge { margin: 0 auto; }
+.specialist-avatar { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid var(--cyan); -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, black 85%, transparent 100%); }
+.specialist-info h4 { font-family: var(--ff-head); font-size: 1.2rem; color: #fff; margin-bottom: 6px; }
+.specialist-info p { font-size: .9rem; color: var(--text-2); line-height: 1.6; }
+.verified-badge { background: var(--cyan-dim); color: var(--cyan); padding: 6px 14px; border-radius: 99px; font-size: .75rem; font-weight: 600; margin-left: auto; }
+
+/* ─── FAQ ────────────────────────────────────────── */
+.faq-list { max-width: 720px; margin: 0 auto; }
+.faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); margin-bottom: 12px; overflow: hidden; }
+.faq-q { padding: 22px 28px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; }
+.faq-a { padding: 0 28px; max-height: 0; overflow: hidden; transition: all .4s ease; color: var(--text-2); font-size: .95rem; }
+.faq-item.open .faq-a { padding: 0 28px 24px; max-height: 200px; }
+
+/* ─── NEW CTA SECTION (SURGICAL) ────────────────── */
+.cs-final { background: #050810; padding: 100px 0 60px; color: #f0f6ff; font-family: inherit; position: relative; }
+.cs-container { max-width: 1100px; margin: 0 auto; padding: 0 20px; text-align: center; }
+.cs-title { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 24px; color: #f0f6ff; }
+.cs-title em { color: #00e5ff; font-style: normal; }
+.cs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; max-width: 680px; margin: 40px auto; }
+.cs-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 18px 16px; display: flex; flex-direction: column; gap: 6px; text-align: center; align-items: center; }
+.cs-icon { width: 32px; height: 32px; background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.2); border-radius: 8px; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+.cs-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.4); }
+.cs-value { font-size: 14px; font-weight: 700; color: #fff; }
+.cs-sub { font-size: 11px; color: rgba(255,255,255,0.3); }
+.cs-map { width: 100%; max-width: 800px; height: 180px; margin: 40px auto; border-radius: 12px; border: 1px solid rgba(0,229,255,0.15); background: #0a1628; position: relative; overflow: hidden; }
+.cs-map-grid { position: absolute; inset: 0; background-image: repeating-linear-gradient(rgba(0,229,255,0.05) 0 1px, transparent 1px 20px), repeating-linear-gradient(90deg, rgba(0,229,255,0.05) 0 1px, transparent 1px 20px); }
+.cs-map-h { position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: rgba(0,229,255,0.1); }
+.cs-map-v { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: rgba(0,229,255,0.1); }
+.cs-pin { position: absolute; top: 50%; left: 50%; width: 14px; height: 14px; background: #00e5ff; border-radius: 50%; transform: translate(-50%, -50%); box-shadow: 0 0 0 6px rgba(0,229,255,0.15); }
+.cs-label-pin { position: absolute; top: 22px; left: 50%; transform: translateX(-50%); background: rgba(5,8,16,0.85); border: 1px solid rgba(0,229,255,0.25); border-radius: 8px; padding: 4px 10px; font-size: 12px; color: #00e5ff; white-space: nowrap; }
+.cs-btn { display: inline-block; background: #00e5ff; color: #050810; font-weight: 600; padding: 12px 24px; border-radius: 10px; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
+.cs-btn:hover { transform: translateY(-2px); box-shadow: 0 0 24px rgba(0,229,255,.4); }
+.cs-foot-sub { margin-top: 14px; font-size: 12px; color: rgba(255,255,255,0.35); }
+@media (max-width: 600px) {
+  .cs-grid { grid-template-columns: 1fr; }
+  .cs-map { height: 160px; }
 }
+
+/* ─── SECTION TITLES ─────────────────────────────── */
+.section-header { text-align: center; max-width: 640px; margin: 0 auto 48px; }
+.section-tag { display: inline-block; font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--cyan); background: var(--cyan-dim); border: 1px solid rgba(0,229,255,0.2); padding: 5px 14px; border-radius: 99px; margin-bottom: 14px; }
+.section-title { font-family: var(--ff-head); font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; line-height: 1.15; letter-spacing: -.025em; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--cyan); background: var(--cyan-dim); border: 1px solid rgba(0,229,255,0.2); padding: 6px 14px; border-radius: 99px; margin-bottom: 20px; }
+
+/* ─── MOBILE CURSOR FIX ──────────────────────────── */
+@media (hover: none), (pointer: coarse) {
+  body { cursor: auto !important; }
+  #cursor-ring, #cursor-dot { display: none !important; }
+}
+
+/* ─── MOBILE MENU ────────────────────────────────── */
+#mobile-toggle { display: none; background: none; border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 1.1rem; z-index: 101; }
+@media (max-width: 768px) {
+  #mobile-toggle { display: block; }
+  nav { flex-direction: column; align-items: flex-end; position: relative; }
+  nav a:not(.btn-nav), nav .btn-nav { display: none; }
+  nav.mobile-open { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(5,8,16,0.97); backdrop-filter: blur(20px); flex-direction: column; align-items: center; justify-content: center; gap: 28px; z-index: 100; }
+  nav.mobile-open a { display: block; font-size: 1.2rem; }
+  nav.mobile-open #mobile-toggle { position: absolute; top: 20px; right: 20px; font-size: 1.3rem; }
+}
+
+footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; color: rgba(255,255,255,0.4); font-size: .85rem; }
+
+/* ─── WHATSAPP FLOAT ─────────────────────────────── */
+#wa-float { position: fixed; bottom: 40px; right: 40px; z-index: 999; display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+#wa-btn {
+  width: 64px; height: 64px;
+  background: linear-gradient(135deg, var(--cyan), var(--blue));
+  border-radius: 50%;
+  display: grid; place-items: center; font-size: 1.8rem; text-decoration: none;
+  box-shadow: 0 10px 40px var(--cyan-glow);
+  transition: all .3s;
+  animation: wa-pulse 2s infinite;
+}
+@keyframes wa-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(0,229,255,0.5); transform: scale(1); }
+  70% { box-shadow: 0 0 0 15px rgba(0,229,255,0); transform: scale(1.05); }
+  100% { box-shadow: 0 0 0 0 rgba(0,229,255,0); transform: scale(1); }
+}
+#wa-btn:hover { transform: scale(1.15) rotate(5deg); animation-play-state: paused; }
+#wa-tooltip { background: rgba(5,8,16,0.9); backdrop-filter: blur(12px); border: 1px solid var(--border-hi); color: #fff; padding: 12px 18px; border-radius: 14px; font-size: .85rem; font-weight: 500; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,.3); white-space: nowrap; }
 </style>
 </head>
 <body>
 
-<!-- Custom cursor -->
+<canvas id="plexus"></canvas>
 <div id="cursor-ring"></div>
 <div id="cursor-dot"></div>
 
-<!-- Plexus background -->
-<canvas id="plexus"></canvas>
-
-<!-- ===== HEADER ===== -->
 <header id="header">
-  <a href="#" class="logo">
-    <div class="logo-icon">⚡</div>
-    Click<span>Suporte</span>
-  </a>
-  <nav>
-    <a href="#services">Serviços</a>
-    <a href="#process">Processo</a>
-    <a href="#testimonials">Avaliações</a>
-    <a href="#faq">FAQ</a>
-    <a href="https://wa.me/5566999999999" class="btn-nav" target="_blank">Falar no WhatsApp</a>
-  </nav>
+    <a href="#" class="logo">
+        <div class="logo-icon">C</div>
+        Click <span>Suporte</span>
+    </a>
+    <button id="mobile-toggle" aria-label="Menu">&#9776;</button>
+    <nav>
+        <a href="#hero">Início</a>
+        <a href="#services">Serviços</a>
+        <a href="#faq">Dúvidas</a>
+        <a href="https://wa.me/5566992265185" class="btn-nav">Falar com Especialista</a>
+    </nav>
 </header>
 
-<!-- ===== HERO ===== -->
 <section id="hero">
-  <div class="container">
-    <div class="hero-inner">
-      <div>
-        <div class="hero-badge">Sorriso-MT · Suporte Premium</div>
-        <h1 class="hero-title reveal">
-          Tecnologia que<br><em>funciona de verdade.</em><br>Suporte que aparece.
-        </h1>
-        <p class="hero-sub reveal reveal-delay-1">
-          Assistência técnica especializada em notebooks, desktops, celulares e redes. Diagnóstico em 24h, peças originais e garantia em todos os serviços.
-        </p>
-        <div class="hero-cta reveal reveal-delay-2">
-          <a href="https://wa.me/5566999999999" class="btn-primary" target="_blank">
-            💬 Diagnóstico Grátis
-          </a>
-          <a href="#services" class="btn-ghost">
-            Ver Serviços →
-          </a>
+    <div class="container hero-inner">
+        <div class="hero-content">
+            <span class="hero-badge reveal">Assistência Técnica Premium em Sorriso</span>
+            <h1 class="hero-title reveal reveal-delay-1">O suporte que o seu computador <em>merece</em>.</h1>
+            <p class="hero-sub reveal reveal-delay-2">Especialista em softwares, otimização extrema e segurança cibernética. Recupere a performance do seu PC hoje mesmo.</p>
+            <div class="hero-cta reveal reveal-delay-3">
+                <a href="https://wa.me/5566992265185" class="btn-primary">💬 Diagnóstico Gratuito</a>
+                <a href="#services" class="btn-ghost" style="color:var(--text-1); text-decoration: none; margin-left:15px; border:1px solid var(--border); padding:14px 28px; border-radius:12px; transition: all .3s;">Nossos Serviços</a>
+            </div>
         </div>
-      </div>
-      <div class="hero-visual reveal reveal-delay-3">
-        <div class="hero-slide active" id="slide-0">
-          <div class="hero-slide-img" style="background: linear-gradient(135deg, #0a1628 0%, #0f2850 40%, #0a2040 100%); display:flex; align-items:center; justify-content:center; font-size:7rem;">💻</div>
-          <div class="hero-slide-overlay"></div>
+        <div class="hero-visual reveal">
+            <div class="hero-slide active">
+                <img src="assets/logo/hero-carousel-1.png" alt="Suporte Técnico" class="hero-slide-img">
+            </div>
+            <div class="hero-slide">
+                <img src="assets/logo/logo-original.png" alt="Click Suporte" class="hero-slide-img">
+            </div>
         </div>
-        <div class="hero-slide" id="slide-1">
-          <div class="hero-slide-img" style="background: linear-gradient(135deg, #0d1a10 0%, #0a3020 40%, #061520 100%); display:flex; align-items:center; justify-content:center; font-size:7rem;">🔧</div>
-          <div class="hero-slide-overlay"></div>
-        </div>
-        <div class="hero-visual-label">
-          <span style="font-size:.82rem; color:var(--text-2)">Atendimento profissional</span>
-          <div class="carousel-dots">
-            <span class="active" data-idx="0"></span>
-            <span data-idx="1"></span>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 </section>
 
-<!-- ===== STATS ===== -->
 <section id="stats">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat-item reveal">
-        <div class="stat-num" data-target="1200" data-suffix="+">0</div>
-        <div class="stat-label">Equipamentos reparados</div>
-      </div>
-      <div class="stat-item reveal reveal-delay-1">
-        <div class="stat-num" data-target="98" data-suffix="%">0</div>
-        <div class="stat-label">Clientes satisfeitos</div>
-      </div>
-      <div class="stat-item reveal reveal-delay-2">
-        <div class="stat-num" data-target="24" data-suffix="h">0</div>
-        <div class="stat-label">Diagnóstico em até</div>
-      </div>
-      <div class="stat-item reveal reveal-delay-3">
-        <div class="stat-num" data-target="5" data-suffix=" anos">0</div>
-        <div class="stat-label">De experiência</div>
-      </div>
+    <div class="container stats-grid reveal">
+        <div class="stat-item">
+            <div class="stat-num" data-target="5000" data-suffix="+">0</div>
+            <div class="stat-label">Equipamentos Atendidos</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num" data-target="98" data-suffix="%">0</div>
+            <div class="stat-label">Satisfação Garantida</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num" data-target="15" data-suffix="min">0</div>
+            <div class="stat-label">Resposta em Média</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num" data-target="1000" data-suffix="+">0</div>
+            <div class="stat-label">Clientes Satisfeitos</div>
+        </div>
     </div>
-  </div>
 </section>
 
-<!-- ===== SERVICES ===== -->
 <section id="services">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">O que fazemos</span>
-      <h2 class="section-title reveal">Serviços que resolvem<br>de verdade</h2>
-      <p class="section-sub reveal reveal-delay-1">Da manutenção básica à recuperação de dados — cobertura completa para seus equipamentos.</p>
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag">Nossas Especialidades</span>
+            <h2 class="section-title">Tecnologia de ponta para <br> resolver qualquer falha.</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <div class="service-icon">🚀</div>
+                <h3>Otimização Extrema</h3>
+                <p>Remoção de lixo digital, limpeza profunda e configuração de overclock segura para máxima velocidade.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">📡</div>
+                <h3>Suporte Remoto 24/7</h3>
+                <p>Resolução de problemas de software em tempo real, sem você precisar sair de casa ou da empresa.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">🛡️</div>
+                <h3>Segurança Total</h3>
+                <p>Remoção de Malwares, cavalos de troia e instalação dos melhores sistemas de proteção contra invasões.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">💾</div>
+                <h3>Recuperação de Dados</h3>
+                <p>Backup preventivo e restauração de arquivos deletados ou HDs com problemas técnicos.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">⚙️</div>
+                <h3>Instalação Profissional</h3>
+                <p>Sistemas operacionais Windows e Linux, softwares Adobe, engenharia e ferramentas de produtividade.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">🌐</div>
+                <h3>Redes e Conectividade</h3>
+                <p>Configuração de roteadores, repetidores Wi-Fi e otimização de ping para gamers e home office.</p>
+            </div>
+        </div>
     </div>
-    <div class="services-grid">
-      <div class="service-card reveal">
-        <div class="service-icon">💻</div>
-        <h3>Notebooks & Desktops</h3>
-        <p>Troca de tela, HD/SSD, memória RAM, placa-mãe, limpeza de cooler e formatação com reinstalação completa do sistema.</p>
-        <span class="service-tag">Mais procurado</span>
-      </div>
-      <div class="service-card reveal reveal-delay-1">
-        <div class="service-icon">📱</div>
-        <h3>Celulares & Tablets</h3>
-        <p>Troca de tela, bateria, conector de carga e câmera. Recuperação de dados e desbloqueio de dispositivos Apple e Android.</p>
-        <span class="service-tag">Rápido</span>
-      </div>
-      <div class="service-card reveal reveal-delay-2">
-        <div class="service-icon">🌐</div>
-        <h3>Redes & Infraestrutura</h3>
-        <p>Configuração de roteadores, cabeamento estruturado, VPN, servidores locais e segurança de rede para empresas.</p>
-        <span class="service-tag">Empresarial</span>
-      </div>
-      <div class="service-card reveal reveal-delay-3">
-        <div class="service-icon">💾</div>
-        <h3>Recuperação de Dados</h3>
-        <p>Recuperação de arquivos em HDs com falha, pendrives danificados, SSDs e cartões de memória com alta taxa de sucesso.</p>
-        <span class="service-tag">Especializado</span>
-      </div>
-      <div class="service-card reveal reveal-delay-4">
-        <div class="service-icon">🛡️</div>
-        <h3>Segurança & Backup</h3>
-        <p>Remoção de vírus e malwares, instalação de antivírus corporativo e configuração de soluções de backup automático em nuvem.</p>
-        <span class="service-tag">Proteção</span>
-      </div>
-      <div class="service-card reveal reveal-delay-5">
-        <div class="service-icon">🖨️</div>
-        <h3>Impressoras & Periféricos</h3>
-        <p>Manutenção e configuração de impressoras laser e jato de tinta, scanners, nobreaks e outros periféricos de escritório.</p>
-        <span class="service-tag">Completo</span>
-      </div>
-    </div>
-  </div>
 </section>
 
-<!-- ===== PROCESS ===== -->
-<section id="process">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">Como funciona</span>
-      <h2 class="section-title reveal">Processo simples,<br>resultado garantido</h2>
+<section id="specialist-section">
+    <div class="container" style="position: relative;">
+        <div class="specialist-block reveal">
+            <img src="assets/logo/especialista.png" alt="Raimundo Emanuel" class="specialist-avatar">
+            <div class="specialist-info">
+                <h4>Raimundo Emanuel</h4>
+                <p>Especialista Senior em Software e Otimização. +5 anos de experiência garantindo performance e segurança para Sorriso-MT.</p>
+            </div>
+            <div class="verified-badge">✓ Especialista Verificado</div>
+        </div>
     </div>
-    <div class="process-steps">
-      <div class="step reveal">
-        <div class="step-num" style="--p:25">01</div>
-        <h4>Contato via WhatsApp</h4>
-        <p>Descreva o problema e receba orientação imediata do nosso técnico especialista.</p>
-      </div>
-      <div class="step reveal reveal-delay-1">
-        <div class="step-num" style="--p:50">02</div>
-        <h4>Diagnóstico Gratuito</h4>
-        <p>Avaliamos o equipamento presencialmente sem custo e apresentamos orçamento detalhado.</p>
-      </div>
-      <div class="step reveal reveal-delay-2">
-        <div class="step-num" style="--p:75">03</div>
-        <h4>Reparo Autorizado</h4>
-        <p>Com sua aprovação, iniciamos o serviço usando peças de qualidade com rastreabilidade.</p>
-      </div>
-      <div class="step reveal reveal-delay-3">
-        <div class="step-num" style="--p:100">04</div>
-        <h4>Entrega com Garantia</h4>
-        <p>Equipamento testado, documentado e entregue com garantia por escrito no serviço.</p>
-      </div>
-    </div>
-  </div>
 </section>
 
-<!-- ===== TESTIMONIALS ===== -->
-<section id="testimonials">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">Avaliações reais</span>
-      <h2 class="section-title reveal">O que nossos clientes<br>estão falando</h2>
-    </div>
-    <div class="testimonials-grid">
-      <div class="tcard reveal">
-        <div class="tcard-stars">★★★★★</div>
-        <p>"Levei meu notebook com tela quebrada. Em menos de 2 dias estava pronto, com garantia e preço justo. Super recomendo!"</p>
-        <div class="tcard-author">
-          <div class="tcard-avatar">MA</div>
-          <div>
-            <div class="tcard-name">Mariana Alves</div>
-            <div class="tcard-role">Professora · Sorriso-MT</div>
-          </div>
-        </div>
-      </div>
-      <div class="tcard reveal reveal-delay-1">
-        <div class="tcard-stars">★★★★★</div>
-        <p>"Perdi arquivos importantíssimos do trabalho. Conseguiram recuperar tudo! Profissionalismo impecável e suporte pós-serviço excelente."</p>
-        <div class="tcard-author">
-          <div class="tcard-avatar">CR</div>
-          <div>
-            <div class="tcard-name">Carlos Rocha</div>
-            <div class="tcard-role">Empresário · Agro</div>
-          </div>
-        </div>
-      </div>
-      <div class="tcard reveal reveal-delay-2">
-        <div class="tcard-stars">★★★★★</div>
-        <p>"Configuraram toda a rede da nossa empresa em um único dia. Rápidos, organizados e com excelente custo-benefício. Parceiros para sempre!"</p>
-        <div class="tcard-author">
-          <div class="tcard-avatar">JF</div>
-          <div>
-            <div class="tcard-name">Juliana Ferreira</div>
-            <div class="tcard-role">Gerente · Comércio</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="specialist-block reveal">
-      <div class="specialist-avatar">👨‍💻</div>
-      <div class="specialist-info">
-        <h4>Ricardo Mendes</h4>
-        <p>Técnico especialista certificado · +5 anos de experiência em hardware e redes · Sorriso-MT</p>
-      </div>
-      <div class="verified-badge">✓ Especialista Verificado</div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FAQ ===== -->
 <section id="faq">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">Dúvidas frequentes</span>
-      <h2 class="section-title reveal">Tem alguma dúvida?</h2>
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag">FAQ</span>
+            <h2 class="section-title">Suas dúvidas rápidas.</h2>
+        </div>
+        <div class="faq-list reveal">
+            <div class="faq-item">
+                <div class="faq-q">O diagnóstico é cobrado? <span>▾</span></div>
+                <div class="faq-a">Não! O diagnóstico inicial é 100% gratuito. Você só paga se aprovar o orçamento do serviço.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Qual o prazo de atendimento? <span>▾</span></div>
+                <div class="faq-a">Problemas remotos geralmente são resolvidos em menos de 1 hora. Problemas presenciais levam de 24h a 48h.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Tenho garantia no serviço? <span>▾</span></div>
+                <div class="faq-a">Sim! Todos os nossos serviços têm garantia mínima de 30 dias para software e suporte continuado.</div>
+            </div>
+        </div>
     </div>
-    <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-q">Qual o prazo médio para conserto? <span class="faq-chevron">▾</span></div>
-        <div class="faq-a">A maioria dos serviços é concluída em 24 a 72 horas úteis. Reparos mais complexos (como recuperação de dados ou troca de placa-mãe) podem levar até 5 dias. Sempre informamos o prazo antes de iniciar.</div>
+</section>
+
+<section id="cta-final" class="cs-final">
+  <div class="cs-container">
+    <h2 class="cs-title reveal">Pronto para <em>resolver</em><br>seu problema?</h2>
+    
+    <div class="cs-grid reveal">
+      <article class="cs-card">
+        <div class="cs-icon">📍</div>
+        <span class="cs-label">Localização</span>
+        <span class="cs-value">Sorriso-MT</span>
+        <span class="cs-sub">Atendimento presencial</span>
+      </article>
+      <article class="cs-card">
+        <div class="cs-icon">⏰</div>
+        <span class="cs-label">Horário</span>
+        <span class="cs-value">Seg–Sáb</span>
+        <span class="cs-sub">08h às 18h</span>
+      </article>
+      <article class="cs-card">
+        <div class="cs-icon">⚡</div>
+        <span class="cs-label">Diagnóstico</span>
+        <span class="cs-value">Gratuito</span>
+        <span class="cs-sub">Resposta em 24h</span>
+      </article>
+    </div>
+
+    <div class="cs-map reveal">
+      <div class="cs-map-grid"></div>
+      <div class="cs-map-h"></div>
+      <div class="cs-map-v"></div>
+      <div class="cs-pin">
+        <div class="cs-label-pin">Click Suporte · Sorriso-MT</div>
       </div>
-      <div class="faq-item">
-        <div class="faq-q">Vocês oferecem garantia nos serviços? <span class="faq-chevron">▾</span></div>
-        <div class="faq-a">Sim! Todos os nossos serviços têm garantia por escrito. Peças trocadas têm garantia mínima de 90 dias e serviços de mão de obra 30 dias. Nosso compromisso é com a sua satisfação total.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">Atendem empresas ou só pessoas físicas? <span class="faq-chevron">▾</span></div>
-        <div class="faq-a">Atendemos tanto pessoas físicas quanto jurídicas. Para empresas, oferecemos contratos de manutenção preventiva mensal com prioridade no atendimento e descontos especiais.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">Posso levar o equipamento ou vocês buscam? <span class="faq-chevron">▾</span></div>
-        <div class="faq-a">Você pode trazer diretamente ao nosso endereço em Sorriso-MT. Para clientes empresariais com contrato, também oferecemos serviço de coleta e entrega mediante agendamento prévio.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">O diagnóstico tem algum custo? <span class="faq-chevron">▾</span></div>
-        <div class="faq-a">Não! O diagnóstico é 100% gratuito e sem compromisso. Apresentamos o orçamento detalhado e você decide se quer prosseguir. Só cobramos se você aprovar o serviço.</div>
-      </div>
+    </div>
+
+    <div class="reveal">
+      <a href="https://wa.me/5566992265185" class="cs-btn">💬 Falar no WhatsApp Agora</a>
+      <p class="cs-foot-sub">Diagnóstico gratuito, orçamento em minutos</p>
     </div>
   </div>
 </section>
 
-<!-- ===== CTA FINAL ===== -->
-<section id="cta-final">
-  <div class="container">
-    <h2 class="cta-final-title reveal">Pronto para resolver<br>seu problema?</h2>
-    <p class="cta-final-sub reveal reveal-delay-1">Fale agora pelo WhatsApp. Diagnóstico gratuito, orçamento em minutos e atendimento em Sorriso-MT.</p>
-    <div class="cta-final-btns reveal reveal-delay-2">
-      <a href="https://wa.me/5566999999999" class="btn-primary" target="_blank">
-        💬 Falar no WhatsApp Agora
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FOOTER ===== -->
 <footer>
-  <div class="container">
-    <p>© 2025 Click Suporte · Assistência Técnica Premium · Sorriso-MT · Todos os direitos reservados</p>
-  </div>
+    <div class="container">
+        <p>© 2025 Click Suporte · Assistência Técnica Premium · Sorriso-MT · Todos os direitos reservados</p>
+    </div>
 </footer>
 
-<!-- ===== WHATSAPP FLOAT ===== -->
 <div id="wa-float">
-  <div id="wa-tooltip">
-    Olá! 👋 Diagnóstico grátis hoje mesmo!
-    <button id="wa-close">✕</button>
-  </div>
-  <a href="https://wa.me/5566999999999" id="wa-btn" target="_blank" aria-label="WhatsApp">💬</a>
+    <div id="wa-tooltip">Olá! 👋 Diagnóstico grátis agora?</div>
+    <a href="https://wa.me/5566992265185" id="wa-btn" target="_blank">📲</a>
 </div>
 
-<!-- ===== JS ===== -->
 <script>
-/* ── CURSOR ─────────────────────────────────────── */
-const ring = document.getElementById('cursor-ring');
-const dot  = document.getElementById('cursor-dot');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
-function animCursor() {
-  rx += (mx-rx)*.18; ry += (my-ry)*.18;
-  ring.style.left = rx+'px'; ring.style.top = ry+'px';
-  dot.style.left  = mx+'px'; dot.style.top  = my+'px';
-  requestAnimationFrame(animCursor);
-}
-animCursor();
-document.querySelectorAll('a,button,.faq-q,.service-card,.tcard').forEach(el => {
-  el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-  el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-});
-
-/* ── PLEXUS ─────────────────────────────────────── */
+/* ─── PLEXUS CANVAS ─────────────────────────────── */
 (function(){
-  const c = document.getElementById('plexus');
-  const ctx = c.getContext('2d');
-  let W,H,pts=[];
-  const N=70, DIST=140;
-  function resize(){ W=c.width=window.innerWidth; H=c.height=window.innerHeight; }
-  resize(); window.addEventListener('resize',resize);
-  for(let i=0;i<N;i++) pts.push({
-    x:Math.random()*window.innerWidth,
-    y:Math.random()*window.innerHeight,
-    vx:(Math.random()-.5)*.4,
-    vy:(Math.random()-.5)*.4
-  });
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    pts.forEach(p => {
-      p.x+=p.vx; p.y+=p.vy;
-      if(p.x<0||p.x>W) p.vx*=-1;
-      if(p.y<0||p.y>H) p.vy*=-1;
-    });
-    for(let i=0;i<pts.length;i++){
-      for(let j=i+1;j<pts.length;j++){
-        const d=Math.hypot(pts[i].x-pts[j].x,pts[i].y-pts[j].y);
-        if(d<DIST){
-          const a=(1-d/DIST)*.35;
-          ctx.strokeStyle=`rgba(0,229,255,${a})`;
-          ctx.lineWidth=.8;
-          ctx.beginPath();
-          ctx.moveTo(pts[i].x,pts[i].y);
-          ctx.lineTo(pts[j].x,pts[j].y);
-          ctx.stroke();
-        }
-      }
-      ctx.beginPath();
-      ctx.arc(pts[i].x,pts[i].y,1.5,0,Math.PI*2);
-      ctx.fillStyle='rgba(0,229,255,0.5)';
-      ctx.fill();
+    const canvas = document.getElementById('plexus');
+    const ctx = canvas.getContext('2d');
+    let W, H, pts = [];
+    const N = 70, DIST = 150;
+    function resize() {
+        W = canvas.width = window.innerWidth;
+        H = canvas.height = window.innerHeight;
     }
-    requestAnimationFrame(draw);
-  }
-  draw();
+    resize();
+    window.addEventListener('resize', resize);
+    for(let i=0; i<N; i++) pts.push({
+        x: Math.random()*W, y: Math.random()*H,
+        vx: (Math.random()-0.5)*0.5, vy: (Math.random()-0.5)*0.5
+    });
+    function draw() {
+        ctx.clearRect(0,0,W,H);
+        pts.forEach(p => {
+            p.x += p.vx; p.y += p.vy;
+            if(p.x<0||p.x>W) p.vx *= -1;
+            if(p.y<0||p.y>H) p.vy *= -1;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 1.5, 0, Math.PI*2);
+            ctx.fillStyle = 'rgba(0,229,255,0.5)';
+            ctx.fill();
+        });
+        for(let i=0; i<N; i++) {
+            for(let j=i+1; j<N; j++) {
+                const d = Math.hypot(pts[i].x - pts[j].x, pts[i].y - pts[j].y);
+                if(d < DIST) {
+                    ctx.strokeStyle = `rgba(0,229,255,${(1 - d/DIST)*0.3})`;
+                    ctx.lineWidth = 0.8;
+                    ctx.beginPath();
+                    ctx.moveTo(pts[i].x, pts[i].y);
+                    ctx.lineTo(pts[j].x, pts[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+        requestAnimationFrame(draw);
+    }
+    draw();
 })();
 
-/* ── HEADER SCROLL ──────────────────────────────── */
-const header = document.getElementById('header');
-window.addEventListener('scroll', () => {
-  header.classList.toggle('scrolled', window.scrollY > 40);
-});
-
-/* ── CAROUSEL ───────────────────────────────────── */
-let slideIdx=0;
-const slides = document.querySelectorAll('.hero-slide');
-const dots   = document.querySelectorAll('.carousel-dots span');
-function goSlide(n) {
-  slides[slideIdx].classList.remove('active');
-  dots[slideIdx].classList.remove('active');
-  slideIdx = n % slides.length;
-  slides[slideIdx].classList.add('active');
-  dots[slideIdx].classList.add('active');
+/* ─── CURSOR ─────────────────────────────────────── */
+const ring = document.getElementById('cursor-ring');
+const dot = document.getElementById('cursor-dot');
+let mx=0, my=0, rx=0, ry=0;
+window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+function animCursor() {
+    rx += (mx - rx) * 0.15; ry += (my - ry) * 0.15;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+    requestAnimationFrame(animCursor);
 }
-dots.forEach(d => d.addEventListener('click', () => goSlide(+d.dataset.idx)));
-setInterval(() => goSlide(slideIdx+1), 4500);
-
-/* ── REVEAL ENGINE ──────────────────────────────── */
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: .12 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-/* ── COUNTER ENGINE ─────────────────────────────── */
-const counterIO = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if(!e.isIntersecting) return;
-    const el = e.target;
-    const target = +el.dataset.target;
-    const suffix = el.dataset.suffix || '';
-    let start=0;
-    const dur=1800;
-    const t0=performance.now();
-    function tick(now){
-      const p=Math.min((now-t0)/dur,1);
-      const ease=1-Math.pow(1-p,3);
-      start=Math.round(ease*target);
-      el.textContent=start+suffix;
-      if(p<1) requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-    counterIO.unobserve(el);
-  });
-}, { threshold:.5 });
-document.querySelectorAll('.stat-num').forEach(el => counterIO.observe(el));
-
-/* ── SERVICE CARD GLOW ──────────────────────────── */
-document.querySelectorAll('.service-card').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const r = card.getBoundingClientRect();
-    card.style.setProperty('--mx', (e.clientX-r.left)+'px');
-    card.style.setProperty('--my', (e.clientY-r.top)+'px');
-  });
+animCursor();
+document.querySelectorAll('a, button, .faq-q, .service-card').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
 });
 
-/* ── FAQ ────────────────────────────────────────── */
+/* ─── REVEAL ─────────────────────────────────────── */
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* ─── COUNTER ────────────────────────────────────── */
+const counterObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if(!e.isIntersecting) return;
+        const el = e.target;
+        const target = +el.dataset.target;
+        const suffix = el.dataset.suffix || '';
+        let count = 0;
+        const int = setInterval(() => {
+            count += Math.ceil(target/50);
+            if(count >= target) { el.textContent = target + suffix; clearInterval(int); }
+            else { el.textContent = count + suffix; }
+        }, 30);
+        counterObs.unobserve(el);
+    });
+}, { threshold: 0.5 });
+document.querySelectorAll('.stat-num').forEach(el => counterObs.observe(el));
+
+/* ─── SPECIALIST 3D TILT ─────────────────────────── */
+const specBlock = document.querySelector('.specialist-block');
+specBlock.addEventListener('mousemove', e => {
+    const r = specBlock.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    specBlock.style.transform = `perspective(1000px) rotateX(${y*-10}deg) rotateY(${x*10}deg) translateZ(20px)`;
+});
+specBlock.addEventListener('mouseleave', () => {
+    specBlock.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0)`;
+});
+
+/* ─── FAQ ────────────────────────────────────────── */
 document.querySelectorAll('.faq-q').forEach(q => {
-  q.addEventListener('click', () => {
-    const item = q.parentElement;
-    const wasOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if(!wasOpen) item.classList.add('open');
-  });
+    q.addEventListener('click', () => {
+        const item = q.parentElement;
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if(!wasOpen) item.classList.add('open');
+    });
 });
 
-/* ── WHATSAPP TOOLTIP ───────────────────────────── */
-const tooltip = document.getElementById('wa-tooltip');
-const waClose = document.getElementById('wa-close');
-// hide tooltip if user already dismissed (localStorage)
-if(localStorage.getItem('wa_tooltip_closed')) tooltip.style.display='none';
-waClose.addEventListener('click', () => {
-  tooltip.style.display='none';
-  localStorage.setItem('wa_tooltip_closed','1');
+/* ─── MOBILE MENU JS ─────────────────────────────── */
+const mbt = document.getElementById('mobile-toggle');
+const navEl = document.querySelector('nav');
+if(mbt){
+    mbt.addEventListener('click', () => navEl.classList.toggle('mobile-open'));
+    document.addEventListener('click', e => {
+        if(navEl && !navEl.contains(e.target)) navEl.classList.remove('mobile-open');
+    });
+}
+
+/* ─── HERO CAROUSEL ──────────────────────────────── */
+const heroSlides = document.querySelectorAll('.hero-slide');
+let curSlide = 0;
+if(heroSlides.length > 1){
+    setInterval(() => {
+        heroSlides[curSlide].classList.remove('active');
+        curSlide = (curSlide + 1) % heroSlides.length;
+        heroSlides[curSlide].classList.add('active');
+    }, 5000);
+}
+
+/* ─── COUNTER (rAF — sem setInterval) ───────────────*/
+const counterObs2 = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if(!e.isIntersecting) return;
+        const el = e.target;
+        const target = +el.dataset.target;
+        const suffix = el.dataset.suffix || '';
+        const dur = 2000, t0 = performance.now();
+        function tick(now){
+            const p = Math.min((now-t0)/dur,1);
+            const ease = 1-Math.pow(1-p,4);
+            el.textContent = Math.floor(ease*target) + suffix;
+            if(p<1) requestAnimationFrame(tick);
+            else el.textContent = target + suffix;
+        }
+        requestAnimationFrame(tick);
+        counterObs2.unobserve(el);
+    });
+}, { threshold: 0.5 });
+/* ─── HEADER ─────────────────────────────────────── */
+window.addEventListener('scroll', () => {
+    document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
 });
 </script>
 </body>
