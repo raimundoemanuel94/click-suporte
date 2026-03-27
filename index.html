@@ -1,535 +1,1302 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Click Suporte – Assistência Técnica Premium em Sorriso-MT</title>
+<meta name="description" content="Assistência técnica especializada em Sorriso-MT. Conserto de notebooks, desktops, celulares e redes. Atendimento rápido e garantia assegurada.">
+<meta name="keywords" content="assistência técnica, Sorriso MT, conserto notebook, manutenção computador, suporte técnico">
+<meta property="og:title" content="Click Suporte – Assistência Técnica Premium">
+<meta property="og:description" content="Suporte técnico especializado em Sorriso-MT. Rápido, confiável e com garantia.">
+<meta property="og:type" content="website">
+<link rel="manifest" href="#" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Click Suporte",
+  "description": "Assistência técnica premium em Sorriso-MT",
+  "address": {"@type": "PostalAddress", "addressLocality": "Sorriso", "addressRegion": "MT", "addressCountry": "BR"},
+  "telephone": "+55-66-99999-9999",
+  "openingHours": "Mo-Sa 08:00-18:00"
+}
+</script>
 
-    <title>Click Suporte | Suporte Técnico Profissional e Rápido em Sorriso</title>
-    <meta name="description" content="Precisa de ajuda com seu PC? Formatação, limpeza, instalação de programas e suporte remoto seguro. Atendimento rápido e garantido em Sorriso-MT e região.">
-    <meta name="keywords" content="suporte técnico, formatação de computador, remover vírus, instalar Windows, suporte remoto, Sorriso MT">
-    <meta name="author" content="Click Suporte">
-    <meta name="robots" content="index, follow">
+<style>
+/* =====================================================
+   DESIGN SYSTEM — CLICK SUPORTE
+   Aesthetic: Dark-tech / neon-glass / SaaS premium
+   ===================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
 
-    <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/icon-192.png">
-    <link rel="manifest" href="manifest.json">
+:root {
+  /* Core palette */
+  --bg:          #050810;
+  --bg-2:        #080d1a;
+  --surface:     rgba(255,255,255,0.04);
+  --surface-hi:  rgba(255,255,255,0.08);
+  --border:      rgba(255,255,255,0.07);
+  --border-hi:   rgba(100,200,255,0.25);
 
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://clicksuporte.com/">
+  /* Neon accent */
+  --cyan:        #00e5ff;
+  --cyan-dim:    rgba(0,229,255,0.12);
+  --cyan-glow:   rgba(0,229,255,0.35);
+  --blue:        #2563eb;
+  --blue-light:  #60a5fa;
+  --violet:      #7c3aed;
 
-    <!-- Preload Critical Assets -->
+  /* Text */
+  --text-1:  #f0f6ff;
+  --text-2:  #8b9bba;
+  --text-3:  #4f617a;
 
+  /* Spacing / radius */
+  --r-sm:   8px;
+  --r-md:   14px;
+  --r-lg:   22px;
+  --r-xl:   32px;
 
-    <!-- Preconnect for Performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  /* Font */
+  --ff-head: 'Syne', sans-serif;
+  --ff-body: 'DM Sans', sans-serif;
+}
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://clicksuporte.com/">
-    <meta property="og:title" content="Click Suporte | Suporte Técnico Profissional e Rápido em Sorriso">
-    <meta property="og:description" content="Precisa de ajuda com seu PC? Formatação, limpeza, instalação de programas e suporte remoto seguro. Atendimento rápido e garantido em Sorriso-MT e região.">
-    <meta property="og:image" content="assets/logo/logo-transparent.png">
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta property="twitter:domain" content="clicksuporte.com">
-    <meta property="twitter:url" content="https://clicksuporte.com/">
-    <meta name="twitter:title" content="Click Suporte | Suporte Técnico Profissional e Rápido em Sorriso">
-    <meta name="twitter:description" content="Precisa de ajuda com seu PC? Formatação, limpeza, instalação de programas e suporte remoto seguro. Atendimento rápido e garantido em Sorriso-MT e região.">
-    <meta name="twitter:image" content="assets/logo/logo-transparent.png">
+html { scroll-behavior: smooth; font-size: 16px; }
 
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+body {
+  background: var(--bg);
+  color: var(--text-1);
+  font-family: var(--ff-body);
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
+}
 
-    <!-- JSON-LD Schema.org - SEO Local -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Click Suporte",
-        "description": "Suporte técnico remoto e serviços de informática em Sorriso MT. Formatação, remoção de vírus, otimização e configuração de computadores.",
-        "url": "https://clicksuporte.com",
-        "telephone": "+5566992265185",
-        "image": "assets/logo/logo-transparent.png",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Sorriso",
-            "addressRegion": "MT",
-            "addressCountry": "BR"
-        },
-        "areaServed": {
-            "@type": "GeoCircle",
-            "geoMidpoint": {
-                "@type": "GeoCoordinates",
-                "latitude": -12.5426,
-                "longitude": -55.7112
-            },
-            "geoRadius": "100000"
-        },
-        "priceRange": "R$40 - R$180",
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "5.0",
-            "reviewCount": "1000"
-        },
-        "sameAs": [
-            "https://wa.me/5566992265185"
-        ]
-    }
-    </script>
+/* ─── CUSTOM CURSOR ─────────────────────────────── */
+#cursor-ring, #cursor-dot {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 50%;
+  transform: translate(-50%,-50%);
+  transition: opacity .3s;
+}
+#cursor-ring {
+  width: 36px; height: 36px;
+  border: 1.5px solid var(--cyan);
+  opacity: .5;
+  transition: width .2s, height .2s, border-color .2s, opacity .3s;
+}
+#cursor-dot {
+  width: 6px; height: 6px;
+  background: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan);
+}
+body.cursor-hover #cursor-ring {
+  width: 52px; height: 52px;
+  border-color: var(--cyan);
+  opacity: .9;
+  background: var(--cyan-dim);
+}
+
+/* ─── PLEXUS CANVAS ─────────────────────────────── */
+#plexus {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: .55;
+}
+
+/* ─── LAYOUT HELPERS ────────────────────────────── */
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 60px);
+}
+section { position: relative; z-index: 1; }
+
+/* ─── HEADER ────────────────────────────────────── */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 0 clamp(20px, 5vw, 60px);
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background .4s, backdrop-filter .4s, border-bottom .4s;
+}
+header.scrolled {
+  background: rgba(5,8,16,.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.logo {
+  font-family: var(--ff-head);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: var(--text-1);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.logo span { color: var(--cyan); }
+.logo-icon {
+  width: 30px; height: 30px;
+  background: linear-gradient(135deg, var(--cyan), var(--blue));
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  font-size: .8rem;
+}
+nav { display: flex; align-items: center; gap: 32px; }
+nav a {
+  font-size: .85rem;
+  font-weight: 400;
+  color: var(--text-2);
+  text-decoration: none;
+  letter-spacing: .02em;
+  transition: color .2s;
+}
+nav a:hover { color: var(--text-1); }
+.btn-nav {
+  font-family: var(--ff-body);
+  font-size: .82rem;
+  font-weight: 500;
+  color: var(--bg);
+  background: var(--cyan);
+  padding: 8px 20px;
+  border-radius: 99px;
+  text-decoration: none;
+  transition: box-shadow .2s, transform .2s;
+}
+.btn-nav:hover {
+  box-shadow: 0 0 24px var(--cyan-glow);
+  transform: translateY(-1px);
+}
+
+/* ─── HERO ──────────────────────────────────────── */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 0 80px;
+  overflow: hidden;
+}
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  background: var(--cyan-dim);
+  border: 1px solid rgba(0,229,255,.2);
+  padding: 6px 14px;
+  border-radius: 99px;
+  margin-bottom: 24px;
+}
+.hero-badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--cyan);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .4; transform: scale(.7); }
+}
+.hero-title {
+  font-family: var(--ff-head);
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -.03em;
+  margin-bottom: 22px;
+}
+.hero-title em {
+  font-style: normal;
+  background: linear-gradient(90deg, var(--cyan), var(--blue-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-sub {
+  font-size: clamp(.95rem, 1.5vw, 1.1rem);
+  color: var(--text-2);
+  line-height: 1.7;
+  max-width: 480px;
+  margin-bottom: 40px;
+}
+.hero-cta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--ff-body);
+  font-size: .9rem;
+  font-weight: 500;
+  color: var(--bg);
+  background: linear-gradient(135deg, var(--cyan), #00b0cc);
+  padding: 14px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: box-shadow .25s, transform .2s;
+}
+.btn-primary:hover {
+  box-shadow: 0 0 40px var(--cyan-glow), 0 8px 32px rgba(0,229,255,.2);
+  transform: translateY(-2px);
+}
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--ff-body);
+  font-size: .9rem;
+  font-weight: 400;
+  color: var(--text-1);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 14px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: background .2s, border-color .2s;
+}
+.btn-ghost:hover {
+  background: var(--surface-hi);
+  border-color: var(--border-hi);
+}
+
+/* Hero visual — carousel */
+.hero-visual {
+  position: relative;
+  height: clamp(340px, 45vw, 520px);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+}
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+.hero-slide.active { opacity: 1; }
+.hero-slide-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transform-origin: center;
+  animation: kenburns 10s ease infinite alternate;
+}
+@keyframes kenburns {
+  from { transform: scale(1); }
+  to   { transform: scale(1.06); }
+}
+.hero-slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+    rgba(5,8,16,.7) 0%,
+    rgba(0,100,180,.15) 100%);
+}
+/* shimmer sweep */
+.hero-visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg,
+    transparent 30%,
+    rgba(0,229,255,.07) 50%,
+    transparent 70%);
+  background-size: 200% 100%;
+  animation: shimmer 4s linear infinite;
+  pointer-events: none;
+}
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to   { background-position: 200% 0; }
+}
+.hero-visual-label {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(5,8,16,.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 12px 16px;
+  z-index: 2;
+}
+.carousel-dots {
+  display: flex; gap: 6px; margin-left: auto;
+}
+.carousel-dots span {
+  width: 6px; height: 6px;
+  background: var(--text-3);
+  border-radius: 50%;
+  transition: background .3s, transform .3s;
+  cursor: pointer;
+}
+.carousel-dots span.active {
+  background: var(--cyan);
+  transform: scale(1.4);
+}
+
+/* ─── STATS BAR ─────────────────────────────────── */
+#stats {
+  padding: 56px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--bg-2), var(--bg));
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.stat-item {
+  text-align: center;
+  padding: 0 24px;
+  border-right: 1px solid var(--border);
+}
+.stat-item:last-child { border-right: none; }
+.stat-num {
+  font-family: var(--ff-head);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 800;
+  color: var(--cyan);
+  line-height: 1;
+  letter-spacing: -.03em;
+}
+.stat-label {
+  font-size: .8rem;
+  color: var(--text-2);
+  margin-top: 6px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+/* ─── SECTION HEADER ────────────────────────────── */
+.section-header {
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto 56px;
+}
+.section-tag {
+  display: inline-block;
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 14px;
+}
+.section-title {
+  font-family: var(--ff-head);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -.025em;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+.section-sub {
+  font-size: .95rem;
+  color: var(--text-2);
+  line-height: 1.7;
+}
+
+/* ─── SERVICES ──────────────────────────────────── */
+#services { padding: 100px 0; }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.service-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 32px 28px;
+  overflow: hidden;
+  transition: border-color .3s, transform .3s;
+  cursor: default;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, var(--cyan-glow), transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .4s;
+  transform: translate(-50%, -50%);
+  left: var(--mx, 50%);
+  top: var(--my, 50%);
+}
+.service-card:hover::before { opacity: 1; }
+.service-card:hover {
+  border-color: var(--border-hi);
+  transform: translateY(-4px);
+}
+.service-icon {
+  width: 48px; height: 48px;
+  border-radius: var(--r-sm);
+  background: linear-gradient(135deg, var(--cyan-dim), transparent);
+  border: 1px solid rgba(0,229,255,.2);
+  display: grid;
+  place-items: center;
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+}
+.service-card h3 {
+  font-family: var(--ff-head);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -.01em;
+}
+.service-card p {
+  font-size: .85rem;
+  color: var(--text-2);
+  line-height: 1.65;
+}
+.service-tag {
+  display: inline-block;
+  margin-top: 18px;
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  background: var(--cyan-dim);
+  padding: 4px 10px;
+  border-radius: 99px;
+}
+
+/* ─── PROCESS ───────────────────────────────────── */
+#process {
+  padding: 100px 0;
+  background: linear-gradient(180deg, transparent, var(--bg-2) 30%, var(--bg-2) 70%, transparent);
+}
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+.process-steps::before {
+  content: '';
+  position: absolute;
+  top: 36px; left: 12.5%; right: 12.5%;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent, var(--border-hi), var(--cyan-dim), var(--border-hi), transparent);
+  z-index: 0;
+}
+.step {
+  text-align: center;
+  padding: 0 16px;
+  position: relative;
+  z-index: 1;
+}
+.step-num {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1.5px solid var(--border-hi);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-family: var(--ff-head);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--cyan);
+  position: relative;
+}
+.step-num::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: conic-gradient(var(--cyan) calc(var(--p,0)*1%), transparent 0%);
+  z-index: -1;
+  opacity: .35;
+}
+.step h4 {
+  font-family: var(--ff-head);
+  font-size: .95rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.step p {
+  font-size: .82rem;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+/* ─── TESTIMONIALS ──────────────────────────────── */
+#testimonials { padding: 100px 0; }
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.tcard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 28px;
+  transition: border-color .3s;
+}
+.tcard:hover { border-color: var(--border-hi); }
+.tcard-stars {
+  color: #fbbf24;
+  font-size: .9rem;
+  margin-bottom: 14px;
+  letter-spacing: 2px;
+}
+.tcard p {
+  font-size: .88rem;
+  color: var(--text-2);
+  line-height: 1.7;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+.tcard-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.tcard-avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cyan), var(--blue));
+  display: grid;
+  place-items: center;
+  font-family: var(--ff-head);
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--bg);
+  flex-shrink: 0;
+}
+.tcard-name {
+  font-size: .85rem;
+  font-weight: 500;
+}
+.tcard-role {
+  font-size: .75rem;
+  color: var(--text-3);
+}
+
+/* Specialist badge */
+.specialist-block {
+  margin-top: 48px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border-hi);
+  border-radius: var(--r-lg);
+  padding: 28px 32px;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.specialist-avatar {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  font-size: 1.8rem;
+}
+.specialist-info h4 {
+  font-family: var(--ff-head);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.specialist-info p { font-size: .85rem; color: var(--text-2); }
+.verified-badge {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .75rem;
+  font-weight: 500;
+  color: var(--cyan);
+  background: var(--cyan-dim);
+  border: 1px solid rgba(0,229,255,.2);
+  padding: 6px 14px;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+
+/* ─── FAQ ───────────────────────────────────────── */
+#faq { padding: 100px 0; background: linear-gradient(180deg, transparent, var(--bg-2) 30%, var(--bg-2) 70%, transparent); }
+.faq-list {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.faq-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  transition: border-color .3s;
+}
+.faq-item.open { border-color: var(--border-hi); }
+.faq-q {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  cursor: pointer;
+  font-size: .9rem;
+  font-weight: 500;
+  gap: 12px;
+  user-select: none;
+}
+.faq-chevron {
+  width: 24px; height: 24px;
+  border-radius: 6px;
+  background: var(--surface-hi);
+  border: 1px solid var(--border);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  font-size: .75rem;
+  transition: transform .3s, background .3s;
+}
+.faq-item.open .faq-chevron {
+  transform: rotate(180deg);
+  background: var(--cyan-dim);
+  border-color: rgba(0,229,255,.3);
+}
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .4s ease, padding .3s;
+  font-size: .87rem;
+  color: var(--text-2);
+  line-height: 1.7;
+  padding: 0 24px;
+}
+.faq-item.open .faq-a {
+  max-height: 300px;
+  padding: 0 24px 20px;
+}
+
+/* ─── FOOTER / CTA SECTION ──────────────────────── */
+#cta-final {
+  padding: 100px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+#cta-final::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(ellipse, rgba(0,229,255,.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+.cta-final-title {
+  font-family: var(--ff-head);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  margin-bottom: 18px;
+}
+.cta-final-sub {
+  font-size: 1rem;
+  color: var(--text-2);
+  margin-bottom: 36px;
+  max-width: 440px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cta-final-btns {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 0;
+  text-align: center;
+}
+footer p {
+  font-size: .78rem;
+  color: var(--text-3);
+}
+
+/* ─── WHATSAPP FLOAT ────────────────────────────── */
+#wa-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+#wa-tooltip {
+  background: var(--bg-2);
+  border: 1px solid var(--border-hi);
+  color: var(--text-1);
+  font-size: .8rem;
+  padding: 10px 16px;
+  border-radius: var(--r-md);
+  max-width: 200px;
+  text-align: right;
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0,0,0,.4);
+  animation: floatUp .4s ease both;
+}
+#wa-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: -7px; right: 20px;
+  width: 12px; height: 12px;
+  background: var(--bg-2);
+  border-right: 1px solid var(--border-hi);
+  border-bottom: 1px solid var(--border-hi);
+  transform: rotate(45deg);
+}
+@keyframes floatUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+#wa-btn {
+  width: 56px; height: 56px;
+  background: #25d366;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 20px rgba(37,211,102,.4);
+  transition: transform .2s, box-shadow .2s;
+  animation: pulse-wa 3s ease infinite;
+}
+@keyframes pulse-wa {
+  0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,.4); }
+  50%      { box-shadow: 0 4px 36px rgba(37,211,102,.7); }
+}
+#wa-btn:hover { transform: scale(1.1); }
+#wa-close {
+  position: absolute;
+  top: -8px; right: -8px;
+  width: 20px; height: 20px;
+  background: var(--text-3);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: .6rem;
+  cursor: pointer;
+  color: var(--text-1);
+  border: none;
+}
+
+/* ─── REVEAL ANIMATIONS ─────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+.reveal-delay-3 { transition-delay: .3s; }
+.reveal-delay-4 { transition-delay: .4s; }
+.reveal-delay-5 { transition-delay: .5s; }
+
+/* ─── RESPONSIVE ────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-visual { height: 280px; }
+  .services-grid,
+  .testimonials-grid { grid-template-columns: 1fr 1fr; }
+  .stats-grid { grid-template-columns: repeat(2,1fr); }
+  .stat-item:nth-child(2) { border-right: none; }
+  .stat-item:nth-child(3),
+  .stat-item:nth-child(4) { border-top: 1px solid var(--border); margin-top: 24px; padding-top: 24px; }
+  .process-steps { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .process-steps::before { display: none; }
+  nav { display: none; }
+}
+@media (max-width: 560px) {
+  .services-grid,
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .specialist-block { flex-direction: column; text-align: center; }
+  .verified-badge { margin: 0 auto; }
+}
+</style>
 </head>
 <body>
 
-    <!-- Plexus Canvas Background -->
-    <canvas id="plexus-canvas"></canvas>
+<!-- Custom cursor -->
+<div id="cursor-ring"></div>
+<div id="cursor-dot"></div>
 
-    <header class="navbar">
-        <div class="container">
-            <div class="logo">
-                <img src="assets/logo/logo-transparent.png" alt="Click Suporte Logo" class="logo-img">
-            </div>
-            <nav id="nav-menu">
-                <ul class="nav-links">
-                    <li><a href="#servicos">Serviços</a></li>
-                    <li><a href="#processo">Como funciona</a></li>
-                    <li><a href="#atendimento">Análise</a></li>
-                    <li><a href="#faq">Dúvidas</a></li>
-                </ul>
-            </nav>
-            <div class="menu-btn" id="mobile-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <a href="https://wa.me/5566992265185?text=Olá,%20preciso%20de%20suporte%20técnico" class="btn btn-whatsapp btn-sm navbar-cta" target="_blank">Chamar no WhatsApp</a>
+<!-- Plexus background -->
+<canvas id="plexus"></canvas>
+
+<!-- ===== HEADER ===== -->
+<header id="header">
+  <a href="#" class="logo">
+    <div class="logo-icon">⚡</div>
+    Click<span>Suporte</span>
+  </a>
+  <nav>
+    <a href="#services">Serviços</a>
+    <a href="#process">Processo</a>
+    <a href="#testimonials">Avaliações</a>
+    <a href="#faq">FAQ</a>
+    <a href="https://wa.me/5566999999999" class="btn-nav" target="_blank">Falar no WhatsApp</a>
+  </nav>
+</header>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">Sorriso-MT · Suporte Premium</div>
+        <h1 class="hero-title reveal">
+          Tecnologia que<br><em>funciona de verdade.</em><br>Suporte que aparece.
+        </h1>
+        <p class="hero-sub reveal reveal-delay-1">
+          Assistência técnica especializada em notebooks, desktops, celulares e redes. Diagnóstico em 24h, peças originais e garantia em todos os serviços.
+        </p>
+        <div class="hero-cta reveal reveal-delay-2">
+          <a href="https://wa.me/5566999999999" class="btn-primary" target="_blank">
+            💬 Diagnóstico Grátis
+          </a>
+          <a href="#services" class="btn-ghost">
+            Ver Serviços →
+          </a>
         </div>
-    </header>
-
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container hero-grid">
-                <div class="hero-content">
-                    <div class="hero-badge reveal">⚡ Suporte Técnico Online &amp; Seguro</div>
-                    <h1 class="reveal">Seu computador está lento, travando ou com erro? <span>Resolvo tudo, 100% remoto.</span></h1>
-                    <p class="reveal">Atendimento direto e humano em Sorriso MT e região. Formatação, remoção de vírus e otimização total. <strong>Diagnóstico rápido via WhatsApp.</strong></p>
-
-                    <div class="trust-bar reveal">
-                        <div class="trust-item">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1eb855" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>Orçamento sem compromisso</span>
-                        </div>
-                        <div class="trust-item">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1eb855" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>Atendimento personalizado</span>
-                        </div>
-                        <div class="trust-item">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1eb855" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>Suporte com agilidade</span>
-                        </div>
-                    </div>
-
-                    <div class="hero-actions reveal">
-                        <a href="https://wa.me/5566992265185?text=Olá,%20preciso%20de%20suporte%20técnico" class="btn btn-whatsapp btn-lg" target="_blank" aria-label="Chamar no WhatsApp agora">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="white" style="margin-right:8px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                            Chamar no WhatsApp agora
-                        </a>
-                        <a href="#servicos" class="btn btn-secondary">Ver serviços</a>
-                    </div>
-
-                    <div class="social-proof-mini reveal">
-                        <div class="avatars">
-                            <div class="avatar-dot" style="background:#00f2ff"></div>
-                            <div class="avatar-dot" style="background:#1eb855"></div>
-                            <div class="avatar-dot" style="background:#ff6b35"></div>
-                        </div>
-                        <span>+1.000 clientes atendidos ⭐⭐⭐⭐⭐</span>
-                    </div>
-                </div>
-                <div class="hero-visual">
-                    <div class="visual-placeholder reveal">
-                        <div class="shimmer-overlay"></div>
-                        <img src="assets/logo/hero-laptop.png" alt="Suporte Técnico Profissional" class="hero-laptop-img active" width="700" height="466" fetchpriority="high">
-                        <img src="assets/logo/hero-carousel-1.png" alt="Infraestrutura de Suporte" class="hero-laptop-img" width="700" height="466">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Prova Social Rápida -->
-        <section class="stats-section">
-            <div class="container">
-                <div class="stats-row">
-                    <div class="stat-item reveal">
-                        <span class="stat-number">+1.000</span>
-                        <span class="stat-label">Atendimentos realizados</span>
-                    </div>
-                    <div class="stat-divider"></div>
-                    <div class="stat-item reveal">
-                        <span class="stat-number">5★</span>
-                        <span class="stat-label">Avaliação média dos clientes</span>
-                    </div>
-                    <div class="stat-divider"></div>
-                    <div class="stat-item reveal">
-                        <span class="stat-number">30min</span>
-                        <span class="stat-label">Tempo médio de resposta</span>
-                    </div>
-                    <div class="stat-divider"></div>
-                    <div class="stat-item reveal">
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label">Online e remoto</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Serviços (7 Pilares) -->
-        <section id="servicos" class="section-padding">
-            <div class="container">
-                <div class="section-header reveal">
-                    <span class="section-badge">Soluções Profissionais</span>
-                    <h2 class="section-title">Serviços que <span>fazem a diferença</span></h2>
-                    <p class="section-subtitle">Atendimento especializado para cada necessidade técnica, com foco em segurança e desempenho.</p>
-                </div>
-                <div class="grid-cards">
-                    <div class="card reveal">
-                        <div class="card-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00f2ff" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                        </div>
-                        <h3>Otimização de Windows</h3>
-                        <p>Limpeza do sistema, melhora de desempenho, redução de lentidão e aceleração de inicialização imediata.</p>
-                        <a href="https://wa.me/5566992265185?text=Olá,%20preciso%20de%20ajuda%20com%20Otimização%20de%20Windows" class="card-cta">Consultar agora →</a>
-                    </div>
-                    <div class="card reveal">
-                        <div class="card-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00f2ff" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                        </div>
-                        <h3>Remoção de Vírus</h3>
-                        <p>Verificação profunda, remoção de malwares e orientação preventiva para manter seus dados protegidos.</p>
-                        <a href="https://wa.me/5566992265185?text=Olá,%20preciso%20de%20ajuda%20com%20Remoção%20de%20Vírus" class="card-cta">Consultar agora →</a>
-                    </div>
-                    <div class="card reveal">
-                        <div class="card-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00f2ff" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-                        </div>
-                        <h3>Formatação Completa</h3>
-                        <p>Reinstalação limpa do Windows ou Linux, drivers atualizados e programas essenciais configurados.</p>
-                        <a href="https://wa.me/5566992265185?text=Olá,%20preciso%20de%20ajuda%20com%20Formatação" class="card-cta">Consultar agora →</a>
-                    </div>
-                    <div class="card reveal">
-                        <div class="card-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00f2ff" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-                        </div>
-                        <h3>Instalação de Programas</h3>
-                        <p>Office, navegadores, utilitários, impressoras e softwares específicos do seu negócio ou dia a dia.</p>
-                        <a href="https://wa.me/5566992265185?text=Olá,%20preciso%20de%20ajuda%20com%20Instalação%20de%20Programas" class="card-cta">Consultar agora →</a>
-                    </div>
-                    <div class="card reveal">
-                        <div class="card-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00f2ff" stroke-width="1.5"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
-                        </div>
-                        <h3>Rede e Internet</h3>
-                        <p>Correção de lentidão no Wi-Fi, troca de DNS, configuração de roteadores e instabilidade de sinal.</p>
-                        <a href="https://wa.me/5566992265185?text=Olá,%20preciso%20de%20ajuda%20com%20Rede%20e%20Internet" class="card-cta">Consultar agora →</a>
-                    </div>
-                    <div class="card reveal">
-                        <div class="card-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00f2ff" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-                        </div>
-                        <h3>Backup e Dados</h3>
-                        <p>Recuperação de arquivos perdidos e configuração de sistemas preventivos contra perda de dados.</p>
-                        <a href="https://wa.me/5566992265185?text=Olá,%20preciso%20de%20ajuda%20com%20Backup%20e%20Dados" class="card-cta">Consultar agora →</a>
-                    </div>
-                    <div class="card reveal card-highlight">
-                        <div class="card-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00f2ff" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                        </div>
-                        <h3>Suporte Remoto Geral</h3>
-                        <p>Atendimento rápido para problemas diversos via acesso remoto ou orientação direta no WhatsApp.</p>
-                        <a href="https://wa.me/5566992265185?text=Olá,%20preciso%20de%20Suporte%20Remoto" class="card-cta">Consultar agora →</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Barra de Garantias -->
-        <section class="guarantees-bar">
-            <div class="container guarantees-grid">
-                <div class="guarantee-item reveal">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1eb855" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                    <span>Orçamento sem compromisso</span>
-                </div>
-                <div class="guarantee-item reveal">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1eb855" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                    <span>Atendimento personalizado</span>
-                </div>
-                <div class="guarantee-item reveal">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1eb855" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                    <span>Suporte com agilidade</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Processo -->
-        <section id="processo" class="section-padding bg-alt">
-            <div class="container">
-                <div class="section-header reveal">
-                    <span class="section-badge">Como funciona</span>
-                    <h2 class="section-title">Suporte de Elite em <span>3 passos simples</span></h2>
-                    <p class="section-subtitle">Do diagnóstico à solução — tudo em uma única chamada no WhatsApp.</p>
-                </div>
-                <div class="grid-steps">
-                    <div class="step reveal">
-                        <div class="step-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00f2ff" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                        </div>
-                        <span class="step-num">01</span>
-                        <h3>Chamada no WhatsApp</h3>
-                        <p>Me conta o problema. Faço o diagnóstico inicial grátis e te explico o que está acontecendo.</p>
-                    </div>
-                    <div class="step-arrow reveal">→</div>
-                    <div class="step reveal">
-                        <div class="step-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00f2ff" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-                        </div>
-                        <span class="step-num">02</span>
-                        <h3>Acesso Remoto Seguro</h3>
-                        <p>Com sua autorização, acesso seu computador de forma criptografada e segura para resolver.</p>
-                    </div>
-                    <div class="step-arrow reveal">→</div>
-                    <div class="step reveal">
-                        <div class="step-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00f2ff" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                        </div>
-                        <span class="step-num">03</span>
-                        <h3>Problema Resolvido</h3>
-                        <p>Você acompanha tudo em tempo real. Só paga se ficar satisfeito com o resultado.</p>
-                    </div>
-                </div>
-                <div class="process-cta reveal">
-                    <a href="https://wa.me/5566992265185?text=Olá,%20quero%20um%20diagnóstico%20grátis" class="btn btn-whatsapp btn-lg" target="_blank">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="white" style="margin-right:8px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                        Diagnóstico Grátis Agora
-                    </a>
-                    <p class="process-note">Sem compromisso. Só paga se resolver.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Atendimento Personalizado -->
-        <section id="atendimento" class="section-padding bg-alt">
-            <div class="container">
-                <div class="personalized-card reveal">
-                    <div class="personalized-icon">🤝</div>
-                    <div class="personalized-content">
-                        <h3>Análise Personalizada</h3>
-                        <p>Cada problema é diferente. Por isso, antes de qualquer serviço, faço uma análise rápida para indicar a solução mais adequada para o seu caso, com clareza e transparência.</p>
-                        <a href="https://wa.me/5566992265185?text=Olá,%20gostaria%20de%20uma%20análise%20do%20meu%20problema" class="btn btn-primary" target="_blank">Pedir Análise Grátis</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Especialista -->
-        <section id="especialista" class="section-padding">
-            <div class="container">
-                <div class="about-grid">
-                    <div class="about-photo reveal">
-                        <div class="photo-frame">
-                            <img src="assets/logo/especialista.png" alt="Raimundo Emanuel — Especialista em Suporte Técnico" class="especialista-img">
-                            <div class="photo-badge">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="#1eb855"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                                Verificado
-                            </div>
-                        </div>
-                    </div>
-                    <div class="about-text">
-                        <span class="section-badge">Quem vai te atender</span>
-                        <h2 class="reveal">Raimundo Emanuel</h2>
-                        <p class="about-role reveal">Suporte Profissional · Sorriso - MT</p>
-                        <p class="reveal">Atendimento direto, humano e prático. Comigo não tem chatbot nem enrolação. Resolvo o seu problema técnico com total segurança e transparência, explicando cada passo se você desejar.</p>
-                        <div class="about-stats reveal">
-                            <div class="about-stat">
-                                <strong data-count="14">0</strong>
-                                <span>anos de experiência</span>
-                            </div>
-                            <div class="about-stat">
-                                <strong data-count="3500" data-suffix="+">0</strong>
-                                <span>atendimentos</span>
-                            </div>
-                            <div class="about-stat">
-                                <strong data-count="5.0" data-suffix=" ★">0</strong>
-                                <span>nota máxima</span>
-                            </div>
-                        </div>
-                        <a href="https://wa.me/5566992265185?text=Olá!%20Vi%20seu%20site%20e%20quero%20um%20diagnóstico%20grátis" class="btn btn-whatsapp reveal" target="_blank">
-                            Chamar Especialista
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Depoimentos -->
-        <section id="depoimentos" class="section-padding bg-alt">
-            <div class="container">
-                <div class="section-header reveal">
-                    <span class="section-badge">Depoimentos</span>
-                    <h2 class="section-title">Confiança de <span>quem já usou</span></h2>
-                </div>
-                <div class="testimonials-grid">
-                    <div class="testimonial-card reveal">
-                        <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <p>"Computador estava um caos. Resolveu tudo rápido e ainda me deu dicas de segurança. Atendimento nota 10!"</p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar" style="background: linear-gradient(135deg, #00f2ff, #0080ff)">M</div>
-                            <div>
-                                <strong>Maria F.</strong>
-                                <span>Sorriso - MT</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card reveal">
-                        <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <p>"Excelente profissional. Reinstalou meu sistema e salvou todos os meus arquivos importantes. Muito honesto."</p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar" style="background: linear-gradient(135deg, #1eb855, #00f2a0)">C</div>
-                            <div>
-                                <strong>Carlos R.</strong>
-                                <span>Sorriso - MT</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card reveal">
-                        <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <p>"Suporte remoto impecável. Resolveu um erro de rede que ninguém conseguia. Recomendo muito!"</p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar" style="background: linear-gradient(135deg, #ff6b35, #ff2d78)">A</div>
-                            <div>
-                                <strong>Ana P.</strong>
-                                <span>Sorriso - MT</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ -->
-        <section id="faq" class="section-padding">
-            <div class="container">
-                <div class="section-header reveal">
-                    <span class="section-badge">FAQ</span>
-                    <h2 class="section-title">Dúvidas <span>Frequentes</span></h2>
-                    <p class="section-subtitle">Tudo o que você precisa saber para se sentir seguro.</p>
-                </div>
-                <div class="faq-list">
-                    <div class="faq-item reveal">
-                        <button class="faq-question" aria-expanded="false">
-                            <span>É seguro dar acesso remoto ao meu computador?</span>
-                            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Sim! O acesso é feito via softwares profissionais (AnyDesk/TeamViewer). Você acompanha tudo em tempo real e pode encerrar a sessão a qualquer momento. Nada é feito sem sua supervisão.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item reveal">
-                        <button class="faq-question" aria-expanded="false">
-                            <span>Como funciona o atendimento?</span>
-                            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Você me chama no WhatsApp, eu faço uma análise rápida do problema e te passo o orçamento. Se concordar, iniciamos o suporte técnico remoto imediatamente.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item reveal">
-                        <button class="faq-question" aria-expanded="false">
-                            <span>Como funciona o pagamento?</span>
-                            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Transparência total: você só paga depois que o problema for resolvido. Aceito Pix, transferência e cartões.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item reveal">
-                        <button class="faq-question" aria-expanded="false">
-                            <span>Quanto tempo leva para resolver?</span>
-                            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-                        </button>
-                        <div class="faq-answer">
-                            <p>A maioria dos problemas é resolvida em 40-60 minutos. Casos mais complexos podem levar um pouco mais, mas você é avisado com antecedência.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item reveal">
-                        <button class="faq-question" aria-expanded="false">
-                            <span>E se o problema não for resolvido?</span>
-                            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Garantia de satisfação: se eu não conseguir resolver o problema técnico informado no diagnóstico, você não paga absolutamente nada.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item reveal">
-                        <button class="faq-question" aria-expanded="false">
-                            <span>Preciso estar em Sorriso para ser atendido?</span>
-                            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Não. Atendo Sorriso-MT e toda a região (Lucas, Sinop, Mutum) e qualquer outra cidade de forma remota, desde que você tenha conexão com a internet.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Final -->
-        <section class="section-padding bg-cta">
-            <div class="container text-center reveal">
-                <span class="section-badge">Pronto para resolver?</span>
-                <h2>Seu computador pode ser rápido de novo. <br><span>Fale comigo agora e resolva hoje mesmo.</span></h2>
-                <p style="max-width: 500px; margin: 40px auto;">Atendimento direto via WhatsApp. Diagnóstico imediato e transparente.</p>
-                <div class="cta-actions">
-                    <a href="https://wa.me/5566992265185?text=Olá!%20Gostaria%20de%20um%20diagnóstico%20grátis" class="btn btn-whatsapp btn-lg" target="_blank">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="white" style="margin-right:8px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                        Falar no WhatsApp
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container footer-content">
-            <div class="logo" id="footer-logo">
-                <img src="assets/logo/logo-white.png" alt="Click Suporte Logo" class="logo-img">
-            </div>
-            <p>© 2026   Click    Suporte  · Sorriso - MT</p>
-            <div class="social-links">
-                <a href="https://wa.me/5566992265185" target="_blank" class="btn btn-secondary btn-sm">WhatsApp</a>
-            </div>
+      </div>
+      <div class="hero-visual reveal reveal-delay-3">
+        <div class="hero-slide active" id="slide-0">
+          <div class="hero-slide-img" style="background: linear-gradient(135deg, #0a1628 0%, #0f2850 40%, #0a2040 100%); display:flex; align-items:center; justify-content:center; font-size:7rem;">💻</div>
+          <div class="hero-slide-overlay"></div>
         </div>
-    </footer>
-
-    <!-- WhatsApp Floating Button -->
-    <div class="whatsapp-float-wrapper">
-        <div class="whatsapp-tooltip" id="wa-tooltip">Precisa de ajuda? 💬</div>
-        <a href="https://wa.me/5566992265185?text=Olá,%20preciso%20de%20suporte%20técnico" target="_blank" class="whatsapp-float" aria-label="Falar no WhatsApp">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        </a>
+        <div class="hero-slide" id="slide-1">
+          <div class="hero-slide-img" style="background: linear-gradient(135deg, #0d1a10 0%, #0a3020 40%, #061520 100%); display:flex; align-items:center; justify-content:center; font-size:7rem;">🔧</div>
+          <div class="hero-slide-overlay"></div>
+        </div>
+        <div class="hero-visual-label">
+          <span style="font-size:.82rem; color:var(--text-2)">Atendimento profissional</span>
+          <div class="carousel-dots">
+            <span class="active" data-idx="0"></span>
+            <span data-idx="1"></span>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
 
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="back-to-top" aria-label="Voltar ao topo">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-    </button>
+<!-- ===== STATS ===== -->
+<section id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-num" data-target="1200" data-suffix="+">0</div>
+        <div class="stat-label">Equipamentos reparados</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-1">
+        <div class="stat-num" data-target="98" data-suffix="%">0</div>
+        <div class="stat-label">Clientes satisfeitos</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <div class="stat-num" data-target="24" data-suffix="h">0</div>
+        <div class="stat-label">Diagnóstico em até</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-3">
+        <div class="stat-num" data-target="5" data-suffix=" anos">0</div>
+        <div class="stat-label">De experiência</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Custom Tech Cursor -->
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
+<!-- ===== SERVICES ===== -->
+<section id="services">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">O que fazemos</span>
+      <h2 class="section-title reveal">Serviços que resolvem<br>de verdade</h2>
+      <p class="section-sub reveal reveal-delay-1">Da manutenção básica à recuperação de dados — cobertura completa para seus equipamentos.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">💻</div>
+        <h3>Notebooks & Desktops</h3>
+        <p>Troca de tela, HD/SSD, memória RAM, placa-mãe, limpeza de cooler e formatação com reinstalação completa do sistema.</p>
+        <span class="service-tag">Mais procurado</span>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">📱</div>
+        <h3>Celulares & Tablets</h3>
+        <p>Troca de tela, bateria, conector de carga e câmera. Recuperação de dados e desbloqueio de dispositivos Apple e Android.</p>
+        <span class="service-tag">Rápido</span>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">🌐</div>
+        <h3>Redes & Infraestrutura</h3>
+        <p>Configuração de roteadores, cabeamento estruturado, VPN, servidores locais e segurança de rede para empresas.</p>
+        <span class="service-tag">Empresarial</span>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-icon">💾</div>
+        <h3>Recuperação de Dados</h3>
+        <p>Recuperação de arquivos em HDs com falha, pendrives danificados, SSDs e cartões de memória com alta taxa de sucesso.</p>
+        <span class="service-tag">Especializado</span>
+      </div>
+      <div class="service-card reveal reveal-delay-4">
+        <div class="service-icon">🛡️</div>
+        <h3>Segurança & Backup</h3>
+        <p>Remoção de vírus e malwares, instalação de antivírus corporativo e configuração de soluções de backup automático em nuvem.</p>
+        <span class="service-tag">Proteção</span>
+      </div>
+      <div class="service-card reveal reveal-delay-5">
+        <div class="service-icon">🖨️</div>
+        <h3>Impressoras & Periféricos</h3>
+        <p>Manutenção e configuração de impressoras laser e jato de tinta, scanners, nobreaks e outros periféricos de escritório.</p>
+        <span class="service-tag">Completo</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script src="script.js"></script>
+<!-- ===== PROCESS ===== -->
+<section id="process">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Como funciona</span>
+      <h2 class="section-title reveal">Processo simples,<br>resultado garantido</h2>
+    </div>
+    <div class="process-steps">
+      <div class="step reveal">
+        <div class="step-num" style="--p:25">01</div>
+        <h4>Contato via WhatsApp</h4>
+        <p>Descreva o problema e receba orientação imediata do nosso técnico especialista.</p>
+      </div>
+      <div class="step reveal reveal-delay-1">
+        <div class="step-num" style="--p:50">02</div>
+        <h4>Diagnóstico Gratuito</h4>
+        <p>Avaliamos o equipamento presencialmente sem custo e apresentamos orçamento detalhado.</p>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-num" style="--p:75">03</div>
+        <h4>Reparo Autorizado</h4>
+        <p>Com sua aprovação, iniciamos o serviço usando peças de qualidade com rastreabilidade.</p>
+      </div>
+      <div class="step reveal reveal-delay-3">
+        <div class="step-num" style="--p:100">04</div>
+        <h4>Entrega com Garantia</h4>
+        <p>Equipamento testado, documentado e entregue com garantia por escrito no serviço.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section id="testimonials">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Avaliações reais</span>
+      <h2 class="section-title reveal">O que nossos clientes<br>estão falando</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="tcard reveal">
+        <div class="tcard-stars">★★★★★</div>
+        <p>"Levei meu notebook com tela quebrada. Em menos de 2 dias estava pronto, com garantia e preço justo. Super recomendo!"</p>
+        <div class="tcard-author">
+          <div class="tcard-avatar">MA</div>
+          <div>
+            <div class="tcard-name">Mariana Alves</div>
+            <div class="tcard-role">Professora · Sorriso-MT</div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard reveal reveal-delay-1">
+        <div class="tcard-stars">★★★★★</div>
+        <p>"Perdi arquivos importantíssimos do trabalho. Conseguiram recuperar tudo! Profissionalismo impecável e suporte pós-serviço excelente."</p>
+        <div class="tcard-author">
+          <div class="tcard-avatar">CR</div>
+          <div>
+            <div class="tcard-name">Carlos Rocha</div>
+            <div class="tcard-role">Empresário · Agro</div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard reveal reveal-delay-2">
+        <div class="tcard-stars">★★★★★</div>
+        <p>"Configuraram toda a rede da nossa empresa em um único dia. Rápidos, organizados e com excelente custo-benefício. Parceiros para sempre!"</p>
+        <div class="tcard-author">
+          <div class="tcard-avatar">JF</div>
+          <div>
+            <div class="tcard-name">Juliana Ferreira</div>
+            <div class="tcard-role">Gerente · Comércio</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="specialist-block reveal">
+      <div class="specialist-avatar">👨‍💻</div>
+      <div class="specialist-info">
+        <h4>Ricardo Mendes</h4>
+        <p>Técnico especialista certificado · +5 anos de experiência em hardware e redes · Sorriso-MT</p>
+      </div>
+      <div class="verified-badge">✓ Especialista Verificado</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Dúvidas frequentes</span>
+      <h2 class="section-title reveal">Tem alguma dúvida?</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">Qual o prazo médio para conserto? <span class="faq-chevron">▾</span></div>
+        <div class="faq-a">A maioria dos serviços é concluída em 24 a 72 horas úteis. Reparos mais complexos (como recuperação de dados ou troca de placa-mãe) podem levar até 5 dias. Sempre informamos o prazo antes de iniciar.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Vocês oferecem garantia nos serviços? <span class="faq-chevron">▾</span></div>
+        <div class="faq-a">Sim! Todos os nossos serviços têm garantia por escrito. Peças trocadas têm garantia mínima de 90 dias e serviços de mão de obra 30 dias. Nosso compromisso é com a sua satisfação total.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Atendem empresas ou só pessoas físicas? <span class="faq-chevron">▾</span></div>
+        <div class="faq-a">Atendemos tanto pessoas físicas quanto jurídicas. Para empresas, oferecemos contratos de manutenção preventiva mensal com prioridade no atendimento e descontos especiais.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Posso levar o equipamento ou vocês buscam? <span class="faq-chevron">▾</span></div>
+        <div class="faq-a">Você pode trazer diretamente ao nosso endereço em Sorriso-MT. Para clientes empresariais com contrato, também oferecemos serviço de coleta e entrega mediante agendamento prévio.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">O diagnóstico tem algum custo? <span class="faq-chevron">▾</span></div>
+        <div class="faq-a">Não! O diagnóstico é 100% gratuito e sem compromisso. Apresentamos o orçamento detalhado e você decide se quer prosseguir. Só cobramos se você aprovar o serviço.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA FINAL ===== -->
+<section id="cta-final">
+  <div class="container">
+    <h2 class="cta-final-title reveal">Pronto para resolver<br>seu problema?</h2>
+    <p class="cta-final-sub reveal reveal-delay-1">Fale agora pelo WhatsApp. Diagnóstico gratuito, orçamento em minutos e atendimento em Sorriso-MT.</p>
+    <div class="cta-final-btns reveal reveal-delay-2">
+      <a href="https://wa.me/5566999999999" class="btn-primary" target="_blank">
+        💬 Falar no WhatsApp Agora
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <p>© 2025 Click Suporte · Assistência Técnica Premium · Sorriso-MT · Todos os direitos reservados</p>
+  </div>
+</footer>
+
+<!-- ===== WHATSAPP FLOAT ===== -->
+<div id="wa-float">
+  <div id="wa-tooltip">
+    Olá! 👋 Diagnóstico grátis hoje mesmo!
+    <button id="wa-close">✕</button>
+  </div>
+  <a href="https://wa.me/5566999999999" id="wa-btn" target="_blank" aria-label="WhatsApp">💬</a>
+</div>
+
+<!-- ===== JS ===== -->
+<script>
+/* ── CURSOR ─────────────────────────────────────── */
+const ring = document.getElementById('cursor-ring');
+const dot  = document.getElementById('cursor-dot');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
+function animCursor() {
+  rx += (mx-rx)*.18; ry += (my-ry)*.18;
+  ring.style.left = rx+'px'; ring.style.top = ry+'px';
+  dot.style.left  = mx+'px'; dot.style.top  = my+'px';
+  requestAnimationFrame(animCursor);
+}
+animCursor();
+document.querySelectorAll('a,button,.faq-q,.service-card,.tcard').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+});
+
+/* ── PLEXUS ─────────────────────────────────────── */
+(function(){
+  const c = document.getElementById('plexus');
+  const ctx = c.getContext('2d');
+  let W,H,pts=[];
+  const N=70, DIST=140;
+  function resize(){ W=c.width=window.innerWidth; H=c.height=window.innerHeight; }
+  resize(); window.addEventListener('resize',resize);
+  for(let i=0;i<N;i++) pts.push({
+    x:Math.random()*window.innerWidth,
+    y:Math.random()*window.innerHeight,
+    vx:(Math.random()-.5)*.4,
+    vy:(Math.random()-.5)*.4
+  });
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    pts.forEach(p => {
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0||p.x>W) p.vx*=-1;
+      if(p.y<0||p.y>H) p.vy*=-1;
+    });
+    for(let i=0;i<pts.length;i++){
+      for(let j=i+1;j<pts.length;j++){
+        const d=Math.hypot(pts[i].x-pts[j].x,pts[i].y-pts[j].y);
+        if(d<DIST){
+          const a=(1-d/DIST)*.35;
+          ctx.strokeStyle=`rgba(0,229,255,${a})`;
+          ctx.lineWidth=.8;
+          ctx.beginPath();
+          ctx.moveTo(pts[i].x,pts[i].y);
+          ctx.lineTo(pts[j].x,pts[j].y);
+          ctx.stroke();
+        }
+      }
+      ctx.beginPath();
+      ctx.arc(pts[i].x,pts[i].y,1.5,0,Math.PI*2);
+      ctx.fillStyle='rgba(0,229,255,0.5)';
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── HEADER SCROLL ──────────────────────────────── */
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+/* ── CAROUSEL ───────────────────────────────────── */
+let slideIdx=0;
+const slides = document.querySelectorAll('.hero-slide');
+const dots   = document.querySelectorAll('.carousel-dots span');
+function goSlide(n) {
+  slides[slideIdx].classList.remove('active');
+  dots[slideIdx].classList.remove('active');
+  slideIdx = n % slides.length;
+  slides[slideIdx].classList.add('active');
+  dots[slideIdx].classList.add('active');
+}
+dots.forEach(d => d.addEventListener('click', () => goSlide(+d.dataset.idx)));
+setInterval(() => goSlide(slideIdx+1), 4500);
+
+/* ── REVEAL ENGINE ──────────────────────────────── */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: .12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ── COUNTER ENGINE ─────────────────────────────── */
+const counterIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(!e.isIntersecting) return;
+    const el = e.target;
+    const target = +el.dataset.target;
+    const suffix = el.dataset.suffix || '';
+    let start=0;
+    const dur=1800;
+    const t0=performance.now();
+    function tick(now){
+      const p=Math.min((now-t0)/dur,1);
+      const ease=1-Math.pow(1-p,3);
+      start=Math.round(ease*target);
+      el.textContent=start+suffix;
+      if(p<1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+    counterIO.unobserve(el);
+  });
+}, { threshold:.5 });
+document.querySelectorAll('.stat-num').forEach(el => counterIO.observe(el));
+
+/* ── SERVICE CARD GLOW ──────────────────────────── */
+document.querySelectorAll('.service-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', (e.clientX-r.left)+'px');
+    card.style.setProperty('--my', (e.clientY-r.top)+'px');
+  });
+});
+
+/* ── FAQ ────────────────────────────────────────── */
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  });
+});
+
+/* ── WHATSAPP TOOLTIP ───────────────────────────── */
+const tooltip = document.getElementById('wa-tooltip');
+const waClose = document.getElementById('wa-close');
+// hide tooltip if user already dismissed (localStorage)
+if(localStorage.getItem('wa_tooltip_closed')) tooltip.style.display='none';
+waClose.addEventListener('click', () => {
+  tooltip.style.display='none';
+  localStorage.setItem('wa_tooltip_closed','1');
+});
+</script>
 </body>
 </html>
