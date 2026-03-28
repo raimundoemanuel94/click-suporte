@@ -205,12 +205,12 @@ nav a:hover { color: var(--cyan); text-shadow: 0 0 10px var(--cyan-glow); }
 footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; color: rgba(255,255,255,0.4); font-size: .85rem; }
 
 /* ─── WHATSAPP FLOAT ─────────────────────────────── */
-#wa-float { position: fixed; bottom: 40px; right: 40px; z-index: 999; display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+#wa-float { position: fixed; bottom: 24px; right: 20px; z-index: 999; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
 #wa-btn {
-  width: 64px; height: 64px;
+  width: 58px; height: 58px;
   background: linear-gradient(135deg, var(--cyan), var(--blue));
   border-radius: 50%;
-  display: grid; place-items: center; font-size: 1.8rem; text-decoration: none;
+  display: grid; place-items: center; font-size: 1.6rem; text-decoration: none;
   box-shadow: 0 10px 40px var(--cyan-glow);
   transition: all .3s;
   animation: wa-pulse 2s infinite;
@@ -221,7 +221,91 @@ footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: cente
   100% { box-shadow: 0 0 0 0 rgba(0,229,255,0); transform: scale(1); }
 }
 #wa-btn:hover { transform: scale(1.15) rotate(5deg); animation-play-state: paused; }
-#wa-tooltip { background: rgba(5,8,16,0.9); backdrop-filter: blur(12px); border: 1px solid var(--border-hi); color: #fff; padding: 12px 18px; border-radius: 14px; font-size: .85rem; font-weight: 500; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,.3); white-space: nowrap; }
+#wa-tooltip { background: rgba(5,8,16,0.9); backdrop-filter: blur(12px); border: 1px solid var(--border-hi); color: #fff; padding: 10px 16px; border-radius: 14px; font-size: .82rem; font-weight: 500; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,.3); white-space: nowrap; }
+
+/* =====================================================
+   MOBILE RESPONSIVE — CORREÇÕES COMPLETAS
+   ===================================================== */
+
+/* Hero: empilhar coluna única no mobile */
+@media (max-width: 768px) {
+  #hero { padding: 100px 0 60px; min-height: auto; }
+  .hero-inner {
+    grid-template-columns: 1fr !important;
+    gap: 36px;
+    text-align: center;
+  }
+  .hero-content { order: 1; }
+  .hero-visual { order: 2; height: 260px; }
+  .hero-sub { max-width: 100%; font-size: 1rem; }
+  .hero-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+  .hero-cta .btn-ghost { margin-left: 0 !important; width: 100%; text-align: center; }
+  .btn-primary { width: 100%; justify-content: center; }
+  .hero-badge { font-size: .68rem; }
+}
+
+/* Stats: 2 colunas no mobile */
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 24px 16px;
+  }
+  .stat-num { font-size: 2.2rem; }
+}
+
+/* Serviços: 1 coluna no mobile */
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+  .service-card { padding: 28px 24px; }
+}
+
+/* Specialist block: empilhar verticalmente */
+@media (max-width: 768px) {
+  .specialist-block {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center;
+    padding: 28px 20px !important;
+    gap: 20px !important;
+    margin: 40px 0 !important;
+  }
+  .verified-badge { margin-left: 0 !important; }
+}
+
+/* CTA grid: 1 coluna no mobile */
+@media (max-width: 768px) {
+  .cs-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px;
+  }
+  .cs-title { font-size: clamp(1.7rem, 8vw, 2.5rem); }
+}
+
+/* Seções: menos padding no mobile */
+@media (max-width: 768px) {
+  section { padding: 64px 0; }
+  .cs-final { padding: 64px 0 40px; }
+}
+
+/* FAQ: padding menor no mobile */
+@media (max-width: 768px) {
+  .faq-q { padding: 18px 20px; font-size: .9rem; }
+  .faq-item.open .faq-a { padding: 0 20px 20px; font-size: .88rem; }
+}
+
+/* Header: garantir z-index e logo não cortar */
+@media (max-width: 768px) {
+  header { padding: 0 16px; }
+  .logo { font-size: 1.1rem; }
+}
 </style>
 </head>
 <body>
