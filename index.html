@@ -64,13 +64,13 @@ body.cursor-hover #cursor-ring { width: 52px; height: 52px; border-color: var(--
 #plexus { position: fixed; inset: 0; z-index: 0; opacity: .55; pointer-events: none; }
 
 /* ─── LAYOUT HELPERS ────────────────────────────── */
-.container { max-width: 1160px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 60px); }
+.container { max-width: 1600px; margin: 0 auto; padding: 0 clamp(24px, 6vw, 100px); }
 section { position: relative; z-index: 1; padding: 100px 0; }
 
 /* ─── HEADER ────────────────────────────────────── */
 header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  padding: 0 clamp(20px, 5vw, 60px); height: 68px; display: flex;
+  padding: 0 clamp(24px, 6vw, 100px); height: 68px; display: flex;
   align-items: center; justify-content: space-between; transition: all .4s;
 }
 header.scrolled { background: rgba(5,8,16,.75); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
@@ -156,7 +156,7 @@ nav a:hover { color: var(--cyan); text-shadow: 0 0 10px var(--cyan-glow); }
 
 /* ─── NEW CTA SECTION (SURGICAL) ────────────────── */
 .cs-final { background: #050810; padding: 100px 0 60px; color: #f0f6ff; font-family: inherit; position: relative; }
-.cs-container { max-width: 1100px; margin: 0 auto; padding: 0 20px; text-align: center; }
+.cs-container { max-width: 1600px; margin: 0 auto; padding: 0 clamp(24px, 6vw, 100px); text-align: center; }
 .cs-title { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 24px; color: #f0f6ff; }
 .cs-title em { color: #00e5ff; font-style: normal; }
 .cs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; max-width: 680px; margin: 40px auto; }
@@ -313,6 +313,63 @@ footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: cente
 @media (max-width: 768px) {
   header { padding: 0 16px; }
   .logo { font-size: 1.1rem; }
+}
+
+/* =====================================================
+   DESKTOP LARGE SCREEN — APROVEITAR TODA A LARGURA
+   ===================================================== */
+
+/* Hero: proporção melhor em telas grandes */
+@media (min-width: 1280px) {
+  .hero-inner { grid-template-columns: 1.1fr 0.9fr; gap: 80px; }
+  .hero-title { font-size: clamp(3rem, 3.5vw, 4.8rem); }
+  .hero-sub { font-size: 1.15rem; max-width: 560px; }
+  .hero-visual { height: 580px; }
+}
+
+/* Stats: números maiores e mais respiro */
+@media (min-width: 1280px) {
+  #stats { padding: 80px 0; }
+  .stats-grid { gap: 40px; }
+  .stat-num { font-size: 3.8rem; }
+}
+
+/* Serviços: 3 colunas com mais padding */
+@media (min-width: 1280px) {
+  .services-grid { grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .service-card { padding: 48px 40px; }
+}
+
+/* Serviços: 6 cards em linha em telas muito grandes */
+@media (min-width: 1600px) {
+  .services-grid { grid-template-columns: repeat(3, 1fr); gap: 36px; }
+  .service-card { padding: 52px 44px; }
+  .service-card h3 { font-size: 1.4rem; }
+}
+
+/* FAQ mais largo */
+@media (min-width: 1280px) {
+  .faq-list { max-width: 900px; }
+  .section-header { max-width: 800px; }
+}
+
+/* CTA grid cards maiores */
+@media (min-width: 1280px) {
+  .cs-grid { max-width: 900px; gap: 16px; }
+  .cs-card { padding: 24px 20px; }
+  .cs-map { max-width: 1000px; height: 220px; }
+}
+
+/* Specialist block mais largo */
+@media (min-width: 1280px) {
+  .specialist-block { max-width: 860px; padding: 40px 56px; gap: 40px; }
+  .specialist-avatar { width: 100px; height: 100px; }
+}
+
+/* Seções com mais padding em telas grandes */
+@media (min-width: 1440px) {
+  section { padding: 120px 0; }
+  .hero-title { font-size: clamp(3.5rem, 4vw, 5.5rem); }
 }
 </style>
 </head>
@@ -663,4 +720,4 @@ window.addEventListener('scroll', () => {
 });
 </script>
 </body>
-</html>
+</html><!-- DESKTOP FULL-WIDTH PATCH INJECTED VIA SCRIPT -->
