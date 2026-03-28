@@ -227,26 +227,34 @@ footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: cente
    MOBILE RESPONSIVE — CORREÇÕES COMPLETAS
    ===================================================== */
 
-/* Hero: empilhar coluna única no mobile */
+/* Hero: coluna única no mobile, imagem escondida */
 @media (max-width: 768px) {
-  #hero { padding: 100px 0 60px; min-height: auto; }
+  #hero { padding: 88px 0 56px; min-height: 100svh; display: flex; align-items: center; }
   .hero-inner {
     grid-template-columns: 1fr !important;
-    gap: 36px;
-    text-align: center;
+    gap: 0;
+    text-align: left;
   }
-  .hero-content { order: 1; }
-  .hero-visual { order: 2; height: 260px; }
-  .hero-sub { max-width: 100%; font-size: 1rem; }
+  .hero-visual { display: none !important; }
+  .hero-title { font-size: clamp(2rem, 9vw, 2.8rem) !important; margin-bottom: 16px; }
+  .hero-sub { max-width: 100%; font-size: .95rem; margin-bottom: 32px; }
+  .hero-badge { font-size: .65rem; margin-bottom: 16px; }
   .hero-cta {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
-    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
   }
-  .hero-cta .btn-ghost { margin-left: 0 !important; width: 100%; text-align: center; }
-  .btn-primary { width: 100%; justify-content: center; }
-  .hero-badge { font-size: .68rem; }
+  .btn-primary { flex: 1 1 140px; justify-content: center; padding: 13px 18px; font-size: .9rem; }
+  .hero-cta .btn-ghost {
+    flex: 1 1 140px;
+    margin-left: 0 !important;
+    text-align: center;
+    padding: 13px 18px !important;
+    font-size: .9rem;
+    display: block !important;
+    white-space: nowrap;
+  }
 }
 
 /* Stats: 2 colunas no mobile */
