@@ -201,17 +201,22 @@ nav a:not(.btn-nav):hover { color: var(--text-1); }
 .btn-nav svg { color: var(--bg); }
 
 .theme-toggle {
-  display: inline-flex; align-items: center; gap: 9px; z-index: 101;
-  margin-left: auto; margin-right: 18px; border: 1px solid var(--border);
-  background: var(--surface-card); color: var(--text-1);
-  border-radius: var(--r-full); padding: 8px 12px 8px 9px;
+  position: fixed; top: 92px; right: 22px;
+  display: inline-flex; align-items: center; gap: 9px; z-index: 99;
+  border: 1px solid var(--border-hi);
+  background: rgba(5, 8, 16, 0.66);
+  backdrop-filter: blur(18px) saturate(1.25);
+  -webkit-backdrop-filter: blur(18px) saturate(1.25);
+  color: var(--text-1);
+  border-radius: var(--r-full); padding: 9px 13px 9px 10px;
   font: 700 0.78rem var(--ff-body); cursor: pointer;
-  transition: transform 0.25s var(--ease-out), border-color 0.25s, background 0.25s, box-shadow 0.25s;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.22);
+  transition: transform 0.25s var(--ease-out), border-color 0.25s, background 0.25s, box-shadow 0.25s, opacity 0.25s;
 }
 .theme-toggle:hover {
   transform: translateY(-1px);
   border-color: var(--border-hi);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 22px 54px rgba(0, 0, 0, 0.28), 0 0 24px var(--cyan-glow);
 }
 .theme-toggle-icon {
   width: 28px; height: 18px; border-radius: var(--r-full);
@@ -225,8 +230,8 @@ nav a:not(.btn-nav):hover { color: var(--text-1); }
   transition: transform 0.25s var(--ease-out), background 0.25s;
 }
 :root[data-theme="light"] .theme-toggle {
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 10px 26px rgba(8, 21, 36, 0.08);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 18px 44px rgba(8, 21, 36, 0.14);
 }
 :root[data-theme="light"] .theme-toggle-icon { background: rgba(8, 21, 36, 0.08); }
 :root[data-theme="light"] .theme-toggle-icon::before {
@@ -699,7 +704,10 @@ footer { padding: 48px 0 32px; border-top: 1px solid var(--border); position: re
   nav.mobile-open { opacity: 1; pointer-events: auto; }
   nav a:not(.btn-nav) { font-size: 1.15rem; color: var(--text-1); }
   nav .btn-nav { font-size: 0.95rem; padding: 12px 28px; }
-  .theme-toggle { margin-left: auto; margin-right: 8px; padding-right: 10px; }
+  .theme-toggle {
+    top: 86px; right: 16px; bottom: auto;
+    padding: 12px; gap: 0;
+  }
   .theme-toggle-text { display: none; }
 
   #hero { padding: 100px 0 60px; min-height: 100svh; }
