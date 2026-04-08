@@ -50,15 +50,15 @@
 
 :root[data-theme="light"] {
   color-scheme: light;
-  --bg:           #ffffff;
-  --bg-2:         #f6f8fb;
-  --bg-3:         #eef3f8;
-  --surface:      rgba(3, 20, 36, 0.035);
-  --surface-hi:   rgba(3, 20, 36, 0.065);
-  --surface-card: rgba(255, 255, 255, 0.82);
-  --border:       rgba(8, 28, 48, 0.11);
-  --border-hi:    rgba(0, 126, 158, 0.24);
-  --border-hover: rgba(0, 126, 158, 0.34);
+  --bg:           #fbfdff;
+  --bg-2:         #f2f6fa;
+  --bg-3:         #e8f0f7;
+  --surface:      rgba(8, 28, 48, 0.045);
+  --surface-hi:   rgba(8, 28, 48, 0.075);
+  --surface-card: rgba(255, 255, 255, 0.92);
+  --border:       rgba(8, 28, 48, 0.14);
+  --border-hi:    rgba(0, 126, 158, 0.30);
+  --border-hover: rgba(0, 126, 158, 0.42);
 
   --cyan:         #008fb3;
   --cyan-dim:     rgba(0, 143, 179, 0.085);
@@ -70,9 +70,9 @@
   --gradient-text: linear-gradient(135deg, #007d9c, #1559d6);
   --gradient-btn:  linear-gradient(135deg, #00c8e8 0%, #1597c7 100%);
 
-  --text-1:       #081524;
-  --text-2:       rgba(8, 21, 36, 0.68);
-  --text-3:       rgba(8, 21, 36, 0.46);
+  --text-1:       #071421;
+  --text-2:       #334155;
+  --text-3:       #64748b;
 }
 
 /* ─── RESET ────────────────────────────────────────── */
@@ -201,8 +201,8 @@ nav a:not(.btn-nav):hover { color: var(--text-1); }
 .btn-nav svg { color: var(--bg); }
 
 .theme-toggle {
-  position: fixed; top: 92px; right: 22px;
-  display: inline-flex; align-items: center; gap: 9px; z-index: 99;
+  position: fixed; top: 80px; right: 22px;
+  display: inline-flex; align-items: center; gap: 9px; z-index: 1001;
   border: 1px solid var(--border-hi);
   background: rgba(5, 8, 16, 0.66);
   backdrop-filter: blur(18px) saturate(1.25);
@@ -230,8 +230,9 @@ nav a:not(.btn-nav):hover { color: var(--text-1); }
   transition: transform 0.25s var(--ease-out), background 0.25s;
 }
 :root[data-theme="light"] .theme-toggle {
-  background: rgba(255, 255, 255, 0.72);
-  box-shadow: 0 18px 44px rgba(8, 21, 36, 0.14);
+  background: rgba(255, 255, 255, 0.82);
+  border-color: rgba(0, 126, 158, 0.32);
+  box-shadow: 0 18px 44px rgba(8, 21, 36, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.86);
 }
 :root[data-theme="light"] .theme-toggle-icon { background: rgba(8, 21, 36, 0.08); }
 :root[data-theme="light"] .theme-toggle-icon::before {
@@ -294,6 +295,12 @@ nav a:not(.btn-nav):hover { color: var(--text-1); }
   padding: 8px 12px; border-radius: var(--r-full);
   background: rgba(255, 255, 255, 0.035); border: 1px solid var(--border);
 }
+:root[data-theme="light"] .hero-trust span {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--text-2);
+  border-color: rgba(8, 28, 48, 0.15);
+  box-shadow: 0 8px 24px rgba(8, 21, 36, 0.06);
+}
 .hero-trust span::before {
   content: ''; width: 6px; height: 6px; border-radius: 50%;
   background: var(--cyan); box-shadow: 0 0 14px var(--cyan-glow);
@@ -315,6 +322,7 @@ nav a:not(.btn-nav):hover { color: var(--text-1); }
   transition: all 0.3s var(--ease-out); background: transparent;
 }
 .btn-ghost:hover { color: var(--text-1); border-color: rgba(255, 255, 255, 0.15); background: var(--surface); }
+:root[data-theme="light"] .btn-ghost:hover { border-color: rgba(0, 126, 158, 0.28); }
 
 .hero-visual { position: relative; }
 .hero-visual-inner {
@@ -406,6 +414,17 @@ nav a:not(.btn-nav):hover { color: var(--text-1); }
   border-color: var(--border-hover); transform: translateY(-4px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 229, 255, 0.08);
 }
+:root[data-theme="light"] .service-card,
+:root[data-theme="light"] .diff-card,
+:root[data-theme="light"] .specialist-block,
+:root[data-theme="light"] .faq-item,
+:root[data-theme="light"] .cs-card {
+  box-shadow: 0 14px 38px rgba(8, 21, 36, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.78);
+}
+:root[data-theme="light"] .service-card:hover,
+:root[data-theme="light"] .diff-card:hover {
+  box-shadow: 0 18px 48px rgba(8, 21, 36, 0.11), 0 0 0 1px rgba(0, 126, 158, 0.10);
+}
 
 .service-icon-wrap {
   width: 52px; height: 52px; display: grid; place-items: center;
@@ -426,8 +445,13 @@ nav a:not(.btn-nav):hover { color: var(--text-1); }
   padding: 5px 10px; border-radius: var(--r-full);
   border: 1px solid rgba(0, 229, 255, 0.12);
   background: rgba(0, 229, 255, 0.045);
-  color: rgba(240, 246, 255, 0.72);
+  color: var(--text-2);
   font-size: 0.72rem; font-weight: 600;
+}
+:root[data-theme="light"] .service-tags span {
+  background: rgba(0, 143, 179, 0.09);
+  border-color: rgba(0, 126, 158, 0.22);
+  color: #075b72;
 }
 
 .service-arrow {
@@ -456,6 +480,7 @@ nav a:not(.btn-nav):hover { color: var(--text-1); }
   position: absolute; top: 16px; right: 20px; font-family: var(--ff-head);
   font-size: 2.5rem; font-weight: 800; color: rgba(255, 255, 255, 0.03); line-height: 1; pointer-events: none;
 }
+:root[data-theme="light"] .diff-number { color: rgba(8, 21, 36, 0.055); }
 .diff-icon {
   width: 44px; height: 44px; display: grid; place-items: center;
   border-radius: var(--r-md); background: var(--cyan-dim);
@@ -705,10 +730,11 @@ footer { padding: 48px 0 32px; border-top: 1px solid var(--border); position: re
   nav a:not(.btn-nav) { font-size: 1.15rem; color: var(--text-1); }
   nav .btn-nav { font-size: 0.95rem; padding: 12px 28px; }
   .theme-toggle {
-    top: 86px; right: 16px; bottom: auto;
-    padding: 12px; gap: 0;
+    top: 16px; right: 68px; bottom: auto;
+    padding: 10px; gap: 0;
   }
   .theme-toggle-text { display: none; }
+  #wa-tooltip { display: none; }
 
   #hero { padding: 100px 0 60px; min-height: 100svh; }
   .hero-inner { grid-template-columns: 1fr; gap: 0; text-align: left; }
