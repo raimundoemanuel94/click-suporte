@@ -201,7 +201,7 @@ nav a:not(.btn-nav):hover { color: var(--text-1); }
 .btn-nav svg { color: var(--bg); }
 
 .theme-toggle {
-  position: fixed; top: 80px; right: 22px;
+  position: fixed; top: 17px; right: max(16px, calc((100vw - 1200px) / 2 - 28px));
   display: inline-flex; align-items: center; gap: 9px; z-index: 1001;
   border: 1px solid var(--border-hi);
   background: rgba(5, 8, 16, 0.66);
