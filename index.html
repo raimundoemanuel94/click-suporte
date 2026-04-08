@@ -28,6 +28,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <script>
+        try {
+            const savedTheme = localStorage.getItem('click-suporte-theme');
+            if (savedTheme === 'light') document.documentElement.dataset.theme = 'light';
+        } catch (error) {}
+    </script>
     <link rel="stylesheet" href="style.css">
     <script type="application/ld+json">
     {
@@ -63,6 +69,10 @@
             <div class="logo-icon">C</div>
             <span class="logo-text">Click<span class="logo-accent">Suporte</span></span>
         </a>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar para tema claro" aria-pressed="false">
+            <span class="theme-toggle-icon" aria-hidden="true"></span>
+            <span class="theme-toggle-text">Dia</span>
+        </button>
         <button id="mobile-toggle" aria-label="Menu" aria-controls="main-nav" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>

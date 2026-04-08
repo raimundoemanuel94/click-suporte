@@ -6,6 +6,32 @@
 document.addEventListener('DOMContentLoaded', () => {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const coarsePointer = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+  const themeToggle = document.getElementById('theme-toggle');
+
+  function setTheme(theme) {
+    const isLight = theme === 'light';
+    document.documentElement.dataset.theme = isLight ? 'light' : 'dark';
+    if (themeToggle) {
+      themeToggle.setAttribute('aria-pressed', String(isLight));
+      themeToggle.setAttribute('aria-label', isLight ? 'Alternar para tema escuro' : 'Alternar para tema claro');
+      const label = themeToggle.querySelector('.theme-toggle-text');
+      if (label) label.textContent = isLight ? 'Noite' : 'Dia';
+    }
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+    if (themeMeta) themeMeta.setAttribute('content', isLight ? '#ffffff' : '#050810');
+  }
+
+  if (themeToggle) {
+    const currentTheme = document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
+    setTheme(currentTheme);
+    themeToggle.addEventListener('click', () => {
+      const nextTheme = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+      setTheme(nextTheme);
+      try {
+        localStorage.setItem('click-suporte-theme', nextTheme);
+      } catch (error) {}
+    });
+  }
 
   /* ─── PLEXUS CANVAS ─────────────────────────────── */
   const canvas = document.getElementById('plexus');
