@@ -14,8 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (themeToggle) {
       themeToggle.setAttribute('aria-pressed', String(isLight));
       themeToggle.setAttribute('aria-label', isLight ? 'Alternar para tema escuro' : 'Alternar para tema claro');
-      const label = themeToggle.querySelector('.theme-toggle-text');
-      if (label) label.textContent = isLight ? 'Noite' : 'Dia';
     }
     const themeMeta = document.querySelector('meta[name="theme-color"]');
     if (themeMeta) themeMeta.setAttribute('content', isLight ? '#ffffff' : '#050810');
