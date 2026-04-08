@@ -11,13 +11,13 @@ Este projeto foi desenvolvido com foco em alta performance, visual premium e con
    - `index.html` (o arquivo principal)
    - `style.css` (estilos premium)
    - `script.js` (interações e animações)
-5. **Upload de Pastas**: Envie a pasta `assets` inteira (mantendo os subdiretórios `img` e `icons`).
-   - *Nota: Você pode colocar seu ícone de favicon dentro de `assets/icons/favicon.ico`.*
+5. **Upload de Pastas**: Envie a pasta `assets` inteira (mantendo os subdiretórios `logo`, `favicon` e `icons`).
+   - *Nota: o favicon atual fica em `assets/favicon/favicon.ico`.*
 6. **Teste**: Acesse `clicksuporte.com` no seu navegador e verifique se tudo está carregando corretamente (especialmente no celular!).
 
 ## Dicas de Manutenção
 - **Edição de Texto**: Para alterar qualquer frase, abra o `index.html` e edite o conteúdo entre as tags HTML.
-- **WhatsApp**: Para mudar o número ou a mensagem, procure por `wa.me/5566992265185` no `index.html` e substitua pelo novo link.
-- **Imagens**: Para adicionar novas imagens, coloque-as em `assets/img` e atualize o caminho no HTML.
+- **WhatsApp**: Para mudar o número ou a mensagem, procure por `wa.me/5597991394382` no `index.html` e substitua pelo novo link.
+- **Imagens**: Para adicionar novas imagens, coloque-as em `assets/logo` ou diretamente em `assets`, e atualize o caminho no HTML.
 
 Desenvolvido por Click Suporte.

@@ -4,14 +4,17 @@
    ===================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const coarsePointer = window.matchMedia('(hover: none), (pointer: coarse)').matches;
 
   /* ─── PLEXUS CANVAS ─────────────────────────────── */
   const canvas = document.getElementById('plexus');
-  if (canvas) {
+  if (canvas && !reducedMotion) {
     const ctx = canvas.getContext('2d');
     const dpr = window.devicePixelRatio || 1;
     let W, H, pts = [];
-    const N = 60, DIST = 140;
+    let rafId = null;
+    const N = coarsePointer ? 28 : 60, DIST = coarsePointer ? 110 : 140;
 
     function resize() {
       W = window.innerWidth;
@@ -73,16 +76,21 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       ctx.shadowBlur = 0;
 
-      requestAnimationFrame(animate);
+      if (!document.hidden) rafId = requestAnimationFrame(animate);
     }
     animate();
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden && rafId) cancelAnimationFrame(rafId);
+      if (!document.hidden) animate();
+    });
   }
 
 
   /* ─── CUSTOM CURSOR ─────────────────────────────── */
   const ring = document.getElementById('cursor-ring');
   const dot = document.getElementById('cursor-dot');
-  if (ring && dot) {
+  if (ring && dot && !reducedMotion && !coarsePointer) {
     let mx = 0, my = 0, rx = 0, ry = 0;
 
     window.addEventListener('mousemove', e => {
@@ -114,7 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.isIntersecting) e.target.classList.add('visible');
     });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  if (reducedMotion) document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+  else document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 
   /* ─── COUNTER ANIMATION (rAF) ───────────────────── */
@@ -124,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const el = e.target;
       const target = parseFloat(el.getAttribute('data-target'));
       const suffix = el.getAttribute('data-suffix') || '';
-      const dur = 2000;
+      const dur = reducedMotion ? 1 : 2000;
       const t0 = performance.now();
 
       function tick(now) {
@@ -144,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ─── MOUSE GLOW ON CARDS ───────────────────────── */
   document.querySelectorAll('.service-card, .diff-card, .cs-card, .step').forEach(card => {
-    card.addEventListener('mousemove', e => {
+    if (!reducedMotion && !coarsePointer) card.addEventListener('mousemove', e => {
       const r = card.getBoundingClientRect();
       card.style.setProperty('--mouse-x', `${e.clientX - r.left}px`);
       card.style.setProperty('--mouse-y', `${e.clientY - r.top}px`);
@@ -154,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ─── SPECIALIST 3D TILT ────────────────────────── */
   const specBlock = document.querySelector('.specialist-block');
-  if (specBlock) {
+  if (specBlock && !reducedMotion && !coarsePointer) {
     specBlock.addEventListener('mousemove', e => {
       const r = specBlock.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width - 0.5;
@@ -169,11 +178,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ─── FAQ ACCORDION ─────────────────────────────── */
   document.querySelectorAll('.faq-q').forEach(q => {
-    q.addEventListener('click', () => {
+    const toggleFaq = () => {
       const item = q.parentElement;
       const wasOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-      if (!wasOpen) item.classList.add('open');
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        const trigger = i.querySelector('.faq-q');
+        const panel = i.querySelector('.faq-a');
+        if (trigger) trigger.setAttribute('aria-expanded', 'false');
+        if (panel) panel.setAttribute('aria-hidden', 'true');
+      });
+      if (!wasOpen) {
+        item.classList.add('open');
+        q.setAttribute('aria-expanded', 'true');
+        const panel = item.querySelector('.faq-a');
+        if (panel) panel.setAttribute('aria-hidden', 'false');
+      }
+    };
+
+    q.addEventListener('click', toggleFaq);
+    q.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleFaq();
+      }
     });
   });
 
@@ -182,25 +210,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileToggle = document.getElementById('mobile-toggle');
   const mainNav = document.getElementById('main-nav');
   if (mobileToggle && mainNav) {
+    const setMenuState = isOpen => {
+      mainNav.classList.toggle('mobile-open', isOpen);
+      mobileToggle.classList.toggle('open', isOpen);
+      mobileToggle.setAttribute('aria-expanded', String(isOpen));
+    };
+
     mobileToggle.addEventListener('click', (e) => {
       e.stopPropagation();
-      mainNav.classList.toggle('mobile-open');
-      mobileToggle.classList.toggle('open');
+      setMenuState(!mainNav.classList.contains('mobile-open'));
     });
 
     // Close menu when clicking links
     mainNav.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
-        mainNav.classList.remove('mobile-open');
-        mobileToggle.classList.remove('open');
+        setMenuState(false);
       });
     });
 
     // Close on outside click
     document.addEventListener('click', e => {
       if (!mainNav.contains(e.target) && !mobileToggle.contains(e.target)) {
-        mainNav.classList.remove('mobile-open');
-        mobileToggle.classList.remove('open');
+        setMenuState(false);
       }
     });
   }
@@ -209,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ─── HERO CAROUSEL ─────────────────────────────── */
   const heroSlides = document.querySelectorAll('.hero-slide');
   let curSlide = 0;
-  if (heroSlides.length > 1) {
+  if (heroSlides.length > 1 && !reducedMotion) {
     setInterval(() => {
       heroSlides[curSlide].classList.remove('active');
       curSlide = (curSlide + 1) % heroSlides.length;
