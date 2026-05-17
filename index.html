@@ -487,5 +487,190 @@
 
 <!-- ═══════════════ SCRIPTS ═══════════════ -->
 <script src="script.js"></script>
+<!-- ═══════════════════════════════════════════════════════════
+     FORMULÁRIO PREMIUM - CLICK SUPORTE
+     Integrado ao site existente
+     ═══════════════════════════════════════════════════════════ -->
+
+<!-- CSS do Formulário Premium -->
+<link rel="stylesheet" href="formulario-premium.css">
+
+<!-- Botão Flutuante -->
+<button class="cs-floating-btn" id="cs-open-form">
+    <span class="cs-icon">💬</span>
+    Atendimento
+</button>
+
+<!-- Modal Formulário -->
+<div class="cs-modal-overlay" id="cs-modal-overlay">
+    <div class="cs-form-modal">
+        <button class="cs-close-btn" id="cs-close-btn">&times;</button>
+        <div class="cs-form-header">
+            <h2>ATENDIMENTO PREMIUM</h2>
+            <p>Resolva seu problema em minutos</p>
+        </div>
+        <div class="cs-progress-container">
+            <div class="cs-progress-steps">
+                <div class="cs-step cs-active" data-step="1">
+                    <div class="cs-step-number">1</div>
+                    <div class="cs-step-label">Serviço</div>
+                </div>
+                <div class="cs-step" data-step="2">
+                    <div class="cs-step-number">2</div>
+                    <div class="cs-step-label">Urgência</div>
+                </div>
+                <div class="cs-step" data-step="3">
+                    <div class="cs-step-number">3</div>
+                    <div class="cs-step-label">Seus Dados</div>
+                </div>
+                <div class="cs-step" data-step="4">
+                    <div class="cs-step-number">4</div>
+                    <div class="cs-step-label">Confirmar</div>
+                </div>
+            </div>
+            <div class="cs-progress-bar">
+                <div class="cs-progress-fill" id="cs-progress-fill" style="width: 25%"></div>
+            </div>
+        </div>
+        <div class="cs-form-step cs-active" data-step="1">
+            <div class="cs-service-grid">
+                <div class="cs-service-card" data-service="formatacao">
+                    <span class="cs-service-icon">💻</span>
+                    <div class="cs-service-title">Formatação</div>
+                    <div class="cs-service-desc">Reinstalação completa do sistema</div>
+                    <div class="cs-service-price">A partir de R$ 100</div>
+                </div>
+                <div class="cs-service-card" data-service="drivers">
+                    <span class="cs-service-icon">🔧</span>
+                    <div class="cs-service-title">Instalação de Drivers</div>
+                    <div class="cs-service-desc">Resolva problemas de hardware</div>
+                    <div class="cs-service-price">A partir de R$ 80</div>
+                </div>
+                <div class="cs-service-card" data-service="suporte-remoto">
+                    <span class="cs-service-icon">🌐</span>
+                    <div class="cs-service-title">Suporte Remoto</div>
+                    <div class="cs-service-desc">Atendimento online imediato</div>
+                    <div class="cs-service-price">A partir de R$ 70</div>
+                </div>
+                <div class="cs-service-card" data-service="licencas">
+                    <span class="cs-service-icon">🔑</span>
+                    <div class="cs-service-title">Licenças Windows/Office</div>
+                    <div class="cs-service-desc">Ativação 100% legal</div>
+                    <div class="cs-service-price">Consulte valores</div>
+                </div>
+                <div class="cs-service-card" data-service="empresas">
+                    <span class="cs-service-icon">🏢</span>
+                    <div class="cs-service-title">Atendimento Empresarial</div>
+                    <div class="cs-service-desc">Planos corporativos</div>
+                    <div class="cs-service-price">Orçamento personalizado</div>
+                </div>
+            </div>
+            <div class="cs-form-actions">
+                <button class="cs-btn cs-btn-primary" id="cs-next-step-1">Próximo →</button>
+            </div>
+        </div>
+        <div class="cs-form-step" data-step="2">
+            <div class="cs-urgency-grid">
+                <div class="cs-urgency-card" data-urgency="hoje">
+                    <span class="cs-urgency-icon">🔥</span>
+                    <div class="cs-urgency-text">
+                        <span class="cs-urgency-label">Urgente - Hoje</span>
+                        <span class="cs-urgency-time">Atendimento em até 2 horas</span>
+                    </div>
+                </div>
+                <div class="cs-urgency-card" data-urgency="2-3dias">
+                    <span class="cs-urgency-icon">⚡</span>
+                    <div class="cs-urgency-text">
+                        <span class="cs-urgency-label">Normal - 2 a 3 dias</span>
+                        <span class="cs-urgency-time">Agendamento flexível</span>
+                    </div>
+                </div>
+                <div class="cs-urgency-card" data-urgency="orcamento">
+                    <span class="cs-urgency-icon">💰</span>
+                    <div class="cs-urgency-text">
+                        <span class="cs-urgency-label">Só quero orçamento</span>
+                        <span class="cs-urgency-time">Sem compromisso</span>
+                    </div>
+                </div>
+            </div>
+            <div class="cs-form-actions">
+                <button class="cs-btn cs-btn-secondary" id="cs-prev-step-2">← Voltar</button>
+                <button class="cs-btn cs-btn-primary" id="cs-next-step-2">Próximo →</button>
+            </div>
+        </div>
+        <div class="cs-form-step" data-step="3">
+            <div class="cs-form-group">
+                <label class="cs-form-label">Nome Completo</label>
+                <div class="cs-input-wrapper">
+                    <span class="cs-input-icon">👤</span>
+                    <input type="text" id="cs-nome" placeholder="João Silva" required>
+                </div>
+            </div>
+            <div class="cs-form-group">
+                <label class="cs-form-label">WhatsApp</label>
+                <div class="cs-input-wrapper">
+                    <span class="cs-input-icon">📱</span>
+                    <input type="tel" id="cs-whatsapp" placeholder="(97) 99139-4382" required>
+                </div>
+            </div>
+            <div class="cs-form-group">
+                <label class="cs-form-label">E-mail (opcional)</label>
+                <div class="cs-input-wrapper">
+                    <span class="cs-input-icon">📧</span>
+                    <input type="email" id="cs-email" placeholder="joao@email.com">
+                </div>
+            </div>
+            <div class="cs-form-group">
+                <label class="cs-form-label">Descreva seu problema (opcional)</label>
+                <textarea id="cs-mensagem" placeholder="Ex: Meu computador está muito lento..."></textarea>
+            </div>
+            <div class="cs-form-actions">
+                <button class="cs-btn cs-btn-secondary" id="cs-prev-step-3">← Voltar</button>
+                <button class="cs-btn cs-btn-primary" id="cs-next-step-3">Próximo →</button>
+            </div>
+        </div>
+        <div class="cs-form-step" data-step="4">
+            <div class="cs-summary-box">
+                <div class="cs-summary-item">
+                    <span class="cs-summary-label">Serviço:</span>
+                    <span class="cs-summary-value" id="cs-summary-service">-</span>
+                </div>
+                <div class="cs-summary-item">
+                    <span class="cs-summary-label">Urgência:</span>
+                    <span class="cs-summary-value" id="cs-summary-urgency">-</span>
+                </div>
+                <div class="cs-summary-item">
+                    <span class="cs-summary-label">Nome:</span>
+                    <span class="cs-summary-value" id="cs-summary-name">-</span>
+                </div>
+                <div class="cs-summary-item">
+                    <span class="cs-summary-label">WhatsApp:</span>
+                    <span class="cs-summary-value" id="cs-summary-whatsapp">-</span>
+                </div>
+                <div class="cs-summary-item" id="cs-summary-email-row" style="display: none;">
+                    <span class="cs-summary-label">E-mail:</span>
+                    <span class="cs-summary-value" id="cs-summary-email">-</span>
+                </div>
+            </div>
+            <div class="cs-checkbox-wrapper">
+                <input type="checkbox" id="cs-lgpd-consent" required>
+                <label class="cs-checkbox-label" for="cs-lgpd-consent">
+                    Autorizo o Click Suporte a armazenar e processar meus dados pessoais para fins de atendimento, conforme a <strong>LGPD</strong>. Seus dados são seguros e nunca serão compartilhados com terceiros.
+                </label>
+            </div>
+            <div class="cs-form-actions">
+                <button class="cs-btn cs-btn-secondary" id="cs-prev-step-4">← Voltar</button>
+                <button class="cs-btn cs-btn-primary" id="cs-submit-btn" disabled>
+                    🚀 Enviar para WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript do Formulário Premium -->
+<script src="formulario-premium.js"></script>
+
+<!-- FIM DO FORMULÁRIO PREMIUM -->
 </body>
 </html>
