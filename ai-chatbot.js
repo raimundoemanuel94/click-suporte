@@ -471,18 +471,15 @@ Quando tiver nome + telefone + problema: diga que vai encaminhar para atendiment
     // ═══════════════════════════════════════════════════
     const AIService = {
         async sendMessage(userMessage) {
-            // IMPORTANTE: Esta chamada precisa ser feita através de um backend
-            // para esconder a API key. Por enquanto, vou simular localmente.
+            // MODO SIMULAÇÃO - Sem chamadas à API
+            // Para usar API real, precisa de backend
             
-            // Se estiver em produção, chame seu backend
-            if (window.location.hostname !== 'localhost') {
-                return this.callClaudeAPI(userMessage);
-            }
-            
-            // Simulação local (desenvolvimento)
             return this.simulateResponse(userMessage);
         },
         
+        // callClaudeAPI comentada - causa erro CORS
+        // Para usar API real, precisa criar backend PHP/Node
+        /*
         async callClaudeAPI(userMessage) {
             try {
                 const response = await fetch(CONFIG.apiUrl, {
@@ -490,7 +487,7 @@ Quando tiver nome + telefone + problema: diga que vai encaminhar para atendiment
                     headers: {
                         'Content-Type': 'application/json',
                         'anthropic-version': '2023-06-01',
-                        'x-api-key': 'SUA_API_KEY_AQUI' // ⚠️ NÃO EXPONHA EM PRODUÇÃO!
+                        'x-api-key': 'SUA_API_KEY_AQUI'
                     },
                     body: JSON.stringify({
                         model: CONFIG.model,
@@ -512,6 +509,7 @@ Quando tiver nome + telefone + problema: diga que vai encaminhar para atendiment
                 return this.fallbackResponse();
             }
         },
+        */
         
         simulateResponse(userMessage) {
             // Simulação ROBUSTA baseada em máquina de estados
