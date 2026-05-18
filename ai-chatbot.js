@@ -66,129 +66,125 @@ NUNCA:
 Quando tiver nome + telefone + problema: diga que vai encaminhar para atendimento.`;
 
     // ═══════════════════════════════════════════════════
-    // ESTADO DA CONVERSA
+    // ESTADO DA CONVERSA - SIMPLES E ROBUSTO
     // ═══════════════════════════════════════════════════
     const ChatState = {
-        // Estados possíveis
-        STATES: {
-            INITIAL: 'initial',
-            COLLECTING_PROBLEM: 'collecting_problem',
-            COLLECTING_NAME: 'collecting_name',
-            COLLECTING_PHONE: 'collecting_phone',
-            COMPLETE: 'complete'
-        },
-        
-        currentState: 'initial',
+        step: 0, // 0=inicial, 1=coletando problema, 2=coletando nome, 3=coletando telefone, 4=completo
         messages: [],
         userData: {
             nome: null,
             telefone: null,
-            problema: null,
-            urgencia: null
+            problema: null
         },
-        isComplete: false,
         
         addMessage(role, content) {
             this.messages.push({ role, content });
         },
         
-        extractUserData(text) {
-            // Extrai telefone com vários formatos
-            const phonePatterns = [
-                /(\d{2})\s*(\d{4,5})-?(\d{4})/,  // 97 99139-4382 ou 97 991394382
-                /\(?(\d{2})\)?\s*(\d{4,5})-?(\d{4})/, // (97) 99139-4382
-                /(\d{10,11})/ // 97991394382
+        extractPhone(text) {
+            // Tenta extrair telefone de várias formas
+            const patterns = [
+                /(\d{2})\s*(\d{4,5})\s*-?\s*(\d{4})/,  // 97 99139-4382
+                /\(?(\d{2})\)?\s*(\d{4,5})\s*-?\s*(\d{4})/, // (97) 99139-4382
             ];
             
-            for (const pattern of phonePatterns) {
-                const phoneMatch = text.match(pattern);
-                if (phoneMatch && !this.userData.telefone) {
-                    const ddd = phoneMatch[1];
-                    const parte1 = phoneMatch[2];
-                    const parte2 = phoneMatch[3] || phoneMatch[1].slice(-4);
-                    this.userData.telefone = `${ddd} ${parte1}-${parte2}`;
-                    break;
+            for (const pattern of patterns) {
+                const match = text.match(pattern);
+                if (match) {
+                    return `${match[1]} ${match[2]}-${match[3]}`;
                 }
             }
             
-            // Extrai nome (2+ palavras começando com maiúscula)
-            if (!this.userData.nome && this.currentState === this.STATES.COLLECTING_NAME) {
-                // Remove números e caracteres especiais
-                const cleanText = text.replace(/[0-9@#$%^&*()]/g, '').trim();
-                const words = cleanText.split(/\s+/);
-                
-                // Verifica se tem pelo menos 2 palavras
-                if (words.length >= 2) {
-                    // Capitaliza cada palavra
-                    const name = words
-                        .filter(w => w.length > 1)
-                        .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
-                        .join(' ');
-                    
-                    if (name.length > 3) {
-                        this.userData.nome = name;
-                    }
-                } else if (words.length === 1 && cleanText.length > 2) {
-                    // Aceita um nome só se for maior que 2 caracteres
-                    this.userData.nome = cleanText.charAt(0).toUpperCase() + cleanText.slice(1).toLowerCase();
-                }
+            // Tenta números contínuos
+            const numbers = text.replace(/\D/g, '');
+            if (numbers.length === 11) {
+                return `${numbers.slice(0,2)} ${numbers.slice(2,7)}-${numbers.slice(7)}`;
+            }
+            if (numbers.length === 10) {
+                return `${numbers.slice(0,2)} ${numbers.slice(2,6)}-${numbers.slice(6)}`;
             }
             
-            // Armazena problema (primeira mensagem real do usuário)
-            if (!this.userData.problema && this.currentState === this.STATES.COLLECTING_PROBLEM) {
-                this.userData.problema = text;
-            }
+            return null;
         },
         
-        isDataComplete() {
-            return this.userData.nome && 
+        extractName(text) {
+            // Remove números e símbolos
+            const clean = text.replace(/[0-9@#$%^&*()_+=\[\]{}|\\;:'"<>?,./]/g, '').trim();
+            
+            if (clean.length < 2) return null;
+            
+            // Capitaliza
+            const words = clean.split(/\s+/).filter(w => w.length > 0);
+            if (words.length === 0) return null;
+            
+            // Aceita nome único se tiver mais de 2 caracteres
+            if (words.length === 1 && words[0].length > 2) {
+                return words[0].charAt(0).toUpperCase() + words[0].slice(1).toLowerCase();
+            }
+            
+            // Prefere nome completo (2+ palavras)
+            if (words.length >= 2) {
+                return words
+                    .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+                    .join(' ');
+            }
+            
+            return null;
+        },
+        
+        processUserInput(text) {
+            console.log('🔷 Step atual:', this.step);
+            console.log('📝 Texto:', text);
+            
+            if (this.step === 1) {
+                // Coletando problema
+                this.userData.problema = text;
+                this.step = 2;
+                return 'Entendi o problema! 👍\n\nPara eu te ajudar melhor, qual seu nome completo?';
+            }
+            
+            if (this.step === 2) {
+                // Coletando nome
+                const nome = this.extractName(text);
+                if (nome) {
+                    this.userData.nome = nome;
+                    this.step = 3;
+                    return `Prazer, ${nome}! 😊\n\nQual seu WhatsApp para contato?\n\n💡 Exemplo: 97 99139-4382`;
+                } else {
+                    return 'Não consegui identificar seu nome. 😅\n\nPode digitar seu nome completo?\n(Ex: João Silva)';
+                }
+            }
+            
+            if (this.step === 3) {
+                // Coletando telefone
+                const telefone = this.extractPhone(text);
+                if (telefone) {
+                    this.userData.telefone = telefone;
+                    this.step = 4;
+                    return 'complete'; // Sinal especial
+                } else {
+                    return 'Não consegui identificar o telefone. 😅\n\nPode digitar no formato:\n97 99139-4382\n\nOu:\n(97) 99139-4382';
+                }
+            }
+            
+            return 'Pode me dar mais informações?';
+        },
+        
+        isComplete() {
+            return this.step === 4 && 
+                   this.userData.nome && 
                    this.userData.telefone && 
                    this.userData.problema;
         },
         
-        getNextState() {
-            // Máquina de estados
-            switch(this.currentState) {
-                case this.STATES.INITIAL:
-                    return this.STATES.COLLECTING_PROBLEM;
-                    
-                case this.STATES.COLLECTING_PROBLEM:
-                    if (this.userData.problema) {
-                        return this.STATES.COLLECTING_NAME;
-                    }
-                    return this.currentState;
-                    
-                case this.STATES.COLLECTING_NAME:
-                    if (this.userData.nome) {
-                        return this.STATES.COLLECTING_PHONE;
-                    }
-                    return this.currentState;
-                    
-                case this.STATES.COLLECTING_PHONE:
-                    if (this.userData.telefone) {
-                        return this.STATES.COMPLETE;
-                    }
-                    return this.currentState;
-                    
-                default:
-                    return this.currentState;
-            }
-        },
-        
-        transitionState() {
-            this.currentState = this.getNextState();
-        },
-        
         reset() {
-            this.currentState = this.STATES.INITIAL;
+            this.step = 0;
             this.messages = [];
             this.userData = {
                 nome: null,
                 telefone: null,
-                problema: null,
-                urgencia: null
+                problema: null
             };
-            this.isComplete = false;
         }
     };
 
@@ -315,13 +311,11 @@ Quando tiver nome + telefone + problema: diga que vai encaminhar para atendiment
             
             // Mensagem inicial se não tiver nenhuma
             if (ChatState.messages.length === 0) {
-                // Inicia no estado COLLECTING_PROBLEM
-                ChatState.currentState = ChatState.STATES.COLLECTING_PROBLEM;
+                ChatState.step = 1; // Inicia no step 1 (coletando problema)
                 
                 setTimeout(() => {
                     const initialMsg = 'Olá! 👋 Sou o assistente da Click Suporte.\n\nComo posso te ajudar hoje?';
                     this.addBotMessage(initialMsg);
-                    // Adiciona ao histórico para não repetir
                     ChatState.addMessage('assistant', initialMsg);
                 }, 300);
             }
@@ -403,44 +397,30 @@ Quando tiver nome + telefone + problema: diga que vai encaminhar para atendiment
             // Adiciona ao histórico
             ChatState.addMessage('user', text);
             
-            console.log('Estado ANTES de processar:', ChatState.currentState);
-            console.log('Texto do usuário:', text);
-            
             // Mostra typing
             this.showTyping();
             
-            try {
-                // Gera resposta baseada no estado ATUAL
-                const response = await AIService.sendMessage(text);
-                
-                // Extrai dados do texto DEPOIS de processar
-                ChatState.extractUserData(text);
-                
-                // Transiciona para próximo estado DEPOIS de extrair dados
-                ChatState.transitionState();
-                
-                console.log('Estado DEPOIS:', ChatState.currentState);
-                console.log('Dados coletados:', ChatState.userData);
-                
-                // Mostra resposta
-                this.hideTyping();
-                this.addBotMessage(response);
-                
-                // Adiciona resposta ao histórico
-                ChatState.addMessage('assistant', response);
-                
-                // Verifica se coleta está completa
-                if (ChatState.isDataComplete() && !ChatState.isComplete) {
-                    setTimeout(() => {
-                        this.finishConversation();
-                    }, 500);
-                }
-                
-            } catch (error) {
-                this.hideTyping();
-                this.addBotMessage('Ops! Tive um problema. 😕\n\nVamos tentar de novo?');
-                console.error('AI Error:', error);
+            // Pequeno delay para parecer natural
+            await new Promise(resolve => setTimeout(resolve, 600));
+            
+            // Processa entrada e gera resposta
+            const response = ChatState.processUserInput(text);
+            
+            this.hideTyping();
+            
+            console.log('💬 Resposta:', response);
+            console.log('📊 Dados:', ChatState.userData);
+            console.log('🔢 Step:', ChatState.step);
+            
+            // Verifica se completou
+            if (response === 'complete') {
+                this.finishConversation();
+                return;
             }
+            
+            // Mostra resposta
+            this.addBotMessage(response);
+            ChatState.addMessage('assistant', response);
         },
         
         finishConversation() {
