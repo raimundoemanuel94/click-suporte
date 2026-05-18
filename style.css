@@ -704,7 +704,6 @@ footer { padding: 48px 0 32px; border-top: 1px solid var(--border); position: re
   transition: all 0.3s var(--ease-out); pointer-events: none;
 }
 :root[data-theme="light"] #back-to-top,
-:root[data-theme="light"] #wa-tooltip,
 :root[data-theme="light"] .cs-label-pin {
   background: rgba(255, 255, 255, 0.92);
   color: var(--text-1);
@@ -717,25 +716,6 @@ footer { padding: 48px 0 32px; border-top: 1px solid var(--border); position: re
 /* ═══════════════════════════════════════════════════
    WHATSAPP FLOAT
    ═══════════════════════════════════════════════════ */
-#wa-float { position: fixed; bottom: 24px; right: 22px; z-index: 999; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
-#wa-btn {
-  width: 56px; height: 56px; background: var(--gradient-btn); border-radius: 50%;
-  display: grid; place-items: center; text-decoration: none;
-  box-shadow: 0 8px 32px var(--cyan-glow); transition: all 0.3s var(--ease-out);
-  animation: wa-pulse 2.5s ease-in-out infinite;
-}
-@keyframes wa-pulse {
-  0% { box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.4); }
-  70% { box-shadow: 0 0 0 14px rgba(0, 229, 255, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(0, 229, 255, 0); }
-}
-#wa-btn:hover { transform: scale(1.1); animation-play-state: paused; box-shadow: 0 8px 40px var(--cyan-glow); }
-#wa-tooltip {
-  background: rgba(5, 8, 16, 0.92); backdrop-filter: blur(16px);
-  border: 1px solid var(--border-hi); color: var(--text-1);
-  padding: 10px 16px; border-radius: var(--r-md); font-size: 0.82rem;
-  font-weight: 500; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); white-space: nowrap;
-}
 
 
 /* ═══════════════════════════════════════════════════
@@ -762,7 +742,6 @@ footer { padding: 48px 0 32px; border-top: 1px solid var(--border); position: re
     top: 16px; right: 68px; bottom: auto;
     padding: 0;
   }
-  #wa-tooltip { display: none; }
 
   #hero { padding: 100px 0 60px; min-height: 100svh; }
   .hero-inner { grid-template-columns: 1fr; gap: 0; text-align: left; }
