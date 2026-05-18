@@ -403,30 +403,38 @@ Quando tiver nome + telefone + problema: diga que vai encaminhar para atendiment
             // Adiciona ao histórico
             ChatState.addMessage('user', text);
             
-            // Extrai dados do texto
-            ChatState.extractUserData(text);
+            console.log('Estado ANTES de processar:', ChatState.currentState);
+            console.log('Texto do usuário:', text);
             
-            // Transiciona para próximo estado
-            ChatState.transitionState();
-            
-            console.log('Novo estado:', ChatState.currentState);
-            
-            // Verifica se coleta está completa
-            if (ChatState.isDataComplete() && !ChatState.isComplete) {
-                this.finishConversation();
-                return;
-            }
-            
-            // Envia para IA
+            // Mostra typing
             this.showTyping();
             
             try {
+                // Gera resposta baseada no estado ATUAL
                 const response = await AIService.sendMessage(text);
+                
+                // Extrai dados do texto DEPOIS de processar
+                ChatState.extractUserData(text);
+                
+                // Transiciona para próximo estado DEPOIS de extrair dados
+                ChatState.transitionState();
+                
+                console.log('Estado DEPOIS:', ChatState.currentState);
+                console.log('Dados coletados:', ChatState.userData);
+                
+                // Mostra resposta
                 this.hideTyping();
                 this.addBotMessage(response);
                 
                 // Adiciona resposta ao histórico
                 ChatState.addMessage('assistant', response);
+                
+                // Verifica se coleta está completa
+                if (ChatState.isDataComplete() && !ChatState.isComplete) {
+                    setTimeout(() => {
+                        this.finishConversation();
+                    }, 500);
+                }
                 
             } catch (error) {
                 this.hideTyping();
