@@ -355,21 +355,75 @@ nav a:not(.btn-nav):hover { color: var(--text-1); }
 
 .hero-visual { position: relative; }
 .hero-visual-inner {
-  position: relative; height: 480px; border-radius: var(--r-xl);
-  overflow: hidden; border: 1px solid var(--border); background: var(--bg-2);
+  position: relative; 
+  height: 480px; 
+  border-radius: var(--r-xl);
+  overflow: hidden; 
+  border: 1px solid var(--border); 
+  background: var(--bg-2);
+  animation: hero-float 6s ease-in-out infinite;
 }
+
+@keyframes hero-float {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  25% { 
+    transform: translateY(-10px) rotate(0.5deg); 
+  }
+  50% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  75% { 
+    transform: translateY(-5px) rotate(-0.5deg); 
+  }
+}
+
 :root[data-theme="light"] .hero-visual-inner {
   box-shadow: 0 26px 70px rgba(8, 21, 36, 0.14);
 }
-.hero-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.2s var(--ease-smooth); }
+
+.hero-slide { 
+  position: absolute; 
+  inset: 0; 
+  opacity: 0; 
+  transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1); 
+}
 .hero-slide.active { opacity: 1; }
-.hero-slide-img { width: 100%; height: 100%; object-fit: cover; animation: kenburns 12s ease-in-out infinite alternate; }
-@keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.08); } }
+
+.hero-slide-img { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  animation: kenburns 15s ease-in-out infinite alternate,
+             subtle-rotate 20s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+@keyframes kenburns { 
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1.1); }
+}
+
+@keyframes subtle-rotate {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  33% { transform: rotate(0.8deg) scale(1.03); }
+  66% { transform: rotate(-0.8deg) scale(1.06); }
+}
+
 .hero-visual-glow {
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 50% 50%, rgba(0, 229, 255, 0.08) 0%, transparent 70%);
+  background: radial-gradient(ellipse at 50% 50%, rgba(0, 229, 255, 0.12) 0%, transparent 70%);
   pointer-events: none;
+  animation: glow-pulse 4s ease-in-out infinite;
 }
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
 .hero-gradient-bottom {
   position: absolute; bottom: 0; left: 0; right: 0; height: 200px;
   background: linear-gradient(to bottom, transparent, var(--bg));
@@ -743,47 +797,84 @@ footer { padding: 48px 0 32px; border-top: 1px solid var(--border); position: re
     padding: 0;
   }
 
-  #hero { padding: 100px 0 60px; min-height: 100svh; }
+  #hero { padding: 80px 0 60px; min-height: 100svh; }
   .hero-inner { grid-template-columns: 1fr; gap: 0; text-align: left; }
   .hero-visual { display: none; }
-  .hero-title { font-size: clamp(1.9rem, 8vw, 2.6rem); }
-  .hero-sub { max-width: 100%; font-size: 0.95rem; margin-bottom: 32px; }
-  .hero-badge { font-size: 0.65rem; }
-  .hero-cta { flex-direction: column; gap: 10px; }
-  .hero-trust { flex-direction: column; align-items: stretch; }
-  .hero-trust span { justify-content: center; }
-  .btn-primary, .btn-ghost { width: 100%; justify-content: center; text-align: center; }
+  .hero-title { 
+    font-size: clamp(2rem, 9vw, 2.8rem); 
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+  .hero-sub { 
+    max-width: 100%; 
+    font-size: 1rem; 
+    line-height: 1.6;
+    margin-bottom: 28px; 
+  }
+  .hero-badge { font-size: 0.7rem; padding: 8px 16px; }
+  .hero-cta { 
+    flex-direction: column; 
+    gap: 12px; 
+    margin-bottom: 24px;
+  }
+  .hero-trust { 
+    flex-direction: column; 
+    align-items: stretch; 
+    gap: 8px;
+  }
+  .hero-trust span { 
+    justify-content: center; 
+    font-size: 0.85rem;
+    padding: 8px 12px;
+  }
+  .btn-primary, .btn-ghost { 
+    width: 100%; 
+    justify-content: center; 
+    text-align: center; 
+    padding: 16px 24px;
+    font-size: 1rem;
+  }
 
-  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 20px 16px; }
+  .stats-grid { 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 24px 16px;
+    padding: 32px 16px;
+  }
   .stat-item:not(:last-child)::after { display: none; }
-  .stat-num { font-size: 2rem; }
+  .stat-num { font-size: 2.2rem; }
 
-  .services-grid { grid-template-columns: 1fr; gap: 14px; }
-  .service-card { padding: 28px 24px; }
+  .services-grid { grid-template-columns: 1fr; gap: 16px; }
+  .service-card { padding: 32px 24px; }
 
-  .diff-grid { grid-template-columns: 1fr; gap: 14px; }
+  .diff-grid { grid-template-columns: 1fr; gap: 16px; }
 
-  .steps-grid { grid-template-columns: 1fr; gap: 28px; }
+  .steps-grid { grid-template-columns: 1fr; gap: 32px; }
   .step { display: flex; gap: 20px; text-align: left; padding: 0; }
-  .step-number { margin: 0; width: 48px; height: 48px; font-size: 1rem; flex-shrink: 0; }
+  .step-number { margin: 0; width: 52px; height: 52px; font-size: 1.1rem; flex-shrink: 0; }
   .step-content p { max-width: 100%; margin: 0; }
 
-  .specialist-block { flex-direction: column; align-items: center; text-align: center; padding: 28px 24px; gap: 20px; }
+  .specialist-block { 
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center; 
+    padding: 32px 24px; 
+    gap: 24px; 
+  }
   .verified-badge { margin-left: 0; }
 
-  .faq-q { padding: 18px 20px; font-size: 0.9rem; }
-  .faq-item.open .faq-a { padding: 0 20px 20px; }
+  .faq-q { padding: 20px; font-size: 0.95rem; }
+  .faq-item.open .faq-a { padding: 0 20px 24px; }
 
-  .cs-grid { grid-template-columns: 1fr; gap: 10px; }
-  .cs-map { height: 140px; }
-  section { padding: 64px 0; }
+  .cs-grid { grid-template-columns: 1fr; gap: 12px; }
+  .cs-map { height: 160px; }
+  section { padding: 72px 0; }
 
-  .header-inner { padding: 0 16px; }
-  .logo-text { font-size: 1.1rem; }
+  .header-inner { padding: 0 20px; }
+  .logo-text { font-size: 1.15rem; }
 
-  .footer-inner { flex-direction: column; gap: 24px; text-align: center; }
+  .footer-inner { flex-direction: column; gap: 28px; text-align: center; }
   .footer-brand { align-items: center; }
-  .footer-links { flex-wrap: wrap; justify-content: center; gap: 18px; }
+  .footer-links { flex-wrap: wrap; justify-content: center; gap: 20px; }
 }
 
 @media (min-width: 1280px) {
