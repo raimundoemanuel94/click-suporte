@@ -78,12 +78,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 212, 255, 0.4),
+                0 0 20px rgba(0, 212, 255, 0.2);
+    animation: cs-ai-avatar-pulse 3s ease-in-out infinite;
+}
+
+@keyframes cs-ai-avatar-pulse {
+    0%, 100% {
+        box-shadow: 0 4px 16px rgba(0, 212, 255, 0.4),
+                    0 0 20px rgba(0, 212, 255, 0.2);
+    }
+    50% {
+        box-shadow: 0 4px 20px rgba(0, 212, 255, 0.6),
+                    0 0 30px rgba(0, 212, 255, 0.3);
+    }
 }
 
 .cs-ai-avatar svg {
-    width: 24px;
-    height: 24px;
+    width: 36px;
+    height: 36px;
     color: #000;
 }
 

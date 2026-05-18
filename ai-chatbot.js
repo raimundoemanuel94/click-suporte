@@ -368,15 +368,29 @@ Quando tiver nome + telefone + problema: diga que vai encaminhar para atendiment
                     <div class="cs-ai-header">
                         <div class="cs-ai-header-info">
                             <div class="cs-ai-avatar">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/>
-                                    <circle cx="8" cy="10" r="1"/>
-                                    <circle cx="16" cy="10" r="1"/>
-                                    <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="12" y="14" width="24" height="20" rx="4" fill="url(#robot-gradient-header)" stroke="currentColor" stroke-width="2.5"/>
+                                    <line x1="24" y1="14" x2="24" y2="8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                                    <circle cx="24" cy="8" r="2.5" fill="#00d4ff">
+                                        <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite"/>
+                                    </circle>
+                                    <circle cx="18" cy="22" r="3" fill="#00d4ff">
+                                        <animate attributeName="r" values="3;3.5;3" dur="3s" repeatCount="indefinite"/>
+                                    </circle>
+                                    <circle cx="30" cy="22" r="3" fill="#00d4ff">
+                                        <animate attributeName="r" values="3;3.5;3" dur="3s" repeatCount="indefinite"/>
+                                    </circle>
+                                    <path d="M 18 28 Q 24 31 30 28" stroke="#00d4ff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                                    <defs>
+                                        <linearGradient id="robot-gradient-header" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:rgba(0, 212, 255, 0.3);stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:rgba(14, 165, 233, 0.2);stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
                                 </svg>
                             </div>
                             <div>
-                                <h3>Assistente Click Suporte</h3>
+                                <h3>Assistente IA Click Suporte</h3>
                                 <span class="cs-ai-status">
                                     <span class="cs-ai-status-dot"></span>
                                     Online agora
@@ -498,11 +512,34 @@ Quando tiver nome + telefone + problema: diga que vai encaminhar para atendiment
             
             let html = `
                 <div class="cs-ai-message-avatar">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <circle cx="8" cy="10" r="1" fill="currentColor"/>
-                        <circle cx="16" cy="10" r="1" fill="currentColor"/>
-                        <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Robot head -->
+                        <rect x="12" y="14" width="24" height="20" rx="4" fill="url(#robot-gradient)" stroke="currentColor" stroke-width="2"/>
+                        
+                        <!-- Antenna -->
+                        <line x1="24" y1="14" x2="24" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="24" cy="8" r="2" fill="#00d4ff">
+                            <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite"/>
+                        </circle>
+                        
+                        <!-- Eyes -->
+                        <circle cx="18" cy="22" r="2.5" fill="#00d4ff">
+                            <animate attributeName="r" values="2.5;3;2.5" dur="3s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="30" cy="22" r="2.5" fill="#00d4ff">
+                            <animate attributeName="r" values="2.5;3;2.5" dur="3s" repeatCount="indefinite"/>
+                        </circle>
+                        
+                        <!-- Mouth -->
+                        <path d="M 18 28 Q 24 31 30 28" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" fill="none"/>
+                        
+                        <!-- Gradient definition -->
+                        <defs>
+                            <linearGradient id="robot-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:rgba(0, 212, 255, 0.2);stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:rgba(14, 165, 233, 0.1);stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
                     </svg>
                 </div>
                 <div class="cs-ai-message-wrapper">
@@ -564,8 +601,25 @@ Quando tiver nome + telefone + problema: diga que vai encaminhar para atendiment
             typing.id = 'cs-ai-typing';
             typing.innerHTML = `
                 <div class="cs-ai-message-avatar">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="12" y="14" width="24" height="20" rx="4" fill="url(#robot-gradient-typing)" stroke="currentColor" stroke-width="2"/>
+                        <line x1="24" y1="14" x2="24" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="24" cy="8" r="2" fill="#00d4ff">
+                            <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="18" cy="22" r="2.5" fill="#00d4ff">
+                            <animate attributeName="r" values="2.5;3;2.5" dur="3s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="30" cy="22" r="2.5" fill="#00d4ff">
+                            <animate attributeName="r" values="2.5;3;2.5" dur="3s" repeatCount="indefinite"/>
+                        </circle>
+                        <path d="M 18 28 Q 24 31 30 28" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" fill="none"/>
+                        <defs>
+                            <linearGradient id="robot-gradient-typing" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:rgba(0, 212, 255, 0.2);stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:rgba(14, 165, 233, 0.1);stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
                     </svg>
                 </div>
                 <div class="cs-ai-typing-dots">
