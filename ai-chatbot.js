@@ -247,7 +247,10 @@ Quando tiver nome + telefone + problema: diga que vai encaminhar para atendiment
             // Mensagem inicial se não tiver nenhuma
             if (ChatState.messages.length === 0) {
                 setTimeout(() => {
-                    this.addBotMessage('Olá! 👋 Sou o assistente da Click Suporte.\n\nComo posso te ajudar hoje?');
+                    const initialMsg = 'Olá! 👋 Sou o assistente da Click Suporte.\n\nComo posso te ajudar hoje?';
+                    this.addBotMessage(initialMsg);
+                    // Adiciona ao histórico para não repetir
+                    ChatState.addMessage('assistant', initialMsg);
                 }, 300);
             }
         },
@@ -438,17 +441,33 @@ Quando tiver nome + telefone + problema: diga que vai encaminhar para atendiment
                     const msg = userMessage.toLowerCase();
                     const hasName = ChatState.userData.nome;
                     const hasPhone = ChatState.userData.telefone;
+                    const messageCount = ChatState.messages.length;
                     
                     let response;
                     
-                    if (!hasName && !hasPhone) {
+                    // Primeira mensagem (problema do usuário)
+                    if (messageCount === 1) {
                         response = 'Entendi o problema! 👍\n\nPara te ajudar melhor, qual seu nome?';
-                    } else if (hasName && !hasPhone) {
+                    }
+                    // Usuário deu o nome
+                    else if (hasName && !hasPhone && messageCount === 3) {
                         response = `Beleza, ${ChatState.userData.nome}! 📱\n\nQual seu WhatsApp para contato?`;
-                    } else if (hasName && hasPhone) {
-                        response = 'Perfeito! Vou te encaminhar para atendimento.';
-                    } else {
-                        response = 'Pode me dar mais detalhes sobre o problema?';
+                    }
+                    // Usuário deu o telefone
+                    else if (hasName && hasPhone && messageCount === 5) {
+                        response = 'Perfeito! Vou te encaminhar para atendimento agora mesmo.';
+                    }
+                    // Antes de ter nome
+                    else if (!hasName && messageCount > 1) {
+                        response = 'Legal! Mas preciso saber seu nome para continuar. Como você se chama?';
+                    }
+                    // Antes de ter telefone
+                    else if (hasName && !hasPhone && messageCount > 3) {
+                        response = `${ChatState.userData.nome}, preciso do seu WhatsApp para prosseguir. Pode me passar?`;
+                    }
+                    // Fallback
+                    else {
+                        response = 'Pode me dar mais informações?';
                     }
                     
                     resolve(response);
