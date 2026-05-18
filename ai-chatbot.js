@@ -66,15 +66,45 @@ NUNCA:
 Quando tiver nome + telefone + problema: diga que vai encaminhar para atendimento.`;
 
     // ═══════════════════════════════════════════════════
-    // ESTADO DA CONVERSA - SIMPLES E ROBUSTO
+    // ESTADO DA CONVERSA - PREMIUM COM BOTÕES
     // ═══════════════════════════════════════════════════
     const ChatState = {
-        step: 0, // 0=inicial, 1=coletando problema, 2=coletando nome, 3=coletando telefone, 4=completo
+        step: 0, // 0=inicial, 1=escolhendo serviço, 2=detalhes, 3=nome, 4=telefone, 5=email, 6=horário, 7=completo
         messages: [],
         userData: {
+            servico: null,
+            tipoEquipamento: null,
+            sistemaOperacional: null,
+            urgencia: null,
+            problema: null,
             nome: null,
             telefone: null,
-            problema: null
+            email: null,
+            horarioPreferido: null
+        },
+        
+        // Serviços disponíveis
+        SERVICOS: {
+            'formatacao': {
+                icon: '🖥️',
+                label: 'Formatação de PC',
+                desc: 'Formatação completa com backup'
+            },
+            'instalacao': {
+                icon: '⚙️',
+                label: 'Instalação de Programas',
+                desc: 'Drivers, Office, software'
+            },
+            'suporte': {
+                icon: '🔧',
+                label: 'Suporte Técnico',
+                desc: 'Problemas gerais'
+            },
+            'licencas': {
+                icon: '🔑',
+                label: 'Licenças Windows/Office',
+                desc: 'Compra e ativação'
+            }
         },
         
         addMessage(role, content) {
@@ -82,10 +112,9 @@ Quando tiver nome + telefone + problema: diga que vai encaminhar para atendiment
         },
         
         extractPhone(text) {
-            // Tenta extrair telefone de várias formas
             const patterns = [
-                /(\d{2})\s*(\d{4,5})\s*-?\s*(\d{4})/,  // 97 99139-4382
-                /\(?(\d{2})\)?\s*(\d{4,5})\s*-?\s*(\d{4})/, // (97) 99139-4382
+                /(\d{2})\s*(\d{4,5})\s*-?\s*(\d{4})/,
+                /\(?(\d{2})\)?\s*(\d{4,5})\s*-?\s*(\d{4})/,
             ];
             
             for (const pattern of patterns) {
@@ -95,7 +124,6 @@ Quando tiver nome + telefone + problema: diga que vai encaminhar para atendiment
                 }
             }
             
-            // Tenta números contínuos
             const numbers = text.replace(/\D/g, '');
             if (numbers.length === 11) {
                 return `${numbers.slice(0,2)} ${numbers.slice(2,7)}-${numbers.slice(7)}`;
@@ -107,22 +135,24 @@ Quando tiver nome + telefone + problema: diga que vai encaminhar para atendiment
             return null;
         },
         
+        extractEmail(text) {
+            const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
+            const match = text.match(emailRegex);
+            return match ? match[0] : null;
+        },
+        
         extractName(text) {
-            // Remove números e símbolos
             const clean = text.replace(/[0-9@#$%^&*()_+=\[\]{}|\\;:'"<>?,./]/g, '').trim();
             
             if (clean.length < 2) return null;
             
-            // Capitaliza
             const words = clean.split(/\s+/).filter(w => w.length > 0);
             if (words.length === 0) return null;
             
-            // Aceita nome único se tiver mais de 2 caracteres
             if (words.length === 1 && words[0].length > 2) {
                 return words[0].charAt(0).toUpperCase() + words[0].slice(1).toLowerCase();
             }
             
-            // Prefere nome completo (2+ palavras)
             if (words.length >= 2) {
                 return words
                     .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
@@ -132,58 +162,177 @@ Quando tiver nome + telefone + problema: diga que vai encaminhar para atendiment
             return null;
         },
         
-        processUserInput(text) {
+        processUserInput(text, isButtonClick = false) {
             console.log('🔷 Step atual:', this.step);
             console.log('📝 Texto:', text);
+            console.log('🔘 É botão?', isButtonClick);
             
+            // Step 1: Escolhendo serviço
             if (this.step === 1) {
-                // Coletando problema
-                this.userData.problema = text;
-                this.step = 2;
-                return 'Entendi o problema! 👍\n\nPara eu te ajudar melhor, qual seu nome completo?';
+                const servicoKey = text.toLowerCase().replace(/\s+/g, '');
+                
+                if (this.SERVICOS[servicoKey]) {
+                    this.userData.servico = servicoKey;
+                    this.step = 2;
+                    
+                    // Perguntas específicas por serviço
+                    if (servicoKey === 'formatacao') {
+                        return {
+                            text: 'Perfeito! Formatação de PC. 🖥️\n\nPara te ajudar melhor:',
+                            buttons: [
+                                { text: '💻 Notebook', value: 'notebook' },
+                                { text: '🖥️ Desktop', value: 'desktop' },
+                                { text: '🍎 Mac', value: 'mac' }
+                            ],
+                            question: 'Qual tipo de equipamento?'
+                        };
+                    }
+                    
+                    if (servicoKey === 'suporte') {
+                        this.step = 3; // Pula direto para nome
+                        return {
+                            text: 'Entendi! Vou te ajudar com suporte técnico. 🔧\n\nDescreva brevemente seu problema:',
+                            buttons: null
+                        };
+                    }
+                    
+                    // Outros serviços vão direto pro nome
+                    this.step = 3;
+                    return {
+                        text: `Ótimo! ${this.SERVICOS[servicoKey].label}.\n\nQual seu nome completo?`,
+                        buttons: null
+                    };
+                }
+                
+                return {
+                    text: 'Não entendi. Escolha uma das opções acima clicando no botão.',
+                    buttons: null
+                };
             }
             
+            // Step 2: Detalhes do serviço
             if (this.step === 2) {
-                // Coletando nome
+                this.userData.tipoEquipamento = text.toLowerCase();
+                this.step = 3;
+                return {
+                    text: 'Perfeito! ✅\n\nAgora, qual seu nome completo?',
+                    buttons: null
+                };
+            }
+            
+            // Step 3: Coletando nome
+            if (this.step === 3) {
+                // Se veio de suporte, salva como problema
+                if (this.userData.servico === 'suporte' && !this.userData.problema) {
+                    this.userData.problema = text;
+                    return {
+                        text: 'Entendi o problema! 👍\n\nQual seu nome completo?',
+                        buttons: null
+                    };
+                }
+                
                 const nome = this.extractName(text);
                 if (nome) {
                     this.userData.nome = nome;
-                    this.step = 3;
-                    return `Prazer, ${nome}! 😊\n\nQual seu WhatsApp para contato?\n\n💡 Exemplo: 97 99139-4382`;
+                    this.step = 4;
+                    return {
+                        text: `Prazer, ${nome}! 😊\n\nQual seu WhatsApp?\n\n💡 Ex: 97 99139-4382`,
+                        buttons: null
+                    };
                 } else {
-                    return 'Não consegui identificar seu nome. 😅\n\nPode digitar seu nome completo?\n(Ex: João Silva)';
+                    return {
+                        text: 'Não consegui identificar seu nome. 😅\n\nPode digitar completo?\n(Ex: João Silva)',
+                        buttons: null
+                    };
                 }
             }
             
-            if (this.step === 3) {
-                // Coletando telefone
+            // Step 4: Coletando telefone
+            if (this.step === 4) {
                 const telefone = this.extractPhone(text);
                 if (telefone) {
                     this.userData.telefone = telefone;
-                    this.step = 4;
-                    return 'complete'; // Sinal especial
+                    this.step = 5;
+                    return {
+                        text: 'Ótimo! 📱\n\nQual seu email? (Opcional - pode pular)',
+                        buttons: [
+                            { text: 'Pular ⏭️', value: 'pular_email' }
+                        ]
+                    };
                 } else {
-                    return 'Não consegui identificar o telefone. 😅\n\nPode digitar no formato:\n97 99139-4382\n\nOu:\n(97) 99139-4382';
+                    return {
+                        text: 'Não consegui o telefone. 😅\n\nFormato:\n97 99139-4382\n\nOu:\n(97) 99139-4382',
+                        buttons: null
+                    };
                 }
             }
             
-            return 'Pode me dar mais informações?';
+            // Step 5: Coletando email (opcional)
+            if (this.step === 5) {
+                if (text.toLowerCase() === 'pular_email' || text.toLowerCase().includes('pular')) {
+                    this.step = 6;
+                    return {
+                        text: 'Tudo bem! 👍\n\nQuando prefere ser atendido?',
+                        buttons: [
+                            { text: '🔥 Agora/Hoje', value: 'hoje' },
+                            { text: '📅 Esta semana', value: 'semana' },
+                            { text: '⏰ Sem pressa', value: 'flexivel' }
+                        ]
+                    };
+                }
+                
+                const email = this.extractEmail(text);
+                if (email) {
+                    this.userData.email = email;
+                    this.step = 6;
+                    return {
+                        text: 'Perfeito! ✉️\n\nQuando prefere ser atendido?',
+                        buttons: [
+                            { text: '🔥 Agora/Hoje', value: 'hoje' },
+                            { text: '📅 Esta semana', value: 'semana' },
+                            { text: '⏰ Sem pressa', value: 'flexivel' }
+                        ]
+                    };
+                } else {
+                    return {
+                        text: 'Email inválido. 😅\n\nTente novamente ou clique "Pular"',
+                        buttons: [
+                            { text: 'Pular ⏭️', value: 'pular_email' }
+                        ]
+                    };
+                }
+            }
+            
+            // Step 6: Horário preferido
+            if (this.step === 6) {
+                this.userData.horarioPreferido = text.toLowerCase();
+                this.step = 7;
+                return 'complete';
+            }
+            
+            return {
+                text: 'Pode me dar mais informações?',
+                buttons: null
+            };
         },
         
         isComplete() {
-            return this.step === 4 && 
-                   this.userData.nome && 
-                   this.userData.telefone && 
-                   this.userData.problema;
+            return this.step === 7;
         },
         
         reset() {
             this.step = 0;
             this.messages = [];
             this.userData = {
+                servico: null,
+                tipoEquipamento: null,
+                sistemaOperacional: null,
+                urgencia: null,
+                problema: null,
                 nome: null,
                 telefone: null,
-                problema: null
+                email: null,
+                horarioPreferido: null
             };
         }
     };
@@ -311,11 +460,19 @@ Quando tiver nome + telefone + problema: diga que vai encaminhar para atendiment
             
             // Mensagem inicial se não tiver nenhuma
             if (ChatState.messages.length === 0) {
-                ChatState.step = 1; // Inicia no step 1 (coletando problema)
+                ChatState.step = 1; // Inicia escolhendo serviço
                 
                 setTimeout(() => {
                     const initialMsg = 'Olá! 👋 Sou o assistente da Click Suporte.\n\nComo posso te ajudar hoje?';
-                    this.addBotMessage(initialMsg);
+                    
+                    const buttons = [
+                        { text: '🖥️ Formatação de PC', value: 'formatacao' },
+                        { text: '⚙️ Instalação', value: 'instalacao' },
+                        { text: '🔧 Suporte Técnico', value: 'suporte' },
+                        { text: '🔑 Licenças', value: 'licencas' }
+                    ];
+                    
+                    this.addBotMessage(initialMsg, buttons, 'Escolha o serviço:');
                     ChatState.addMessage('assistant', initialMsg);
                 }, 300);
             }
@@ -335,10 +492,11 @@ Quando tiver nome + telefone + problema: diga que vai encaminhar para atendiment
             this.scrollToBottom();
         },
         
-        addBotMessage(text) {
+        addBotMessage(text, buttons = null, question = null) {
             const msg = document.createElement('div');
             msg.className = 'cs-ai-message cs-ai-message-bot';
-            msg.innerHTML = `
+            
+            let html = `
                 <div class="cs-ai-message-avatar">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="10"/>
@@ -347,10 +505,57 @@ Quando tiver nome + telefone + problema: diga que vai encaminhar para atendiment
                         <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
                     </svg>
                 </div>
-                <div class="cs-ai-message-content">${this.escapeHtml(text).replace(/\n/g, '<br>')}</div>
+                <div class="cs-ai-message-wrapper">
+                    <div class="cs-ai-message-content">${this.escapeHtml(text).replace(/\n/g, '<br>')}</div>
             `;
+            
+            // Adiciona botões se existirem
+            if (buttons && buttons.length > 0) {
+                html += '<div class="cs-ai-buttons">';
+                buttons.forEach((btn, index) => {
+                    html += `<button class="cs-ai-btn" data-value="${btn.value}" data-index="${index}">${btn.text}</button>`;
+                });
+                html += '</div>';
+            }
+            
+            // Adiciona pergunta adicional se existir
+            if (question) {
+                html += `<div class="cs-ai-question">${this.escapeHtml(question)}</div>`;
+            }
+            
+            html += '</div>';
+            
+            msg.innerHTML = html;
             this.chatContainer.appendChild(msg);
+            
+            // Adiciona eventos aos botões
+            if (buttons && buttons.length > 0) {
+                msg.querySelectorAll('.cs-ai-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const value = e.target.getAttribute('data-value');
+                        this.handleButtonClick(value, e.target.textContent);
+                    });
+                });
+            }
+            
             this.scrollToBottom();
+        },
+        
+        handleButtonClick(value, label) {
+            // Mostra como mensagem do usuário
+            this.addUserMessage(label);
+            
+            // Desabilita todos os botões da mensagem anterior
+            const buttons = this.chatContainer.querySelectorAll('.cs-ai-btn');
+            buttons.forEach(btn => {
+                btn.disabled = true;
+                btn.style.opacity = '0.5';
+                btn.style.cursor = 'not-allowed';
+            });
+            
+            // Processa como se fosse texto
+            this.input.value = value;
+            this.sendMessage();
         },
         
         showTyping() {
@@ -390,9 +595,12 @@ Quando tiver nome + telefone + problema: diga que vai encaminhar para atendiment
             const text = this.input.value.trim();
             if (!text) return;
             
-            // Mostra mensagem do usuário
-            this.addUserMessage(text);
+            // Mostra mensagem do usuário (se não veio de botão)
+            if (!this.input.getAttribute('data-from-button')) {
+                this.addUserMessage(text);
+            }
             this.input.value = '';
+            this.input.removeAttribute('data-from-button');
             
             // Adiciona ao histórico
             ChatState.addMessage('user', text);
@@ -418,9 +626,14 @@ Quando tiver nome + telefone + problema: diga que vai encaminhar para atendiment
                 return;
             }
             
-            // Mostra resposta
-            this.addBotMessage(response);
-            ChatState.addMessage('assistant', response);
+            // Mostra resposta (com ou sem botões)
+            if (typeof response === 'object') {
+                this.addBotMessage(response.text, response.buttons, response.question);
+                ChatState.addMessage('assistant', response.text);
+            } else {
+                this.addBotMessage(response);
+                ChatState.addMessage('assistant', response);
+            }
         },
         
         finishConversation() {

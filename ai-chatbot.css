@@ -222,6 +222,65 @@
     user-select: text;
 }
 
+/* ═══ WRAPPER PARA BOTÕES ═══ */
+.cs-ai-message-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 85%;
+}
+
+/* ═══ BOTÕES DE RESPOSTA RÁPIDA ═══ */
+.cs-ai-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.cs-ai-btn {
+    padding: 10px 16px;
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 12px;
+    color: #00d4ff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    white-space: nowrap;
+}
+
+.cs-ai-btn:hover:not(:disabled) {
+    background: rgba(0, 212, 255, 0.2);
+    border-color: #00d4ff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+}
+
+.cs-ai-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.cs-ai-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ═══ PERGUNTA ADICIONAL ═══ */
+.cs-ai-question {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+    margin-top: 4px;
+}
+
+/* ═══ AJUSTE PARA MENSAGENS COM BOTÕES ═══ */
+.cs-ai-message-bot:has(.cs-ai-buttons) .cs-ai-message-content {
+    max-width: 100%;
+}
+
 .cs-ai-message-user .cs-ai-message-content {
     background: linear-gradient(135deg, #00d4ff, #0ea5e9);
     color: #000;
