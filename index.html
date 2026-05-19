@@ -3,688 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Assistência Técnica em Sorriso MT | Suporte Técnico Rápido - Click Suporte</title>
-    <meta name="description" content="Suporte técnico especializado em software, otimização e segurança para seu computador ou notebook. Atendimento em Sorriso e região.">
-    <meta name="keywords" content="suporte técnico, formatação, otimização pc, antivírus, backup, Sorriso MT, assistência técnica, redes, infraestrutura">
-    <meta name="author" content="Click Suporte">
-    <meta name="theme-color" content="#050810">
-    <link rel="canonical" href="https://clicksuporte.com/">
-    <meta property="og:title" content="Click Suporte | Assistência Técnica Premium">
-    <meta property="og:description" content="Suporte técnico especializado em software, otimização e segurança para seu computador ou notebook.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://clicksuporte.com/">
-    <meta property="og:image" content="https://clicksuporte.com/assets/logo/hero-carousel-1.png">
-    <meta property="og:locale" content="pt_BR">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Click Suporte | Assistência Técnica Premium">
-    <meta name="twitter:description" content="Atendimento técnico profissional em Sorriso-MT. Orçamento transparente e garantia de 30 dias.">
-    <meta name="twitter:image" content="https://clicksuporte.com/assets/logo/hero-carousel-1.png">
-    <link rel="icon" href="assets/favicon/favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16.png">
-    <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
-    <link rel="manifest" href="manifest.json">
-    <link rel="preload" href="assets/logo/hero-carousel-1.png" as="image">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
-    <script>
-        try {
-            const savedTheme = localStorage.getItem('click-suporte-theme');
-            if (savedTheme === 'light') document.documentElement.dataset.theme = 'light';
-        } catch (error) {}
-    </script>
-    <link rel="stylesheet" href="style.css?v=2.4.0">
-    
-    <!-- AI Chatbot (Substitui formulário) -->
-    <link rel="stylesheet" href="ai-chatbot.css?v=3.5.0">
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Click Suporte",
-      "url": "https://clicksuporte.com/",
-      "image": "https://clicksuporte.com/assets/logo/hero-carousel-1.png",
-      "description": "Assistência técnica premium, suporte em software, otimização, segurança, redes e automação em Sorriso-MT.",
-      "areaServed": "Sorriso-MT e região",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Sorriso",
-        "addressRegion": "MT",
-        "addressCountry": "BR"
-      },
-      "telephone": "+55 97 99139-4382",
-      "openingHours": "Mo-Sa 08:00-18:00"
-    }
-    </script>
+    <title>🛠️ Site em Manutenção - Click Suporte</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0a0f1a 0%, #1a1f2e 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .container {
+            text-align: center;
+            max-width: 600px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #00d4ff, #0ea5e9);
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #000;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 0 50px rgba(0, 212, 255, 0.8);
+                transform: scale(1.05);
+            }
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo-accent {
+            color: #00d4ff;
+        }
+
+        .icon-container {
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .maintenance-icon {
+            font-size: 80px;
+            filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.5));
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #00d4ff, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .info-box {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 30px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 12px 0;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .info-item svg {
+            color: #00d4ff;
+            flex-shrink: 0;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, #00d4ff, #0ea5e9);
+            color: #000;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 8px 24px rgba(0, 212, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(0, 212, 255, 0.5);
+        }
+
+        .timer {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #00d4ff;
+            margin: 20px 0;
+            font-variant-numeric: tabular-nums;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            p {
+                font-size: 1rem;
+            }
+            
+            .maintenance-icon {
+                font-size: 60px;
+            }
+        }
+    </style>
 </head>
 <body>
-
-<!-- Background Canvas -->
-<canvas id="plexus"></canvas>
-<div id="cursor-ring"></div>
-<div id="cursor-dot"></div>
-
-<!-- ═══════════════ HEADER ═══════════════ -->
-<header id="header">
-    <div class="header-inner">
-        <a href="#" class="logo">
+    <div class="container">
+        <div class="logo">
             <div class="logo-icon">C</div>
             <span class="logo-text">Click<span class="logo-accent">Suporte</span></span>
+        </div>
+
+        <div class="icon-container">
+            <div class="maintenance-icon">🛠️</div>
+        </div>
+
+        <h1>Site em Manutenção</h1>
+        
+        <p>
+            Estamos realizando melhorias no sistema para oferecer<br>
+            uma experiência ainda melhor para você!
+        </p>
+
+        <div class="info-box">
+            <div class="info-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                <span>Previsão de retorno: <strong>Em breve</strong></span>
+            </div>
+            
+            <div class="info-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                </svg>
+                <span>Emergências: <strong>97 99139-4382</strong></span>
+            </div>
+        </div>
+
+        <a href="https://wa.me/5597991394382?text=Olá!%20Vi%20que%20o%20site%20está%20em%20manutenção.%20Preciso%20de%20atendimento." class="cta-button">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+            </svg>
+            Falar no WhatsApp
         </a>
-        <button id="mobile-toggle" aria-label="Menu" aria-controls="main-nav" aria-expanded="false">
-            <span></span><span></span><span></span>
-        </button>
-        <nav id="main-nav">
-            <a href="#services">Serviços</a>
-            <a href="#how-it-works">Como Funciona</a>
-            <a href="#faq">FAQ</a>
-            <button onclick="document.getElementById('cs-open-form').click()" class="btn-nav btn-nav-cta" style="border: none; cursor: pointer; font-family: inherit;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                Falar com Especialista
-            </button>
-        </nav>
+
+        <p style="margin-top: 40px; font-size: 0.9rem; color: rgba(255,255,255,0.5);">
+            Obrigado pela compreensão! 🚀
+        </p>
     </div>
-</header>
-
-<button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar para tema claro" aria-pressed="false">
-    <span class="theme-toggle-track" aria-hidden="true">
-        <span class="theme-toggle-sun"></span>
-        <span class="theme-toggle-moon"></span>
-        <span class="theme-toggle-thumb"></span>
-    </span>
-</button>
-
-<!-- ═══════════════ HERO ═══════════════ -->
-<section id="hero">
-    <div class="container">
-        <div class="hero-inner">
-            <div class="hero-content">
-                <div class="hero-badge hero-badge-urgent reveal">
-                    <span class="badge-pulse">🔥</span>
-                    Atendimento Hoje · Sorriso-MT · Resposta em 15min
-                </div>
-                <h1 class="hero-title reveal reveal-delay-1">
-                    PC Lento? Vírus?<br>Não Liga?<br><em>Resolvemos</em> em Casa em 2 Horas
-                </h1>
-                <p class="hero-sub reveal reveal-delay-2">
-                    <span class="hero-sub-item">✓ Formatação Express</span>
-                    <span class="hero-sub-item">✓ Suporte Remoto Imediato</span>
-                    <span class="hero-sub-item">✓ Instalação Completa</span>
-                    <br>
-                    Atendimento profissional em Sorriso-MT · Garantia de 30 dias
-                </p>
-                <div class="hero-cta reveal reveal-delay-3">
-                    <button onclick="document.getElementById('cs-open-form').click()" class="btn-primary btn-primary-hero" style="border: none; cursor: pointer;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                        Falar no WhatsApp Agora
-                    </button>
-                    <a href="#services" class="btn-ghost btn-ghost-secondary">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-                        Ver Preços
-                    </a>
-                </div>
-                <div class="hero-trust hero-trust-enhanced reveal reveal-delay-3" aria-label="Pontos de confiança">
-                    <span class="trust-item">
-                        <strong>500+</strong> PCs Atendidos
-                    </span>
-                    <span class="trust-item">
-                        <strong>&lt;15min</strong> Resposta
-                    </span>
-                    <span class="trust-item">
-                        <strong>98%</strong> Satisfação
-                    </span>
-                </div>
-            </div>
-            <div class="hero-visual reveal">
-                <div class="hero-visual-inner">
-                    <div class="hero-slide active">
-                        <img src="assets/logo/hero-carousel-1.png" alt="Suporte Técnico Premium" class="hero-slide-img" loading="eager">
-                        <div class="hero-image-badge">
-                            <span class="image-badge-label">A partir de</span>
-                            <span class="image-badge-price">R$ 70</span>
-                        </div>
-                    </div>
-                    <div class="hero-slide">
-                        <img src="assets/logo/logo-original.png" alt="Click Suporte" class="hero-slide-img" loading="lazy">
-                    </div>
-                    <div class="hero-visual-glow"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="hero-gradient-bottom"></div>
-</section>
-
-<!-- ═══════════════ STATS ═══════════════ -->
-<section id="stats">
-    <div class="container">
-        <div class="stats-grid reveal">
-            <div class="stat-item">
-                <div class="stat-num" data-target="5000" data-suffix="+">0</div>
-                <div class="stat-label">Equipamentos Atendidos</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-num" data-target="98" data-suffix="%">0</div>
-                <div class="stat-label">Satisfação Garantida</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-num" data-target="15" data-suffix="min">0</div>
-                <div class="stat-label">Resposta em Média</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-num" data-target="1000" data-suffix="+">0</div>
-                <div class="stat-label">Clientes Satisfeitos</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════ SERVICES ═══════════════ -->
-<section id="services">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-tag">Nossas Especialidades</span>
-            <h2 class="section-title">Soluções completas em<br><em>tecnologia</em> para você.</h2>
-            <p class="section-desc">Do suporte básico à infraestrutura completa. Tudo que seu negócio precisa em um só lugar.</p>
-        </div>
-        <div class="services-grid">
-            <!-- Suporte Técnico -->
-            <div class="service-card reveal" data-category="suporte">
-                <div class="service-icon-wrap">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                </div>
-                <h3>Suporte Técnico</h3>
-                <p>Análise completa, reparo de software e otimização extrema. Seu PC como novo em poucas horas.</p>
-                <div class="service-tags"><span>Remoto</span><span>Presencial</span></div>
-                <span class="service-arrow">→</span>
-            </div>
-            <!-- Segurança -->
-            <div class="service-card reveal reveal-delay-1" data-category="seguranca">
-                <div class="service-icon-wrap">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                </div>
-                <h3>Segurança Total</h3>
-                <p>Remoção de malwares, antivírus profissional e proteção contra invasões e ransomware.</p>
-                <div class="service-tags"><span>Proteção</span><span>Limpeza</span></div>
-                <span class="service-arrow">→</span>
-            </div>
-            <!-- Licenças -->
-            <div class="service-card reveal reveal-delay-2" data-category="licencas">
-                <div class="service-icon-wrap">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
-                </div>
-                <h3>Licenças e Software</h3>
-                <p>Windows, Office 365, Adobe e ferramentas profissionais. Instalação e ativação garantida.</p>
-                <div class="service-tags"><span>Instalação</span><span>Ativação</span></div>
-                <span class="service-arrow">→</span>
-            </div>
-            <!-- Redes -->
-            <div class="service-card reveal" data-category="redes">
-                <div class="service-icon-wrap">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
-                </div>
-                <h3>Redes e Infraestrutura</h3>
-                <p>Configuração de roteadores, repetidores Wi-Fi, VPN e otimização para home office e gamers.</p>
-                <div class="service-tags"><span>Wi-Fi</span><span>VPN</span></div>
-                <span class="service-arrow">→</span>
-            </div>
-            <!-- Backup -->
-            <div class="service-card reveal reveal-delay-1" data-category="backup">
-                <div class="service-icon-wrap">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-                </div>
-                <h3>Backup e Recuperação</h3>
-                <p>Backup na nuvem, restauração de dados deletados e recuperação de HDs com defeito.</p>
-                <div class="service-tags"><span>Backup</span><span>Dados</span></div>
-                <span class="service-arrow">→</span>
-            </div>
-            <!-- Automação -->
-            <div class="service-card reveal reveal-delay-2" data-category="automacao">
-                <div class="service-icon-wrap">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                </div>
-                <h3>Automação e Soluções</h3>
-                <p>Scripts personalizados, automação de tarefas e soluções sob medida para produtividade.</p>
-                <div class="service-tags"><span>Scripts</span><span>Produtividade</span></div>
-                <span class="service-arrow">→</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════ DIFFERENTIALS ═══════════════ -->
-<section id="differentials">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-tag">Por que nos escolher</span>
-            <h2 class="section-title">O diferencial que faz<br>a <em>diferença</em>.</h2>
-        </div>
-        <div class="diff-grid">
-            <div class="diff-card reveal">
-                <div class="diff-number">01</div>
-                <div class="diff-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                </div>
-                <h3>Resposta Rápida</h3>
-                <p>Atendimento em até 15 minutos. Sem esperas, sem burocracia. Seu problema é prioridade.</p>
-            </div>
-            <div class="diff-card reveal reveal-delay-1">
-                <div class="diff-number">02</div>
-                <div class="diff-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                </div>
-                <h3>Especialista Dedicado</h3>
-                <p>Profissional certificado com +5 anos de experiência cuidando de cada detalhe do seu equipamento.</p>
-            </div>
-            <div class="diff-card reveal reveal-delay-2">
-                <div class="diff-number">03</div>
-                <div class="diff-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-                </div>
-                <h3>Suporte Remoto</h3>
-                <p>Resolva problemas sem sair de casa. Acesso remoto seguro e acompanhamento em tempo real.</p>
-            </div>
-            <div class="diff-card reveal reveal-delay-3">
-                <div class="diff-number">04</div>
-                <div class="diff-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
-                </div>
-                <h3>Garantia Total</h3>
-                <p>Todos os serviços com garantia mínima de 30 dias. Sua satisfação é nossa maior prioridade.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════ HOW IT WORKS ═══════════════ -->
-<section id="how-it-works">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-tag">Como Funciona</span>
-            <h2 class="section-title">Simples, rápido e<br><em>eficiente</em>.</h2>
-        </div>
-        <div class="steps-grid">
-            <div class="step reveal">
-                <div class="step-line"></div>
-                <div class="step-number">1</div>
-                <div class="step-content">
-                    <h3>Entre em Contato</h3>
-                    <p>Mande uma mensagem no WhatsApp descrevendo seu problema. Respondemos em minutos.</p>
-                </div>
-            </div>
-            <div class="step reveal reveal-delay-1">
-                <div class="step-line"></div>
-                <div class="step-number">2</div>
-                <div class="step-content">
-                    <h3>Análise Técnica Completa</h3>
-                    <p>Analisamos seu equipamento remotamente ou presencialmente e identificamos a solução ideal com orçamento transparente.</p>
-                </div>
-            </div>
-            <div class="step reveal reveal-delay-2">
-                <div class="step-line"></div>
-                <div class="step-number">3</div>
-                <div class="step-content">
-                    <h3>Solução Aplicada</h3>
-                    <p>Executamos o serviço com rapidez e qualidade. Problema resolvido, equipamento funcionando.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════ SPECIALIST ═══════════════ -->
-<section id="specialist-section">
-    <div class="container">
-        <div class="specialist-block reveal">
-            <div class="specialist-glow"></div>
-            <img src="assets/logo/especialista.png" alt="Raimundo Emanuel" class="specialist-avatar">
-            <div class="specialist-info">
-                <h4>Raimundo Emanuel</h4>
-                <p>Especialista Senior em Software e Otimização. +5 anos de experiência garantindo performance e segurança para Sorriso-MT.</p>
-            </div>
-            <div class="verified-badge">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                Especialista Verificado
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════ FAQ ═══════════════ -->
-<section id="faq">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-tag">Dúvidas Frequentes</span>
-            <h2 class="section-title">Respostas <em>rápidas</em><br>para você.</h2>
-        </div>
-        <div class="faq-list reveal">
-            <div class="faq-item">
-                <div class="faq-q" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-a-1">
-                    <span>Como funciona o orçamento?</span>
-                    <div class="faq-icon"><span></span><span></span></div>
-                </div>
-                <div class="faq-a" id="faq-a-1" aria-hidden="true">
-                    <p>Analisamos seu problema e apresentamos um orçamento transparente. Você só aprova se concordar com o valor e prazo. Sem surpresas.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-a-2">
-                    <span>Qual o prazo de atendimento?</span>
-                    <div class="faq-icon"><span></span><span></span></div>
-                </div>
-                <div class="faq-a" id="faq-a-2" aria-hidden="true">
-                    <p>Problemas remotos geralmente são resolvidos em menos de 1 hora. Problemas presenciais levam de 24h a 48h.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-a-3">
-                    <span>Tenho garantia no serviço?</span>
-                    <div class="faq-icon"><span></span><span></span></div>
-                </div>
-                <div class="faq-a" id="faq-a-3" aria-hidden="true">
-                    <p>Sim! Todos os nossos serviços têm garantia mínima de 30 dias para software e suporte continuado.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-a-4">
-                    <span>Atendem empresas também?</span>
-                    <div class="faq-icon"><span></span><span></span></div>
-                </div>
-                <div class="faq-a" id="faq-a-4" aria-hidden="true">
-                    <p>Sim! Atendemos tanto pessoas físicas quanto empresas. Temos planos de suporte contínuo para negócios.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-a-5">
-                    <span>Quais formas de pagamento?</span>
-                    <div class="faq-icon"><span></span><span></span></div>
-                </div>
-                <div class="faq-a" id="faq-a-5" aria-hidden="true">
-                    <p>Aceitamos PIX, cartão de crédito/débito, dinheiro e transferência bancária. Parcelamos em até 3x.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════ CTA FINAL ═══════════════ -->
-<section id="cta-final" class="cs-final">
-    <div class="container">
-        <div class="cta-wrapper">
-            <div class="cta-glow"></div>
-            <h2 class="cs-title reveal">Pronto para <em>resolver</em><br>seu problema?</h2>
-            <p class="cta-subtitle reveal reveal-delay-1">Orçamento transparente, atendimento rápido e solução garantida.</p>
-
-            <div class="cs-grid reveal reveal-delay-2">
-                <article class="cs-card">
-                    <div class="cs-icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                    </div>
-                    <span class="cs-label">Localização</span>
-                    <span class="cs-value">Sorriso-MT</span>
-                    <span class="cs-sub">Atendimento presencial</span>
-                </article>
-                <article class="cs-card">
-                    <div class="cs-icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    </div>
-                    <span class="cs-label">Horário</span>
-                    <span class="cs-value">Seg – Sáb</span>
-                    <span class="cs-sub">08h às 18h</span>
-                </article>
-                <article class="cs-card">
-                    <div class="cs-icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                    </div>
-                    <span class="cs-label">Atendimento</span>
-                    <span class="cs-value">Prioritário</span>
-                    <span class="cs-sub">Resposta em minutos</span>
-                </article>
-            </div>
-
-            <div class="cs-map reveal">
-                <div class="cs-map-grid"></div>
-                <div class="cs-map-h"></div>
-                <div class="cs-map-v"></div>
-                <div class="cs-pin">
-                    <div class="cs-label-pin">Click Suporte · Sorriso-MT</div>
-                </div>
-            </div>
-
-            <div class="reveal">
-                <button onclick="document.getElementById('cs-open-form').click()" class="btn-cta-final" style="border: none; cursor: pointer;">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                    Iniciar Atendimento Premium
-                </button>
-                <p class="cs-foot-sub">Atendimento profissional · Orçamento transparente · Garantia total</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════ FOOTER ═══════════════ -->
-<footer>
-    <div class="container">
-        <div class="footer-inner">
-            <div class="footer-brand">
-                <a href="#" class="logo">
-                    <div class="logo-icon">C</div>
-                    <span class="logo-text">Click<span class="logo-accent">Suporte</span></span>
-                </a>
-                <p class="footer-desc">Assistência técnica premium para quem exige o melhor em tecnologia.</p>
-            </div>
-            <div class="footer-links">
-                <a href="#services">Serviços</a>
-                <a href="#how-it-works">Como Funciona</a>
-                <a href="#faq">FAQ</a>
-                <a href="https://wa.me/5597991394382?text=Olá!%20Gostaria%20de%20falar%20sobre%20atendimento%20com%20a%20Click%20Suporte." target="_blank" rel="noopener">WhatsApp</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2025 Click Suporte · Assistência Técnica Premium · Sorriso-MT · Todos os direitos reservados</p>
-        </div>
-    </div>
-</footer>
-
-<!-- ═══════════════ BACK TO TOP ═══════════════ -->
-<button id="back-to-top" aria-label="Voltar ao topo">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
-</button>
-
-<!-- ═══════════════ SCRIPTS ═══════════════ -->
-<script src="script.js"></script>
-<!-- ═══════════════════════════════════════════════════════════
-     FORMULÁRIO PREMIUM - CLICK SUPORTE
-     Integrado ao site existente
-     ═══════════════════════════════════════════════════════════ -->
-
-<!-- CSS do Formulário Premium (Desativado - Substituído por AI Chatbot) -->
-<!-- <link rel="stylesheet" href="formulario-premium.css?v=2.2.0"> -->
-
-<!-- Botão Flutuante -->
-<button class="cs-floating-btn" id="cs-open-form">
-    <span class="cs-icon">💬</span>
-    Atendimento
-</button>
-
-<!-- Modal Formulário -->
-<div class="cs-modal-overlay" id="cs-modal-overlay">
-    <div class="cs-form-modal">
-        <button class="cs-close-btn" id="cs-close-btn">&times;</button>
-        <div class="cs-form-header">
-            <h2>ATENDIMENTO PREMIUM</h2>
-            <p>Resolva seu problema em minutos</p>
-        </div>
-        <div class="cs-progress-container">
-            <div class="cs-progress-steps">
-                <div class="cs-step cs-active" data-step="1">
-                    <div class="cs-step-number">1</div>
-                    <div class="cs-step-label">Serviço</div>
-                </div>
-                <div class="cs-step" data-step="2">
-                    <div class="cs-step-number">2</div>
-                    <div class="cs-step-label">Urgência</div>
-                </div>
-                <div class="cs-step" data-step="3">
-                    <div class="cs-step-number">3</div>
-                    <div class="cs-step-label">Seus Dados</div>
-                </div>
-                <div class="cs-step" data-step="4">
-                    <div class="cs-step-number">4</div>
-                    <div class="cs-step-label">Confirmar</div>
-                </div>
-            </div>
-            <div class="cs-progress-bar">
-                <div class="cs-progress-fill" id="cs-progress-fill" style="width: 25%"></div>
-            </div>
-        </div>
-        <div class="cs-form-step cs-active" data-step="1">
-            <div class="cs-service-grid">
-                <div class="cs-service-card" data-service="formatacao">
-                    <span class="cs-service-icon">💻</span>
-                    <div class="cs-service-title">Formatação</div>
-                    <div class="cs-service-desc">Reinstalação completa do sistema</div>
-                    <div class="cs-service-price">A partir de R$ 100</div>
-                </div>
-                <div class="cs-service-card" data-service="drivers">
-                    <span class="cs-service-icon">🔧</span>
-                    <div class="cs-service-title">Instalação de Drivers</div>
-                    <div class="cs-service-desc">Resolva problemas de hardware</div>
-                    <div class="cs-service-price">A partir de R$ 80</div>
-                </div>
-                <div class="cs-service-card" data-service="suporte-remoto">
-                    <span class="cs-service-icon">🌐</span>
-                    <div class="cs-service-title">Suporte Remoto</div>
-                    <div class="cs-service-desc">Atendimento online imediato</div>
-                    <div class="cs-service-price">A partir de R$ 70</div>
-                </div>
-                <div class="cs-service-card" data-service="licencas">
-                    <span class="cs-service-icon">🔑</span>
-                    <div class="cs-service-title">Licenças Windows/Office</div>
-                    <div class="cs-service-desc">Ativação 100% legal</div>
-                    <div class="cs-service-price">Consulte valores</div>
-                </div>
-                <div class="cs-service-card" data-service="empresas">
-                    <span class="cs-service-icon">🏢</span>
-                    <div class="cs-service-title">Atendimento Empresarial</div>
-                    <div class="cs-service-desc">Planos corporativos</div>
-                    <div class="cs-service-price">Orçamento personalizado</div>
-                </div>
-            </div>
-            <div class="cs-form-actions">
-                <button class="cs-btn cs-btn-primary" id="cs-next-step-1">Próximo →</button>
-            </div>
-        </div>
-        <div class="cs-form-step" data-step="2">
-            <div class="cs-urgency-grid">
-                <div class="cs-urgency-card" data-urgency="hoje">
-                    <span class="cs-urgency-icon">🔥</span>
-                    <div class="cs-urgency-text">
-                        <span class="cs-urgency-label">Urgente - Hoje</span>
-                        <span class="cs-urgency-time">Atendimento em até 2 horas</span>
-                    </div>
-                </div>
-                <div class="cs-urgency-card" data-urgency="2-3dias">
-                    <span class="cs-urgency-icon">⚡</span>
-                    <div class="cs-urgency-text">
-                        <span class="cs-urgency-label">Normal - 2 a 3 dias</span>
-                        <span class="cs-urgency-time">Agendamento flexível</span>
-                    </div>
-                </div>
-                <div class="cs-urgency-card" data-urgency="orcamento">
-                    <span class="cs-urgency-icon">💰</span>
-                    <div class="cs-urgency-text">
-                        <span class="cs-urgency-label">Só quero orçamento</span>
-                        <span class="cs-urgency-time">Sem compromisso</span>
-                    </div>
-                </div>
-            </div>
-            <div class="cs-form-actions">
-                <button class="cs-btn cs-btn-secondary" id="cs-prev-step-2">← Voltar</button>
-                <button class="cs-btn cs-btn-primary" id="cs-next-step-2">Próximo →</button>
-            </div>
-        </div>
-        <div class="cs-form-step" data-step="3">
-            <div class="cs-form-group">
-                <label class="cs-form-label">Nome Completo</label>
-                <div class="cs-input-wrapper">
-                    <span class="cs-input-icon">👤</span>
-                    <input type="text" id="cs-nome" placeholder="João Silva" required>
-                </div>
-            </div>
-            <div class="cs-form-group">
-                <label class="cs-form-label">WhatsApp</label>
-                <div class="cs-input-wrapper">
-                    <span class="cs-input-icon">📱</span>
-                    <input type="tel" id="cs-whatsapp" placeholder="(97) 99139-4382" required>
-                </div>
-            </div>
-            <div class="cs-form-group">
-                <label class="cs-form-label">E-mail (opcional)</label>
-                <div class="cs-input-wrapper">
-                    <span class="cs-input-icon">📧</span>
-                    <input type="email" id="cs-email" placeholder="joao@email.com">
-                </div>
-            </div>
-            <div class="cs-form-group">
-                <label class="cs-form-label">Descreva seu problema (opcional)</label>
-                <textarea id="cs-mensagem" placeholder="Ex: Meu computador está muito lento..."></textarea>
-            </div>
-            <div class="cs-form-actions">
-                <button class="cs-btn cs-btn-secondary" id="cs-prev-step-3">← Voltar</button>
-                <button class="cs-btn cs-btn-primary" id="cs-next-step-3">Próximo →</button>
-            </div>
-        </div>
-        <div class="cs-form-step" data-step="4">
-            <div class="cs-summary-box">
-                <div class="cs-summary-item">
-                    <span class="cs-summary-label">Serviço:</span>
-                    <span class="cs-summary-value" id="cs-summary-service">-</span>
-                </div>
-                <div class="cs-summary-item">
-                    <span class="cs-summary-label">Urgência:</span>
-                    <span class="cs-summary-value" id="cs-summary-urgency">-</span>
-                </div>
-                <div class="cs-summary-item">
-                    <span class="cs-summary-label">Nome:</span>
-                    <span class="cs-summary-value" id="cs-summary-name">-</span>
-                </div>
-                <div class="cs-summary-item">
-                    <span class="cs-summary-label">WhatsApp:</span>
-                    <span class="cs-summary-value" id="cs-summary-whatsapp">-</span>
-                </div>
-                <div class="cs-summary-item" id="cs-summary-email-row" style="display: none;">
-                    <span class="cs-summary-label">E-mail:</span>
-                    <span class="cs-summary-value" id="cs-summary-email">-</span>
-                </div>
-            </div>
-            <div class="cs-checkbox-wrapper">
-                <input type="checkbox" id="cs-lgpd-consent" required>
-                <label class="cs-checkbox-label" for="cs-lgpd-consent">
-                    Autorizo o Click Suporte a armazenar e processar meus dados pessoais para fins de atendimento, conforme a <strong>LGPD</strong>. Seus dados são seguros e nunca serão compartilhados com terceiros.
-                </label>
-            </div>
-            <div class="cs-form-actions">
-                <button class="cs-btn cs-btn-secondary" id="cs-prev-step-4">← Voltar</button>
-                <button class="cs-btn cs-btn-primary" id="cs-submit-btn" disabled>
-                    🚀 Enviar para WhatsApp
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- JavaScript do Formulário Premium (Desativado - Substituído por AI Chatbot) -->
-<!-- <script src="formulario-premium.js?v=2.1.0"></script> -->
-
-<!-- Sistema de Proteção -->
-<script src="protection.js?v=1.0.0"></script>
-
-<!-- AI Chatbot (Substitui formulário premium) -->
-<script src="ai-chatbot.js?v=3.5.0"></script>
-
-<!-- FIM DO FORMULÁRIO PREMIUM -->
 </body>
 </html>
-<!-- Deploy trigger Sun May 17 20:22:15 UTC 2026 -->

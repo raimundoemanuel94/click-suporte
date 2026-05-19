@@ -17,7 +17,7 @@
     <meta property="og:locale" content="pt_BR">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Click Suporte | Assistência Técnica Premium">
-    <meta name="twitter:description" content="Diagnóstico gratuito, suporte técnico e soluções em tecnologia para Sorriso-MT e região.">
+    <meta name="twitter:description" content="Atendimento técnico profissional em Sorriso-MT. Orçamento transparente e garantia de 30 dias.">
     <meta name="twitter:image" content="https://clicksuporte.com/assets/logo/hero-carousel-1.png">
     <link rel="icon" href="assets/favicon/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32.png">
@@ -34,7 +34,10 @@
             if (savedTheme === 'light') document.documentElement.dataset.theme = 'light';
         } catch (error) {}
     </script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=2.4.0">
+    
+    <!-- AI Chatbot (Substitui formulário) -->
+    <link rel="stylesheet" href="ai-chatbot.css?v=3.5.0">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -73,14 +76,13 @@
             <span></span><span></span><span></span>
         </button>
         <nav id="main-nav">
-            <a href="#hero">Início</a>
             <a href="#services">Serviços</a>
             <a href="#how-it-works">Como Funciona</a>
             <a href="#faq">FAQ</a>
-            <a href="https://wa.me/5597991394382?text=Ola%21%20Gostaria%20de%20um%20diagnostico%20gratuito%20com%20a%20Click%20Suporte." class="btn-nav" target="_blank" rel="noopener">
+            <button onclick="document.getElementById('cs-open-form').click()" class="btn-nav btn-nav-cta" style="border: none; cursor: pointer; font-family: inherit;">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                 Falar com Especialista
-            </a>
+            </button>
         </nav>
     </div>
 </header>
@@ -98,37 +100,50 @@
     <div class="container">
         <div class="hero-inner">
             <div class="hero-content">
-                <div class="hero-badge reveal">
-                    <span class="badge-dot"></span>
-                    Assistência Técnica Premium em Sorriso-MT
+                <div class="hero-badge hero-badge-urgent reveal">
+                    <span class="badge-pulse">🔥</span>
+                    Atendimento Hoje · Sorriso-MT · Resposta em 15min
                 </div>
                 <h1 class="hero-title reveal reveal-delay-1">
-                    Soluções em<br>tecnologia que<br><em>transformam</em> resultados.
+                    PC Lento? Vírus?<br>Não Liga?<br><em>Resolvemos</em> em Casa em 2 Horas
                 </h1>
                 <p class="hero-sub reveal reveal-delay-2">
-                    Especialistas em suporte técnico, licenças, redes e automação.
-                    Diagnóstico gratuito com resposta em minutos.
+                    <span class="hero-sub-item">✓ Formatação Express</span>
+                    <span class="hero-sub-item">✓ Suporte Remoto Imediato</span>
+                    <span class="hero-sub-item">✓ Instalação Completa</span>
+                    <br>
+                    Atendimento profissional em Sorriso-MT · Garantia de 30 dias
                 </p>
                 <div class="hero-cta reveal reveal-delay-3">
-                    <a href="https://wa.me/5597991394382?text=Ola%21%20Gostaria%20de%20um%20diagnostico%20gratuito%20com%20a%20Click%20Suporte." class="btn-primary" target="_blank" rel="noopener">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                        Diagnóstico Gratuito
-                    </a>
-                    <a href="#services" class="btn-ghost">
+                    <button onclick="document.getElementById('cs-open-form').click()" class="btn-primary btn-primary-hero" style="border: none; cursor: pointer;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                        Falar no WhatsApp Agora
+                    </button>
+                    <a href="#services" class="btn-ghost btn-ghost-secondary">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-                        Nossos Serviços
+                        Ver Preços
                     </a>
                 </div>
-                <div class="hero-trust reveal reveal-delay-3" aria-label="Pontos de confiança">
-                    <span>Remoto e presencial</span>
-                    <span>Orçamento transparente</span>
-                    <span>Garantia de 30 dias</span>
+                <div class="hero-trust hero-trust-enhanced reveal reveal-delay-3" aria-label="Pontos de confiança">
+                    <span class="trust-item">
+                        <strong>500+</strong> PCs Atendidos
+                    </span>
+                    <span class="trust-item">
+                        <strong>&lt;15min</strong> Resposta
+                    </span>
+                    <span class="trust-item">
+                        <strong>98%</strong> Satisfação
+                    </span>
                 </div>
             </div>
             <div class="hero-visual reveal">
                 <div class="hero-visual-inner">
                     <div class="hero-slide active">
                         <img src="assets/logo/hero-carousel-1.png" alt="Suporte Técnico Premium" class="hero-slide-img" loading="eager">
+                        <div class="hero-image-badge">
+                            <span class="image-badge-label">A partir de</span>
+                            <span class="image-badge-price">R$ 70</span>
+                        </div>
                     </div>
                     <div class="hero-slide">
                         <img src="assets/logo/logo-original.png" alt="Click Suporte" class="hero-slide-img" loading="lazy">
@@ -180,7 +195,7 @@
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                 </div>
                 <h3>Suporte Técnico</h3>
-                <p>Diagnóstico, reparo de software e otimização extrema. Seu PC como novo em poucas horas.</p>
+                <p>Análise completa, reparo de software e otimização extrema. Seu PC como novo em poucas horas.</p>
                 <div class="service-tags"><span>Remoto</span><span>Presencial</span></div>
                 <span class="service-arrow">→</span>
             </div>
@@ -302,8 +317,8 @@
                 <div class="step-line"></div>
                 <div class="step-number">2</div>
                 <div class="step-content">
-                    <h3>Diagnóstico Gratuito</h3>
-                    <p>Analisamos seu equipamento remotamente ou presencialmente e identificamos a solução ideal.</p>
+                    <h3>Análise Técnica Completa</h3>
+                    <p>Analisamos seu equipamento remotamente ou presencialmente e identificamos a solução ideal com orçamento transparente.</p>
                 </div>
             </div>
             <div class="step reveal reveal-delay-2">
@@ -346,11 +361,11 @@
         <div class="faq-list reveal">
             <div class="faq-item">
                 <div class="faq-q" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-a-1">
-                    <span>O diagnóstico é cobrado?</span>
+                    <span>Como funciona o orçamento?</span>
                     <div class="faq-icon"><span></span><span></span></div>
                 </div>
                 <div class="faq-a" id="faq-a-1" aria-hidden="true">
-                    <p>Não! O diagnóstico inicial é 100% gratuito. Você só paga se aprovar o orçamento do serviço.</p>
+                    <p>Analisamos seu problema e apresentamos um orçamento transparente. Você só aprova se concordar com o valor e prazo. Sem surpresas.</p>
                 </div>
             </div>
             <div class="faq-item">
@@ -399,7 +414,7 @@
         <div class="cta-wrapper">
             <div class="cta-glow"></div>
             <h2 class="cs-title reveal">Pronto para <em>resolver</em><br>seu problema?</h2>
-            <p class="cta-subtitle reveal reveal-delay-1">Diagnóstico gratuito, orçamento transparente e solução garantida.</p>
+            <p class="cta-subtitle reveal reveal-delay-1">Orçamento transparente, atendimento rápido e solução garantida.</p>
 
             <div class="cs-grid reveal reveal-delay-2">
                 <article class="cs-card">
@@ -422,8 +437,8 @@
                     <div class="cs-icon">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                     </div>
-                    <span class="cs-label">Diagnóstico</span>
-                    <span class="cs-value">Gratuito</span>
+                    <span class="cs-label">Atendimento</span>
+                    <span class="cs-value">Prioritário</span>
                     <span class="cs-sub">Resposta em minutos</span>
                 </article>
             </div>
@@ -438,11 +453,11 @@
             </div>
 
             <div class="reveal">
-                <a href="https://wa.me/5597991394382?text=Ola%21%20Gostaria%20de%20um%20diagnostico%20gratuito%20com%20a%20Click%20Suporte." class="btn-cta-final" target="_blank" rel="noopener">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    Falar no WhatsApp Agora
-                </a>
-                <p class="cs-foot-sub">Diagnóstico gratuito · Orçamento em minutos · Garantia total</p>
+                <button onclick="document.getElementById('cs-open-form').click()" class="btn-cta-final" style="border: none; cursor: pointer;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    Iniciar Atendimento Premium
+                </button>
+                <p class="cs-foot-sub">Atendimento profissional · Orçamento transparente · Garantia total</p>
             </div>
         </div>
     </div>
@@ -463,7 +478,7 @@
                 <a href="#services">Serviços</a>
                 <a href="#how-it-works">Como Funciona</a>
                 <a href="#faq">FAQ</a>
-                <a href="https://wa.me/5597991394382?text=Ola%21%20Gostaria%20de%20um%20diagnostico%20gratuito%20com%20a%20Click%20Suporte." target="_blank" rel="noopener">WhatsApp</a>
+                <a href="https://wa.me/5597991394382?text=Olá!%20Gostaria%20de%20falar%20sobre%20atendimento%20com%20a%20Click%20Suporte." target="_blank" rel="noopener">WhatsApp</a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -477,15 +492,199 @@
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
 </button>
 
-<!-- ═══════════════ WHATSAPP FLOAT ═══════════════ -->
-<div id="wa-float">
-    <div id="wa-tooltip">Olá! 👋 Diagnóstico grátis agora?</div>
-    <a href="https://wa.me/5597991394382?text=Ola%21%20Gostaria%20de%20um%20diagnostico%20gratuito%20com%20a%20Click%20Suporte." id="wa-btn" target="_blank" rel="noopener" aria-label="Falar com a Click Suporte no WhatsApp">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="#050810"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    </a>
-</div>
-
 <!-- ═══════════════ SCRIPTS ═══════════════ -->
 <script src="script.js"></script>
+<!-- ═══════════════════════════════════════════════════════════
+     FORMULÁRIO PREMIUM - CLICK SUPORTE
+     Integrado ao site existente
+     ═══════════════════════════════════════════════════════════ -->
+
+<!-- CSS do Formulário Premium (Desativado - Substituído por AI Chatbot) -->
+<!-- <link rel="stylesheet" href="formulario-premium.css?v=2.2.0"> -->
+
+<!-- Botão Flutuante -->
+<button class="cs-floating-btn" id="cs-open-form">
+    <span class="cs-icon">💬</span>
+    Atendimento
+</button>
+
+<!-- Modal Formulário -->
+<div class="cs-modal-overlay" id="cs-modal-overlay">
+    <div class="cs-form-modal">
+        <button class="cs-close-btn" id="cs-close-btn">&times;</button>
+        <div class="cs-form-header">
+            <h2>ATENDIMENTO PREMIUM</h2>
+            <p>Resolva seu problema em minutos</p>
+        </div>
+        <div class="cs-progress-container">
+            <div class="cs-progress-steps">
+                <div class="cs-step cs-active" data-step="1">
+                    <div class="cs-step-number">1</div>
+                    <div class="cs-step-label">Serviço</div>
+                </div>
+                <div class="cs-step" data-step="2">
+                    <div class="cs-step-number">2</div>
+                    <div class="cs-step-label">Urgência</div>
+                </div>
+                <div class="cs-step" data-step="3">
+                    <div class="cs-step-number">3</div>
+                    <div class="cs-step-label">Seus Dados</div>
+                </div>
+                <div class="cs-step" data-step="4">
+                    <div class="cs-step-number">4</div>
+                    <div class="cs-step-label">Confirmar</div>
+                </div>
+            </div>
+            <div class="cs-progress-bar">
+                <div class="cs-progress-fill" id="cs-progress-fill" style="width: 25%"></div>
+            </div>
+        </div>
+        <div class="cs-form-step cs-active" data-step="1">
+            <div class="cs-service-grid">
+                <div class="cs-service-card" data-service="formatacao">
+                    <span class="cs-service-icon">💻</span>
+                    <div class="cs-service-title">Formatação</div>
+                    <div class="cs-service-desc">Reinstalação completa do sistema</div>
+                    <div class="cs-service-price">A partir de R$ 100</div>
+                </div>
+                <div class="cs-service-card" data-service="drivers">
+                    <span class="cs-service-icon">🔧</span>
+                    <div class="cs-service-title">Instalação de Drivers</div>
+                    <div class="cs-service-desc">Resolva problemas de hardware</div>
+                    <div class="cs-service-price">A partir de R$ 80</div>
+                </div>
+                <div class="cs-service-card" data-service="suporte-remoto">
+                    <span class="cs-service-icon">🌐</span>
+                    <div class="cs-service-title">Suporte Remoto</div>
+                    <div class="cs-service-desc">Atendimento online imediato</div>
+                    <div class="cs-service-price">A partir de R$ 70</div>
+                </div>
+                <div class="cs-service-card" data-service="licencas">
+                    <span class="cs-service-icon">🔑</span>
+                    <div class="cs-service-title">Licenças Windows/Office</div>
+                    <div class="cs-service-desc">Ativação 100% legal</div>
+                    <div class="cs-service-price">Consulte valores</div>
+                </div>
+                <div class="cs-service-card" data-service="empresas">
+                    <span class="cs-service-icon">🏢</span>
+                    <div class="cs-service-title">Atendimento Empresarial</div>
+                    <div class="cs-service-desc">Planos corporativos</div>
+                    <div class="cs-service-price">Orçamento personalizado</div>
+                </div>
+            </div>
+            <div class="cs-form-actions">
+                <button class="cs-btn cs-btn-primary" id="cs-next-step-1">Próximo →</button>
+            </div>
+        </div>
+        <div class="cs-form-step" data-step="2">
+            <div class="cs-urgency-grid">
+                <div class="cs-urgency-card" data-urgency="hoje">
+                    <span class="cs-urgency-icon">🔥</span>
+                    <div class="cs-urgency-text">
+                        <span class="cs-urgency-label">Urgente - Hoje</span>
+                        <span class="cs-urgency-time">Atendimento em até 2 horas</span>
+                    </div>
+                </div>
+                <div class="cs-urgency-card" data-urgency="2-3dias">
+                    <span class="cs-urgency-icon">⚡</span>
+                    <div class="cs-urgency-text">
+                        <span class="cs-urgency-label">Normal - 2 a 3 dias</span>
+                        <span class="cs-urgency-time">Agendamento flexível</span>
+                    </div>
+                </div>
+                <div class="cs-urgency-card" data-urgency="orcamento">
+                    <span class="cs-urgency-icon">💰</span>
+                    <div class="cs-urgency-text">
+                        <span class="cs-urgency-label">Só quero orçamento</span>
+                        <span class="cs-urgency-time">Sem compromisso</span>
+                    </div>
+                </div>
+            </div>
+            <div class="cs-form-actions">
+                <button class="cs-btn cs-btn-secondary" id="cs-prev-step-2">← Voltar</button>
+                <button class="cs-btn cs-btn-primary" id="cs-next-step-2">Próximo →</button>
+            </div>
+        </div>
+        <div class="cs-form-step" data-step="3">
+            <div class="cs-form-group">
+                <label class="cs-form-label">Nome Completo</label>
+                <div class="cs-input-wrapper">
+                    <span class="cs-input-icon">👤</span>
+                    <input type="text" id="cs-nome" placeholder="João Silva" required>
+                </div>
+            </div>
+            <div class="cs-form-group">
+                <label class="cs-form-label">WhatsApp</label>
+                <div class="cs-input-wrapper">
+                    <span class="cs-input-icon">📱</span>
+                    <input type="tel" id="cs-whatsapp" placeholder="(97) 99139-4382" required>
+                </div>
+            </div>
+            <div class="cs-form-group">
+                <label class="cs-form-label">E-mail (opcional)</label>
+                <div class="cs-input-wrapper">
+                    <span class="cs-input-icon">📧</span>
+                    <input type="email" id="cs-email" placeholder="joao@email.com">
+                </div>
+            </div>
+            <div class="cs-form-group">
+                <label class="cs-form-label">Descreva seu problema (opcional)</label>
+                <textarea id="cs-mensagem" placeholder="Ex: Meu computador está muito lento..."></textarea>
+            </div>
+            <div class="cs-form-actions">
+                <button class="cs-btn cs-btn-secondary" id="cs-prev-step-3">← Voltar</button>
+                <button class="cs-btn cs-btn-primary" id="cs-next-step-3">Próximo →</button>
+            </div>
+        </div>
+        <div class="cs-form-step" data-step="4">
+            <div class="cs-summary-box">
+                <div class="cs-summary-item">
+                    <span class="cs-summary-label">Serviço:</span>
+                    <span class="cs-summary-value" id="cs-summary-service">-</span>
+                </div>
+                <div class="cs-summary-item">
+                    <span class="cs-summary-label">Urgência:</span>
+                    <span class="cs-summary-value" id="cs-summary-urgency">-</span>
+                </div>
+                <div class="cs-summary-item">
+                    <span class="cs-summary-label">Nome:</span>
+                    <span class="cs-summary-value" id="cs-summary-name">-</span>
+                </div>
+                <div class="cs-summary-item">
+                    <span class="cs-summary-label">WhatsApp:</span>
+                    <span class="cs-summary-value" id="cs-summary-whatsapp">-</span>
+                </div>
+                <div class="cs-summary-item" id="cs-summary-email-row" style="display: none;">
+                    <span class="cs-summary-label">E-mail:</span>
+                    <span class="cs-summary-value" id="cs-summary-email">-</span>
+                </div>
+            </div>
+            <div class="cs-checkbox-wrapper">
+                <input type="checkbox" id="cs-lgpd-consent" required>
+                <label class="cs-checkbox-label" for="cs-lgpd-consent">
+                    Autorizo o Click Suporte a armazenar e processar meus dados pessoais para fins de atendimento, conforme a <strong>LGPD</strong>. Seus dados são seguros e nunca serão compartilhados com terceiros.
+                </label>
+            </div>
+            <div class="cs-form-actions">
+                <button class="cs-btn cs-btn-secondary" id="cs-prev-step-4">← Voltar</button>
+                <button class="cs-btn cs-btn-primary" id="cs-submit-btn" disabled>
+                    🚀 Enviar para WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript do Formulário Premium (Desativado - Substituído por AI Chatbot) -->
+<!-- <script src="formulario-premium.js?v=2.1.0"></script> -->
+
+<!-- Sistema de Proteção -->
+<script src="protection.js?v=1.0.0"></script>
+
+<!-- AI Chatbot (Substitui formulário premium) -->
+<script src="ai-chatbot.js?v=3.5.0"></script>
+
+<!-- FIM DO FORMULÁRIO PREMIUM -->
 </body>
 </html>
+<!-- Deploy trigger Sun May 17 20:22:15 UTC 2026 -->
