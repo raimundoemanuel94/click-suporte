@@ -311,8 +311,98 @@
     margin-top: 4px;
 }
 
+/* ═══ CARDS VISUAIS DE SERVIÇO ═══ */
+.cs-ai-service-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 16px;
+    width: 100%;
+}
+
+.cs-ai-service-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 16px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.cs-ai-service-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.cs-ai-service-card:hover::before {
+    opacity: 1;
+}
+
+.cs-ai-service-card:hover {
+    border-color: #00d4ff;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.2);
+}
+
+.cs-ai-card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+}
+
+.cs-ai-card-content {
+    position: relative;
+    z-index: 1;
+}
+
+.cs-ai-card-content h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 6px 0;
+}
+
+.cs-ai-card-content p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 8px 0;
+    line-height: 1.4;
+}
+
+.cs-ai-card-price {
+    display: inline-block;
+    font-size: 0.8rem;
+    color: #00d4ff;
+    font-weight: 600;
+    padding: 4px 12px;
+    background: rgba(0, 212, 255, 0.1);
+    border-radius: 12px;
+}
+
+/* Mobile: 1 coluna */
+@media (max-width: 480px) {
+    .cs-ai-service-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* ═══ AJUSTE PARA MENSAGENS COM BOTÕES ═══ */
 .cs-ai-message-bot:has(.cs-ai-buttons) .cs-ai-message-content {
+    max-width: 100%;
+}
+
+.cs-ai-message-bot:has(.cs-ai-service-cards) .cs-ai-message-wrapper {
     max-width: 100%;
 }
 

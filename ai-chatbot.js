@@ -477,19 +477,110 @@ Quando tiver nome + telefone + problema: diga que vai encaminhar para atendiment
                 ChatState.step = 1; // Inicia escolhendo serviço
                 
                 setTimeout(() => {
-                    const initialMsg = 'Olá! 👋 Sou o assistente da Click Suporte.\n\nComo posso te ajudar hoje?';
+                    const initialMsg = 'Olá! 👋 Sou o assistente IA da Click Suporte.\n\nEscolha o serviço que você precisa:';
                     
-                    const buttons = [
-                        { text: '🖥️ Formatação de PC', value: 'formatacao' },
-                        { text: '⚙️ Instalação', value: 'instalacao' },
-                        { text: '🔧 Suporte Técnico', value: 'suporte' },
-                        { text: '🔑 Licenças', value: 'licencas' }
-                    ];
+                    // Cards visuais em vez de botões simples
+                    const servicesHTML = `
+                        <div class="cs-ai-service-cards">
+                            <div class="cs-ai-service-card" data-service="formatacao">
+                                <div class="cs-ai-card-icon">🖥️</div>
+                                <div class="cs-ai-card-content">
+                                    <h4>Formatação de PC</h4>
+                                    <p>Reinstalação completa do sistema</p>
+                                    <span class="cs-ai-card-price">A partir de R$ 100</span>
+                                </div>
+                            </div>
+                            <div class="cs-ai-service-card" data-service="instalacao">
+                                <div class="cs-ai-card-icon">⚙️</div>
+                                <div class="cs-ai-card-content">
+                                    <h4>Instalação</h4>
+                                    <p>Programas, drivers e configurações</p>
+                                    <span class="cs-ai-card-price">A partir de R$ 80</span>
+                                </div>
+                            </div>
+                            <div class="cs-ai-service-card" data-service="suporte">
+                                <div class="cs-ai-card-icon">🔧</div>
+                                <div class="cs-ai-card-content">
+                                    <h4>Suporte Técnico</h4>
+                                    <p>Resolução de problemas gerais</p>
+                                    <span class="cs-ai-card-price">A partir de R$ 70</span>
+                                </div>
+                            </div>
+                            <div class="cs-ai-service-card" data-service="licencas">
+                                <div class="cs-ai-card-icon">🔑</div>
+                                <div class="cs-ai-card-content">
+                                    <h4>Licenças</h4>
+                                    <p>Windows, Office e ativação</p>
+                                    <span class="cs-ai-card-price">Consulte valores</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
                     
-                    this.addBotMessage(initialMsg, buttons, 'Escolha o serviço:');
+                    // Adiciona mensagem
+                    const msg = document.createElement('div');
+                    msg.className = 'cs-ai-message cs-ai-message-bot';
+                    msg.innerHTML = `
+                        <div class="cs-ai-message-avatar">
+                            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="12" y="14" width="24" height="20" rx="4" fill="url(#robot-gradient-init)" stroke="currentColor" stroke-width="2"/>
+                                <line x1="24" y1="14" x2="24" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <circle cx="24" cy="8" r="2" fill="#00d4ff">
+                                    <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="18" cy="22" r="2.5" fill="#00d4ff">
+                                    <animate attributeName="r" values="2.5;3;2.5" dur="3s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="30" cy="22" r="2.5" fill="#00d4ff">
+                                    <animate attributeName="r" values="2.5;3;2.5" dur="3s" repeatCount="indefinite"/>
+                                </circle>
+                                <path d="M 18 28 Q 24 31 30 28" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" fill="none"/>
+                                <defs>
+                                    <linearGradient id="robot-gradient-init" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:rgba(0, 212, 255, 0.2);stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:rgba(14, 165, 233, 0.1);stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div class="cs-ai-message-wrapper">
+                            <div class="cs-ai-message-content">${this.escapeHtml(initialMsg).replace(/\n/g, '<br>')}</div>
+                            ${servicesHTML}
+                        </div>
+                    `;
+                    
+                    this.chatContainer.appendChild(msg);
+                    
+                    // Adiciona eventos aos cards
+                    msg.querySelectorAll('.cs-ai-service-card').forEach(card => {
+                        card.addEventListener('click', () => {
+                            const service = card.getAttribute('data-service');
+                            const serviceLabel = card.querySelector('h4').textContent;
+                            this.handleServiceCardClick(service, serviceLabel);
+                        });
+                    });
+                    
+                    this.scrollToBottom();
                     ChatState.addMessage('assistant', initialMsg);
                 }, 300);
             }
+        },
+        
+        handleServiceCardClick(service, label) {
+            // Mostra como mensagem do usuário
+            this.addUserMessage(label);
+            
+            // Desabilita todos os cards
+            const cards = this.chatContainer.querySelectorAll('.cs-ai-service-card');
+            cards.forEach(card => {
+                card.style.opacity = '0.5';
+                card.style.pointerEvents = 'none';
+                card.style.cursor = 'not-allowed';
+            });
+            
+            // Processa como se fosse texto
+            this.input.value = service;
+            this.sendMessage();
         },
         
         close() {
