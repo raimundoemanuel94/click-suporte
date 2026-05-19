@@ -455,22 +455,23 @@
 
         /* Game Container */
         .game-container {
-            margin-top: 60px;
-            animation: text-appear 1s ease-out 2.1s both;
+            margin-top: 50px;
+            animation: text-appear 1s ease-out 2s both;
         }
 
         .game-title {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: #00d4ff;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
         }
 
-        .game-subtitle {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 20px;
+        .game-hint {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 12px;
+            margin-bottom: 0;
         }
 
         #gameCanvas {
@@ -487,20 +488,20 @@
 
         .game-score {
             display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-            gap: 20px;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 16px;
         }
 
         .game-score span {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.6);
         }
 
         .game-score strong {
             color: #00d4ff;
-            font-size: 1.2rem;
-            margin-left: 8px;
+            font-size: 1.1rem;
+            margin-left: 6px;
         }
 
         .game-restart {
@@ -584,8 +585,7 @@
         <h1>Evoluindo o Sistema</h1>
         
         <p class="subtitle">
-            Estamos implementando melhorias incríveis<br>
-            para oferecer a melhor experiência em suporte técnico!
+            Melhorias incríveis em andamento!
         </p>
 
         <div class="status-box">
@@ -602,23 +602,23 @@
             </div>
         </div>
 
-        <p class="footer-text">
-            ✨ Em breve estaremos de volta, ainda melhores! ✨
-        </p>
-
-        <!-- Mini Game -->
+        <!-- Mini Game Integrado -->
         <div class="game-container" id="gameContainer">
-            <h3 class="game-title">🎮 Enquanto isso... Jogue um pouco!</h3>
-            <p class="game-subtitle">Pressione ESPAÇO para pular os obstáculos</p>
+            <h3 class="game-title">🎮 Enquanto isso... Jogue!</h3>
             <canvas id="gameCanvas" width="600" height="200"></canvas>
             <div class="game-score">
-                <span>Pontuação: <strong id="score">0</strong></span>
+                <span>Score: <strong id="score">0</strong></span>
                 <span>Recorde: <strong id="highScore">0</strong></span>
             </div>
+            <p class="game-hint">ESPAÇO ou CLICK para pular</p>
             <button class="game-restart" id="restartBtn" style="display: none;">
-                🔄 Jogar Novamente
+                🔄 Tentar Novamente
             </button>
         </div>
+
+        <p class="footer-text">
+            ✨ Em breve de volta! ✨
+        </p>
     </div>
 
     <script>
