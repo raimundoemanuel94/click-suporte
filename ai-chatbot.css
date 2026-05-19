@@ -64,6 +64,71 @@
     background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), transparent);
 }
 
+/* ═══ PROGRESS BAR ═══ */
+.cs-ai-progress-container {
+    padding: 16px 24px;
+    background: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+    display: none; /* Oculto até step > 0 */
+}
+
+.cs-ai-progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.cs-ai-progress-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.cs-ai-progress-step {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.cs-ai-progress-bar {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
+
+.cs-ai-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #00d4ff 0%, #00b8e6 100%);
+    border-radius: 3px;
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    position: relative;
+}
+
+.cs-ai-progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: cs-ai-progress-shine 2s infinite;
+}
+
+@keyframes cs-ai-progress-shine {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
 .cs-ai-header-info {
     display: flex;
     align-items: center;

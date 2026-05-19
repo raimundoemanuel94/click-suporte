@@ -400,6 +400,17 @@ Quando tiver nome + telefone + problema: diga que vai encaminhar para atendiment
                         <button class="cs-ai-close" id="cs-ai-close">✕</button>
                     </div>
                     
+                    <!-- Progress Bar -->
+                    <div class="cs-ai-progress-container" id="cs-ai-progress-container">
+                        <div class="cs-ai-progress-info">
+                            <span class="cs-ai-progress-label" id="cs-ai-progress-label">Iniciando...</span>
+                            <span class="cs-ai-progress-step" id="cs-ai-progress-step">Etapa 1 de 7</span>
+                        </div>
+                        <div class="cs-ai-progress-bar">
+                            <div class="cs-ai-progress-fill" id="cs-ai-progress-fill"></div>
+                        </div>
+                    </div>
+                    
                     <div class="cs-ai-messages" id="cs-ai-messages">
                         <!-- Mensagens aparecem aqui -->
                     </div>
@@ -730,6 +741,37 @@ Quando tiver nome + telefone + problema: diga que vai encaminhar para atendiment
             this.chatContainer.scrollTop = this.chatContainer.scrollHeight;
         },
         
+        updateProgress(step, totalSteps = 7) {
+            const progressContainer = document.getElementById('cs-ai-progress-container');
+            const progressLabel = document.getElementById('cs-ai-progress-label');
+            const progressStepEl = document.getElementById('cs-ai-progress-step');
+            const progressFill = document.getElementById('cs-ai-progress-fill');
+            
+            if (!progressContainer) return;
+            
+            const labels = {
+                0: 'Iniciando...',
+                1: 'Escolhendo serviço',
+                2: 'Coletando detalhes',
+                3: 'Seu nome',
+                4: 'Seu contato',
+                5: 'Email (opcional)',
+                6: 'Horário preferido',
+                7: 'Finalizando'
+            };
+            
+            const percentage = (step / totalSteps) * 100;
+            
+            progressLabel.textContent = labels[step] || 'Processando...';
+            progressStepEl.textContent = `Etapa ${step} de ${totalSteps}`;
+            progressFill.style.width = `${percentage}%`;
+            
+            // Mostrar progress bar (estava oculto inicialmente)
+            if (step > 0) {
+                progressContainer.style.display = 'block';
+            }
+        },
+        
         escapeHtml(text) {
             const div = document.createElement('div');
             div.textContent = text;
@@ -765,8 +807,12 @@ Quando tiver nome + telefone + problema: diga que vai encaminhar para atendiment
             console.log('📊 Dados:', ChatState.userData);
             console.log('🔢 Step:', ChatState.step);
             
+            // Atualiza progress bar
+            this.updateProgress(ChatState.step);
+            
             // Verifica se completou
             if (response === 'complete') {
+                this.updateProgress(7); // Completo
                 this.finishConversation();
                 return;
             }
