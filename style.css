@@ -187,17 +187,68 @@ header.scrolled {
 nav { display: flex; align-items: center; gap: 32px; }
 nav a:not(.btn-nav) {
   font-size: 0.875rem; font-weight: 500; color: var(--text-2);
-  transition: color 0.3s; letter-spacing: -0.01em;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+  letter-spacing: -0.01em;
+  position: relative;
 }
-nav a:not(.btn-nav):hover { color: var(--text-1); }
+nav a:not(.btn-nav):hover { 
+  color: var(--cyan); 
+  transform: translateY(-2px);
+}
+nav a:not(.btn-nav)::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--cyan);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+nav a:not(.btn-nav):hover::after {
+  width: 100%;
+}
 
 .btn-nav {
   display: inline-flex; align-items: center; gap: 8px;
-  font-size: 0.82rem; font-weight: 600; color: var(--bg);
-  background: var(--gradient-btn); padding: 9px 22px; border-radius: var(--r-full);
-  transition: all 0.25s var(--ease-out); box-shadow: 0 0 0 0 transparent;
+  font-size: 0.82rem; font-weight: 700; color: var(--bg);
+  background: var(--gradient-btn); 
+  padding: 12px 28px; 
+  border-radius: var(--r-full);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.25);
+  position: relative;
+  overflow: hidden;
 }
-.btn-nav:hover { box-shadow: 0 0 28px var(--cyan-glow); transform: translateY(-1px); }
+
+/* Efeito shine no botão */
+.btn-nav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.btn-nav:hover::before {
+  left: 100%;
+}
+
+.btn-nav:hover { 
+  box-shadow: 0 8px 24px rgba(0, 212, 255, 0.4),
+              0 0 30px rgba(0, 212, 255, 0.2);
+  transform: translateY(-3px) scale(1.05);
+  background: linear-gradient(135deg, #00e6ff 0%, #00d4ff 100%);
+}
+
+.btn-nav:active {
+  transform: translateY(-1px) scale(0.98);
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+}
+
 .btn-nav svg { color: var(--bg); }
 
 .theme-toggle {
