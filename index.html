@@ -453,6 +453,76 @@
             animation: text-appear 1s ease-out 1.8s both;
         }
 
+        /* Game Container */
+        .game-container {
+            margin-top: 60px;
+            animation: text-appear 1s ease-out 2.1s both;
+        }
+
+        .game-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00d4ff;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        .game-subtitle {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 20px;
+        }
+
+        #gameCanvas {
+            display: block;
+            margin: 0 auto;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 12px;
+            background: rgba(5, 8, 16, 0.9);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+            cursor: pointer;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .game-score {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            gap: 20px;
+        }
+
+        .game-score span {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .game-score strong {
+            color: #00d4ff;
+            font-size: 1.2rem;
+            margin-left: 8px;
+        }
+
+        .game-restart {
+            display: block;
+            margin: 20px auto 0;
+            padding: 12px 32px;
+            background: linear-gradient(135deg, #00d4ff, #0ea5e9);
+            color: #000;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .game-restart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(0, 212, 255, 0.5);
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2rem;
@@ -470,6 +540,15 @@
                 width: 50px;
                 height: 50px;
                 font-size: 1.5rem;
+            }
+
+            #gameCanvas {
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .game-title {
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -526,6 +605,20 @@
         <p class="footer-text">
             ✨ Em breve estaremos de volta, ainda melhores! ✨
         </p>
+
+        <!-- Mini Game -->
+        <div class="game-container" id="gameContainer">
+            <h3 class="game-title">🎮 Enquanto isso... Jogue um pouco!</h3>
+            <p class="game-subtitle">Pressione ESPAÇO para pular os obstáculos</p>
+            <canvas id="gameCanvas" width="600" height="200"></canvas>
+            <div class="game-score">
+                <span>Pontuação: <strong id="score">0</strong></span>
+                <span>Recorde: <strong id="highScore">0</strong></span>
+            </div>
+            <button class="game-restart" id="restartBtn" style="display: none;">
+                🔄 Jogar Novamente
+            </button>
+        </div>
     </div>
 
     <script>
@@ -539,6 +632,242 @@
             particle.style.animationDuration = (15 + Math.random() * 10) + 's';
             particlesContainer.appendChild(particle);
         }
+
+        // ═══════════════════════════════════════════════════
+        // 🎮 MINI GAME - DINO RUNNER STYLE
+        // ═══════════════════════════════════════════════════
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const restartBtn = document.getElementById('restartBtn');
+        const scoreEl = document.getElementById('score');
+        const highScoreEl = document.getElementById('highScore');
+
+        let gameRunning = false;
+        let gameOver = false;
+        let score = 0;
+        let highScore = localStorage.getItem('maintenanceHighScore') || 0;
+        highScoreEl.textContent = highScore;
+
+        // Player
+        const player = {
+            x: 50,
+            y: 150,
+            width: 30,
+            height: 30,
+            velocityY: 0,
+            jumping: false,
+            color: '#00d4ff'
+        };
+
+        // Obstacles
+        let obstacles = [];
+        let obstacleSpeed = 5;
+        let obstacleFrequency = 100;
+        let frameCount = 0;
+
+        // Ground
+        const groundY = 180;
+
+        function startGame() {
+            gameRunning = true;
+            gameOver = false;
+            score = 0;
+            obstacles = [];
+            obstacleSpeed = 5;
+            frameCount = 0;
+            player.y = 150;
+            player.velocityY = 0;
+            player.jumping = false;
+            restartBtn.style.display = 'none';
+            gameLoop();
+        }
+
+        function jump() {
+            if (!player.jumping && !gameOver) {
+                player.velocityY = -12;
+                player.jumping = true;
+            }
+        }
+
+        function createObstacle() {
+            const height = 20 + Math.random() * 30;
+            obstacles.push({
+                x: canvas.width,
+                y: groundY - height,
+                width: 20,
+                height: height,
+                color: '#ff0055'
+            });
+        }
+
+        function updatePlayer() {
+            // Gravity
+            player.velocityY += 0.6;
+            player.y += player.velocityY;
+
+            // Ground collision
+            if (player.y >= 150) {
+                player.y = 150;
+                player.velocityY = 0;
+                player.jumping = false;
+            }
+        }
+
+        function updateObstacles() {
+            // Move obstacles
+            obstacles.forEach(obs => {
+                obs.x -= obstacleSpeed;
+            });
+
+            // Remove off-screen obstacles
+            obstacles = obstacles.filter(obs => obs.x + obs.width > 0);
+
+            // Create new obstacles
+            if (frameCount % obstacleFrequency === 0) {
+                createObstacle();
+            }
+
+            // Check collision
+            obstacles.forEach(obs => {
+                if (
+                    player.x < obs.x + obs.width &&
+                    player.x + player.width > obs.x &&
+                    player.y < obs.y + obs.height &&
+                    player.y + player.height > obs.y
+                ) {
+                    endGame();
+                }
+            });
+        }
+
+        function updateScore() {
+            if (!gameOver) {
+                score++;
+                scoreEl.textContent = score;
+
+                // Increase difficulty
+                if (score % 500 === 0) {
+                    obstacleSpeed += 0.5;
+                    obstacleFrequency = Math.max(50, obstacleFrequency - 5);
+                }
+            }
+        }
+
+        function drawPlayer() {
+            // Draw player (robot style)
+            ctx.fillStyle = player.color;
+            ctx.fillRect(player.x, player.y, player.width, player.height);
+            
+            // Eyes
+            ctx.fillStyle = '#000';
+            ctx.fillRect(player.x + 8, player.y + 8, 4, 4);
+            ctx.fillRect(player.x + 18, player.y + 8, 4, 4);
+            
+            // Mouth
+            ctx.fillRect(player.x + 10, player.y + 20, 10, 2);
+            
+            // Glow effect
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = player.color;
+            ctx.fillStyle = player.color;
+            ctx.fillRect(player.x, player.y, player.width, player.height);
+            ctx.shadowBlur = 0;
+        }
+
+        function drawObstacles() {
+            obstacles.forEach(obs => {
+                ctx.fillStyle = obs.color;
+                ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+                
+                // Glow effect
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = obs.color;
+                ctx.fillStyle = obs.color;
+                ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+                ctx.shadowBlur = 0;
+            });
+        }
+
+        function drawGround() {
+            ctx.strokeStyle = 'rgba(0, 212, 255, 0.3)';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(0, groundY);
+            ctx.lineTo(canvas.width, groundY);
+            ctx.stroke();
+        }
+
+        function drawBackground() {
+            // Clear with dark background
+            ctx.fillStyle = 'rgba(5, 8, 16, 0.9)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function endGame() {
+            gameOver = true;
+            gameRunning = false;
+            restartBtn.style.display = 'block';
+
+            // Update high score
+            if (score > highScore) {
+                highScore = score;
+                highScoreEl.textContent = highScore;
+                localStorage.setItem('maintenanceHighScore', highScore);
+            }
+
+            // Game over text
+            ctx.fillStyle = '#00d4ff';
+            ctx.font = 'bold 30px Inter';
+            ctx.textAlign = 'center';
+            ctx.fillText('GAME OVER!', canvas.width / 2, canvas.height / 2 - 20);
+            ctx.font = '16px Inter';
+            ctx.fillText('Pontuação: ' + score, canvas.width / 2, canvas.height / 2 + 20);
+        }
+
+        function gameLoop() {
+            if (!gameRunning) return;
+
+            drawBackground();
+            drawGround();
+            updatePlayer();
+            updateObstacles();
+            updateScore();
+            drawPlayer();
+            drawObstacles();
+
+            frameCount++;
+            requestAnimationFrame(gameLoop);
+        }
+
+        // Controls
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                if (!gameRunning && !gameOver) {
+                    startGame();
+                } else if (gameRunning) {
+                    jump();
+                }
+            }
+        });
+
+        // Touch support
+        canvas.addEventListener('click', () => {
+            if (!gameRunning && !gameOver) {
+                startGame();
+            } else if (gameRunning) {
+                jump();
+            }
+        });
+
+        restartBtn.addEventListener('click', startGame);
+
+        // Auto-start after 3 seconds
+        setTimeout(() => {
+            if (!gameRunning) {
+                startGame();
+            }
+        }, 3000);
     </script>
 </body>
 </html>
