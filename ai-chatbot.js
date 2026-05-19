@@ -830,23 +830,158 @@ Quando tiver nome + telefone + problema: diga que vai encaminhar para atendiment
         finishConversation() {
             ChatState.isComplete = true;
             
-            const { nome, telefone, problema } = ChatState.userData;
+            const { nome, telefone, problema, servico, tipoEquipamento, email, horarioPreferido } = ChatState.userData;
             
-            // Mensagem de conclusão
-            this.addBotMessage(`Perfeito, ${nome}! 🎉\n\nVou encaminhar você para atendimento via WhatsApp agora.\n\nEm instantes você será atendido por nossa equipe!`);
+            // Cria summary card
+            const summaryHTML = `
+                <div class="cs-ai-summary-card">
+                    <div class="cs-ai-summary-header">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 11l3 3L22 4"/>
+                            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+                        </svg>
+                        <h4>Resumo do Atendimento</h4>
+                    </div>
+                    <div class="cs-ai-summary-content">
+                        ${servico ? `
+                            <div class="cs-ai-summary-item">
+                                <span class="cs-ai-summary-label">Serviço:</span>
+                                <span class="cs-ai-summary-value">${ChatState.SERVICOS[servico]?.label || servico}</span>
+                            </div>
+                        ` : ''}
+                        ${tipoEquipamento ? `
+                            <div class="cs-ai-summary-item">
+                                <span class="cs-ai-summary-label">Equipamento:</span>
+                                <span class="cs-ai-summary-value">${tipoEquipamento}</span>
+                            </div>
+                        ` : ''}
+                        ${problema ? `
+                            <div class="cs-ai-summary-item">
+                                <span class="cs-ai-summary-label">Problema:</span>
+                                <span class="cs-ai-summary-value">${problema}</span>
+                            </div>
+                        ` : ''}
+                        <div class="cs-ai-summary-item">
+                            <span class="cs-ai-summary-label">Nome:</span>
+                            <span class="cs-ai-summary-value">${nome}</span>
+                        </div>
+                        <div class="cs-ai-summary-item">
+                            <span class="cs-ai-summary-label">WhatsApp:</span>
+                            <span class="cs-ai-summary-value">${telefone}</span>
+                        </div>
+                        ${email ? `
+                            <div class="cs-ai-summary-item">
+                                <span class="cs-ai-summary-label">Email:</span>
+                                <span class="cs-ai-summary-value">${email}</span>
+                            </div>
+                        ` : ''}
+                        ${horarioPreferido ? `
+                            <div class="cs-ai-summary-item">
+                                <span class="cs-ai-summary-label">Urgência:</span>
+                                <span class="cs-ai-summary-value">${horarioPreferido === 'hoje' ? '🔥 Hoje/Agora' : horarioPreferido === 'semana' ? '📅 Esta semana' : '⏰ Sem pressa'}</span>
+                            </div>
+                        ` : ''}
+                    </div>
+                    <div class="cs-ai-summary-actions">
+                        <button class="cs-ai-summary-btn cs-ai-summary-btn-confirm" id="cs-summary-confirm">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                            </svg>
+                            Enviar para WhatsApp
+                        </button>
+                        <button class="cs-ai-summary-btn cs-ai-summary-btn-edit" id="cs-summary-edit">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                                <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                            </svg>
+                            Corrigir Dados
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // Adiciona summary como mensagem do bot
+            const msg = document.createElement('div');
+            msg.className = 'cs-ai-message cs-ai-message-bot';
+            msg.innerHTML = `
+                <div class="cs-ai-message-avatar">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="12" y="14" width="24" height="20" rx="4" fill="url(#robot-gradient-summary)" stroke="currentColor" stroke-width="2"/>
+                        <line x1="24" y1="14" x2="24" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="24" cy="8" r="2" fill="#00d4ff">
+                            <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="18" cy="22" r="2.5" fill="#00d4ff">
+                            <animate attributeName="r" values="2.5;3;2.5" dur="3s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="30" cy="22" r="2.5" fill="#00d4ff">
+                            <animate attributeName="r" values="2.5;3;2.5" dur="3s" repeatCount="indefinite"/>
+                        </circle>
+                        <path d="M 18 28 Q 24 31 30 28" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" fill="none"/>
+                        <defs>
+                            <linearGradient id="robot-gradient-summary" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:rgba(0, 212, 255, 0.2);stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:rgba(14, 165, 233, 0.1);stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <div class="cs-ai-message-wrapper">
+                    <div class="cs-ai-message-content">Perfeito, ${nome}! 🎉<br><br>Confira seus dados antes de enviar:</div>
+                    ${summaryHTML}
+                </div>
+            `;
+            
+            this.chatContainer.appendChild(msg);
+            this.scrollToBottom();
+            
+            // Eventos dos botões
+            document.getElementById('cs-summary-confirm').addEventListener('click', () => {
+                this.sendToWhatsApp();
+            });
+            
+            document.getElementById('cs-summary-edit').addEventListener('click', () => {
+                this.addBotMessage('Ok! Digite o que você quer corrigir ou recomece clicando no X e abrindo novamente.');
+            });
+        },
+        
+        sendToWhatsApp() {
+            const { nome, telefone, problema, servico, tipoEquipamento, email, horarioPreferido } = ChatState.userData;
             
             // Monta mensagem WhatsApp
+            let mensagem = `🎯 *ATENDIMENTO PRIORITÁRIO*\n\n`;
+            mensagem += `📋 *Dados do Cliente:*\n`;
+            mensagem += `👤 Nome: ${nome}\n`;
+            mensagem += `📱 Telefone: ${telefone}\n`;
+            if (email) mensagem += `📧 Email: ${email}\n`;
+            mensagem += `\n`;
+            
+            if (servico) {
+                mensagem += `🔧 *Serviço:* ${ChatState.SERVICOS[servico]?.label || servico}\n`;
+            }
+            if (tipoEquipamento) {
+                mensagem += `💻 *Equipamento:* ${tipoEquipamento}\n`;
+            }
+            if (problema) {
+                mensagem += `\n📝 *Problema/Observação:*\n${problema}\n`;
+            }
+            if (horarioPreferido) {
+                const urgenciaText = horarioPreferido === 'hoje' ? '🔥 Urgente - Hoje' : 
+                                   horarioPreferido === 'semana' ? '📅 Esta semana' : 
+                                   '⏰ Sem pressa';
+                mensagem += `\n⏰ *Urgência:* ${urgenciaText}\n`;
+            }
+            
+            mensagem += `\n_Atendido pelo Assistente IA_`;
+            
+            const mensagemEncoded = encodeURIComponent(mensagem);
+            const whatsappURL = `https://wa.me/5597991394382?text=${mensagemEncoded}`;
+            
+            // Mostra mensagem final
+            this.addBotMessage('Abrindo WhatsApp... ✨\n\nEm instantes você será atendido pela nossa equipe!');
+            
+            // Abre WhatsApp
             setTimeout(() => {
-                const mensagem = `🎯 *ATENDIMENTO PRIORITÁRIO*\n\n` +
-                    `📋 *Dados do Cliente:*\n` +
-                    `👤 Nome: ${nome}\n` +
-                    `📱 Telefone: ${telefone}\n\n` +
-                    `🔧 *Problema:*\n${problema}\n\n` +
-                    `_Atendido pelo Assistente IA_`;
-                
-                const mensagemEncoded = encodeURIComponent(mensagem);
-                const whatsappURL = `https://wa.me/5597991394382?text=${mensagemEncoded}`;
-                
                 window.open(whatsappURL, '_blank');
                 
                 // Fecha modal após 2 segundos
@@ -854,7 +989,7 @@ Quando tiver nome + telefone + problema: diga que vai encaminhar para atendiment
                     this.close();
                     ChatState.reset();
                 }, 2000);
-            }, 1500);
+            }, 500);
         }
     };
 
