@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Evoluindo - Click Suporte</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Matrix Rain Background */
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+            z-index: 1;
+        }
+
+        /* Animated gradient overlay */
+        .gradient-overlay {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, 
+                rgba(0, 212, 255, 0.15) 0%, 
+                transparent 50%);
+            animation: pulse-gradient 8s ease-in-out infinite;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        @keyframes pulse-gradient {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.2); }
+        }
+
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        /* 3D Logo floating */
+        .logo-3d {
+            perspective: 1000px;
+            margin-bottom: 60px;
+            animation: fade-in 1s ease-out;
+        }
+
+        .logo-inner {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transform-style: preserve-3d;
+            animation: float-3d 6s ease-in-out infinite;
+        }
+
+        @keyframes float-3d {
+            0%, 100% {
+                transform: translateY(0) rotateX(0deg) rotateY(0deg);
+            }
+            25% {
+                transform: translateY(-20px) rotateX(5deg) rotateY(-5deg);
+            }
+            50% {
+                transform: translateY(0) rotateX(0deg) rotateY(5deg);
+            }
+            75% {
+                transform: translateY(20px) rotateX(-5deg) rotateY(0deg);
+            }
+        }
+
+        .logo-icon-3d {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #00d4ff, #0ea5e9);
+            border-radius: 20px;
+            display: grid;
+            place-items: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #000;
+            box-shadow: 
+                0 10px 40px rgba(0, 212, 255, 0.6),
+                0 20px 80px rgba(0, 212, 255, 0.3);
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .logo-icon-3d::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            background: linear-gradient(135deg, #00d4ff, #0ea5e9);
+            border-radius: 20px;
+            filter: blur(20px);
+            opacity: 0.7;
+            z-index: -1;
+            animation: rotate-glow 4s linear infinite;
+        }
+
+        @keyframes rotate-glow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .logo-text-3d {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            text-shadow: 0 0 40px rgba(0, 212, 255, 0.8);
+        }
+
+        .logo-accent {
+            color: #00d4ff;
+        }
+
+        /* Main title */
+        h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #fff 0%, #00d4ff 50%, #0ea5e9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fade-in 1s ease-out 0.3s both;
+            text-align: center;
+            line-height: 1.1;
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 60px;
+            animation: fade-in 1s ease-out 0.6s both;
+            text-align: center;
+        }
+
+        /* Preview Cards */
+        .preview-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 1000px;
+            width: 100%;
+            margin-bottom: 60px;
+            animation: fade-in 1s ease-out 0.9s both;
+        }
+
+        .preview-card {
+            background: rgba(0, 212, 255, 0.03);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 20px;
+            padding: 32px;
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .preview-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .preview-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: #00d4ff;
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
+        }
+
+        .preview-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+            animation: float-icon 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.6));
+        }
+
+        @keyframes float-icon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .card-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(0, 212, 255, 0.2);
+            border: 1px solid rgba(0, 212, 255, 0.4);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #00d4ff;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .card-description {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+        }
+
+        /* Social Proof */
+        .social-proof {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+            animation: fade-in 1s ease-out 1.2s both;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #00d4ff;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.8);
+            display: block;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer-text {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.4);
+            animation: fade-in 1s ease-out 1.5s both;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .logo-icon-3d {
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
+            }
+
+            .logo-text-3d {
+                font-size: 1.8rem;
+            }
+
+            .preview-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .social-proof {
+                gap: 40px;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Matrix Rain Background -->
+    <canvas id="matrix-canvas"></canvas>
+    <div class="gradient-overlay"></div>
+
+    <div class="container">
+        <!-- 3D Logo -->
+        <div class="logo-3d">
+            <div class="logo-inner">
+                <div class="logo-icon-3d">C</div>
+                <span class="logo-text-3d">Click<span class="logo-accent">Suporte</span></span>
+            </div>
+        </div>
+
+        <!-- Main Title -->
+        <h1>Evoluindo o Futuro<br>do Suporte</h1>
+        <p class="subtitle">Preparando experiências incríveis para você</p>
+
+        <!-- Preview Cards -->
+        <div class="preview-cards">
+            <div class="preview-card">
+                <span class="card-icon">🤖</span>
+                <span class="card-badge">Em breve</span>
+                <h3 class="card-title">Chatbot IA Premium</h3>
+                <p class="card-description">Assistente inteligente que entende suas necessidades e resolve problemas instantaneamente</p>
+            </div>
+
+            <div class="preview-card">
+                <span class="card-icon">⚡</span>
+                <span class="card-badge">Novo</span>
+                <h3 class="card-title">Resposta Ultra-Rápida</h3>
+                <p class="card-description">Atendimento em menos de 5 minutos com sistema de prioridade inteligente</p>
+            </div>
+
+            <div class="preview-card">
+                <span class="card-icon">📊</span>
+                <span class="card-badge">Coming soon</span>
+                <h3 class="card-title">Dashboard Cliente</h3>
+                <p class="card-description">Acompanhe todos seus atendimentos e histórico em tempo real</p>
+            </div>
+        </div>
+
+        <!-- Social Proof -->
+        <div class="social-proof">
+            <div class="stat-item">
+                <span class="stat-number" data-target="500">0</span>
+                <span class="stat-label">PCs Atendidos</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="98">0</span>
+                <span class="stat-label">% Satisfação</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="15">0</span>
+                <span class="stat-label">Min Resposta</span>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <p class="footer-text">✨ Voltamos em breve com novidades incríveis ✨</p>
+    </div>
+
+    <script>
+        // ═══════════════════════════════════════════════════
+        // MATRIX RAIN EFFECT
+        // ═══════════════════════════════════════════════════
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const chars = '01アイウエオカキクケコサシスセソタチツテト';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00d4ff';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 50);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // ═══════════════════════════════════════════════════
+        // ANIMATED COUNTERS
+        // ═══════════════════════════════════════════════════
+        const counters = document.querySelectorAll('.stat-number');
+        
+        counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-target'));
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+
+            const updateCounter = () => {
+                current += step;
+                if (current < target) {
+                    counter.textContent = Math.floor(current) + (counter.textContent.includes('%') ? '' : '+');
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    counter.textContent = target + (target === 98 ? '%' : target === 15 ? '' : '+');
+                }
+            };
+
+            setTimeout(updateCounter, 1500);
+        });
+
+        // ═══════════════════════════════════════════════════
+        // 3D MOUSE PARALLAX
+        // ═══════════════════════════════════════════════════
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.preview-card');
+            const x = e.clientX / window.innerWidth - 0.5;
+            const y = e.clientY / window.innerHeight - 0.5;
+
+            cards.forEach((card, index) => {
+                const depth = (index + 1) * 10;
+                card.style.transform = `
+                    translateX(${x * depth}px) 
+                    translateY(${y * depth}px)
+                    rotateX(${-y * 5}deg)
+                    rotateY(${x * 5}deg)
+                `;
+            });
+        });
+    </script>
+</body>
+</html>
