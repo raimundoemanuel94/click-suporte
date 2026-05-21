@@ -1,0 +1,663 @@
+/* ═══════════════════════════════════════════════════════════
+   FORMULÁRIO PREMIUM - CLICK SUPORTE
+   Glassmorphism + Neon + Cyber-Premium Dark
+   Versão: 2.0.1 - Cache Bust
+   ═══════════════════════════════════════════════════════════ */
+
+/* Fontes Premium */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Space+Mono:wght@400;700&display=swap');
+
+/* ═══ VARIÁVEIS ═══ */
+:root {
+    --form-primary: #00D4FF;
+    --form-secondary: #0EA5E9;
+    --form-dark: #050810;
+    --form-dark-light: #0f172a;
+    --form-glass: rgba(255, 255, 255, 0.05);
+    --form-glass-border: rgba(0, 212, 255, 0.2);
+    --form-text: #e8e8f0;
+    --form-text-dim: #94a3b8;
+    --form-z-floating: 9998;
+    --form-z-modal: 9999;
+}
+
+/* ═══ FLOATING BUTTON ═══ */
+.cs-floating-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: var(--form-z-floating);
+    background: linear-gradient(135deg, var(--form-primary), var(--form-secondary));
+    border: none;
+    border-radius: 50px;
+    padding: 18px 35px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 
+        0 8px 30px rgba(255, 0, 54, 0.4),
+        0 0 50px rgba(0, 229, 255, 0.2);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: cs-float 3s ease-in-out infinite;
+}
+
+@keyframes cs-float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.cs-floating-btn:hover {
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 
+        0 15px 40px rgba(255, 0, 54, 0.6),
+        0 0 80px rgba(0, 229, 255, 0.4);
+}
+
+.cs-floating-btn .cs-icon {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 20px;
+    animation: cs-pulse-icon 2s ease-in-out infinite;
+}
+
+@keyframes cs-pulse-icon {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* ═══ MODAL OVERLAY ═══ */
+.cs-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    z-index: var(--form-z-modal);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    animation: cs-fadeIn 0.3s ease;
+    padding: 20px;
+}
+
+.cs-modal-overlay.cs-active {
+    display: flex;
+}
+
+@keyframes cs-fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ═══ FORM MODAL ═══ */
+.cs-form-modal {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    background: linear-gradient(
+        135deg,
+        rgba(26, 26, 46, 0.95),
+        rgba(10, 10, 15, 0.95)
+    );
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--form-glass-border);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    animation: cs-slideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform-origin: bottom;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+@keyframes cs-slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Scrollbar customizada */
+.cs-form-modal::-webkit-scrollbar {
+    width: 8px;
+}
+
+.cs-form-modal::-webkit-scrollbar-track {
+    background: var(--form-glass);
+    border-radius: 10px;
+}
+
+.cs-form-modal::-webkit-scrollbar-thumb {
+    background: var(--form-primary);
+    border-radius: 10px;
+}
+
+.cs-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid var(--form-glass-border);
+    color: var(--form-text);
+    font-size: 32px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    z-index: 10;
+    line-height: 1;
+}
+
+.cs-close-btn:hover {
+    color: #fff;
+    background: var(--form-primary);
+    border-color: var(--form-primary);
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+}
+
+/* ═══ HEADER ═══ */
+.cs-form-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.cs-form-header h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 32px;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--form-primary), var(--form-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.cs-form-header p {
+    color: var(--form-text-dim);
+    font-size: 14px;
+    font-family: 'Space Mono', monospace;
+}
+
+/* ═══ PROGRESS BAR ═══ */
+.cs-progress-container {
+    margin-bottom: 40px;
+}
+
+.cs-progress-steps {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.cs-step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+}
+
+.cs-step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--form-glass);
+    border: 2px solid var(--form-glass-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 8px;
+    font-weight: 700;
+    font-size: 14px;
+    transition: all 0.4s;
+    font-family: 'Orbitron', sans-serif;
+    color: var(--form-text);
+}
+
+.cs-step.cs-active .cs-step-number {
+    background: linear-gradient(135deg, var(--form-primary), var(--form-secondary));
+    border-color: var(--form-primary);
+    box-shadow: 
+        0 0 20px rgba(255, 0, 54, 0.5),
+        0 0 40px rgba(0, 229, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.cs-step.cs-completed .cs-step-number {
+    background: var(--form-secondary);
+    border-color: var(--form-secondary);
+}
+
+.cs-step.cs-completed .cs-step-number::after {
+    content: '✓';
+    font-size: 18px;
+}
+
+.cs-step-label {
+    font-size: 11px;
+    color: var(--form-text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Space Mono', monospace;
+}
+
+.cs-step.cs-active .cs-step-label {
+    color: var(--form-text);
+    font-weight: 700;
+}
+
+.cs-progress-bar {
+    height: 4px;
+    background: var(--form-glass);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.cs-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--form-primary), var(--form-secondary));
+    border-radius: 2px;
+    transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 0 15px var(--form-primary);
+}
+
+/* ═══ FORM STEPS ═══ */
+.cs-form-step {
+    display: none;
+    animation: cs-fadeSlide 0.4s ease;
+}
+
+.cs-form-step.cs-active {
+    display: block;
+}
+
+@keyframes cs-fadeSlide {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ═══ SERVICE CARDS ═══ */
+.cs-service-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.cs-service-card {
+    background: var(--form-glass);
+    border: 2px solid var(--form-glass-border);
+    border-radius: 16px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.cs-service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 0, 54, 0.1), transparent);
+    transition: left 0.6s;
+}
+
+.cs-service-card:hover::before {
+    left: 100%;
+}
+
+.cs-service-card:hover {
+    border-color: var(--form-primary);
+    transform: translateX(5px);
+    box-shadow: 0 0 25px rgba(255, 0, 54, 0.2);
+}
+
+.cs-service-card.cs-selected {
+    border-color: var(--form-primary);
+    background: linear-gradient(135deg, rgba(255, 0, 54, 0.1), rgba(0, 229, 255, 0.05));
+    box-shadow: 
+        0 0 30px rgba(255, 0, 54, 0.3),
+        inset 0 0 20px rgba(255, 0, 54, 0.1);
+}
+
+.cs-service-icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.cs-service-title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: var(--form-text);
+}
+
+.cs-service-desc {
+    font-size: 12px;
+    color: var(--form-text-dim);
+    margin-bottom: 8px;
+    font-family: 'Space Mono', monospace;
+}
+
+.cs-service-price {
+    font-size: 13px;
+    color: var(--form-secondary);
+    font-weight: 700;
+    font-family: 'Space Mono', monospace;
+}
+
+/* ═══ URGENCY CARDS ═══ */
+.cs-urgency-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.cs-urgency-card {
+    background: var(--form-glass);
+    border: 2px solid var(--form-glass-border);
+    border-radius: 12px;
+    padding: 18px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.cs-urgency-card:hover {
+    border-color: var(--form-secondary);
+    transform: translateX(5px);
+}
+
+.cs-urgency-card.cs-selected {
+    border-color: var(--form-secondary);
+    background: rgba(0, 229, 255, 0.08);
+    box-shadow: 0 0 25px rgba(0, 229, 255, 0.2);
+}
+
+.cs-urgency-icon {
+    font-size: 24px;
+}
+
+.cs-urgency-text {
+    flex: 1;
+}
+
+.cs-urgency-label {
+    font-weight: 700;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 3px;
+    font-family: 'Orbitron', sans-serif;
+    color: var(--form-text);
+}
+
+.cs-urgency-time {
+    font-size: 11px;
+    color: var(--form-text-dim);
+    font-family: 'Space Mono', monospace;
+}
+
+/* ═══ FORM INPUTS ═══ */
+.cs-form-group {
+    margin-bottom: 20px;
+}
+
+.cs-form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--form-text);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.cs-input-wrapper {
+    position: relative;
+}
+
+.cs-input-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: var(--form-text-dim);
+    pointer-events: none;
+}
+
+.cs-form-modal input,
+.cs-form-modal textarea {
+    width: 100%;
+    background: var(--form-glass);
+    border: 2px solid var(--form-glass-border);
+    border-radius: 12px;
+    padding: 16px 18px 16px 50px;
+    color: var(--form-text);
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.cs-form-modal textarea {
+    resize: vertical;
+    min-height: 100px;
+    padding-top: 16px;
+    padding-left: 18px;
+}
+
+.cs-form-modal input:focus,
+.cs-form-modal textarea:focus {
+    outline: none;
+    border-color: var(--form-secondary);
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.cs-form-modal input::placeholder,
+.cs-form-modal textarea::placeholder {
+    color: var(--form-text-dim);
+}
+
+/* ═══ SUMMARY ═══ */
+.cs-summary-box {
+    background: linear-gradient(135deg, rgba(255, 0, 54, 0.05), rgba(0, 229, 255, 0.05));
+    border: 1px solid var(--form-glass-border);
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.cs-summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--form-glass-border);
+}
+
+.cs-summary-item:last-child {
+    border-bottom: none;
+}
+
+.cs-summary-label {
+    color: var(--form-text-dim);
+    font-size: 13px;
+    font-family: 'Space Mono', monospace;
+}
+
+.cs-summary-value {
+    font-weight: 700;
+    color: var(--form-text);
+    text-align: right;
+    font-family: 'Space Mono', monospace;
+}
+
+/* ═══ LGPD CHECKBOX ═══ */
+.cs-checkbox-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 25px;
+    padding: 15px;
+    background: var(--form-glass);
+    border-radius: 12px;
+}
+
+.cs-checkbox-wrapper input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    accent-color: var(--form-primary);
+    flex-shrink: 0;
+}
+
+.cs-checkbox-label {
+    font-size: 12px;
+    color: var(--form-text-dim);
+    line-height: 1.5;
+    font-family: 'Space Mono', monospace;
+}
+
+/* ═══ BUTTONS ═══ */
+.cs-form-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.cs-btn {
+    flex: 1;
+    padding: 16px 30px;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cs-btn-secondary {
+    background: var(--form-glass);
+    border: 2px solid var(--form-glass-border);
+    color: var(--form-text);
+}
+
+.cs-btn-secondary:hover {
+    border-color: var(--form-text);
+    transform: translateY(-2px);
+}
+
+.cs-btn-primary {
+    background: linear-gradient(135deg, var(--form-primary), var(--form-secondary));
+    color: white;
+    box-shadow: 0 8px 25px rgba(255, 0, 54, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.cs-btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.cs-btn-primary:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.cs-btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(255, 0, 54, 0.5);
+}
+
+.cs-btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 640px) {
+    .cs-form-modal {
+        padding: 25px;
+        max-height: 95vh;
+    }
+
+    .cs-form-header h2 {
+        font-size: 24px;
+    }
+
+    .cs-floating-btn {
+        bottom: 80px;
+        right: 20px;
+        padding: 14px 25px;
+        font-size: 14px;
+    }
+
+    .cs-progress-steps {
+        flex-wrap: wrap;
+    }
+
+    .cs-step-label {
+        display: none;
+    }
+
+    .cs-btn {
+        font-size: 13px;
+        padding: 14px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cs-form-modal {
+        padding: 20px;
+    }
+
+    .cs-form-header h2 {
+        font-size: 20px;
+    }
+
+    .cs-floating-btn {
+        padding: 12px 20px;
+        font-size: 13px;
+    }
+}
