@@ -235,7 +235,6 @@ function ChatWidget({ onClose }: { onClose: () => void }) {
     </div>
   )
 }
-}
 
 // Chat Widget Component
 function ChatWidget({ onClose }: { onClose: () => void }) {
