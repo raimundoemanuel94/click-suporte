@@ -52,6 +52,19 @@ Raimundo vai te chamar no WhatsApp em até 15 minutos!
 
 Horários: Seg-Sex 17h30-21h | Sáb-Dom 8h-20h"
 
+DEPOIS dessa mensagem, SEMPRE retorne o JSON abaixo (não mostre para o usuário):
+
+{
+  "dados_coletados": true,
+  "cliente_nome": "nome completo",
+  "cliente_telefone": "telefone",
+  "cliente_email": "email",
+  "problema_descricao": "descrição",
+  "sistema_operacional": "Windows|Mac|Linux",
+  "prioridade": "Normal|Urgente",
+  "tipo_atendimento": "Presencial|Remoto"
+}
+
 REGRAS:
 - UMA pergunta por vez
 - Máximo 2 linhas
@@ -103,6 +116,9 @@ export async function POST(request: NextRequest) {
 
     const text = data.choices[0]?.message?.content || ''
 
+    // Debug: Log da resposta da IA
+    console.log('📝 Resposta da IA:', text.substring(0, 200))
+
     // Detecta se a IA retornou JSON com dados completos
     let agendamentoId = null
     let protocolo = null
@@ -111,8 +127,12 @@ export async function POST(request: NextRequest) {
       // Procura por JSON no texto da resposta
       const jsonMatch = text.match(/\{[\s\S]*"dados_coletados":\s*true[\s\S]*\}/)
       
+      console.log('🔍 JSON encontrado:', !!jsonMatch)
+      
       if (jsonMatch) {
         const dadosIA = JSON.parse(jsonMatch[0])
+        
+        console.log('📊 Dados parseados:', JSON.stringify(dadosIA, null, 2))
         
         // Gera protocolo único (timestamp + 4 dígitos aleatórios)
         protocolo = `CS${Date.now().toString().slice(-6)}${Math.floor(1000 + Math.random() * 9000)}`
@@ -134,22 +154,23 @@ export async function POST(request: NextRequest) {
             tipo_atendimento: dadosIA.tipo_atendimento || 'Remoto',
             duracao_estimada: 60,
             valor_estimado: 0,
-            data_agendamento: dadosIA.data_agendamento_sugerida || new Date().toISOString(),
-            status: 'pendente' // Sempre pendente, independente da prioridade
+            data_agendamento: new Date().toISOString(),
+            status: 'pendente'
           })
           .select()
           .single()
         
         if (error) {
-          console.error('Erro ao salvar no Supabase:', error)
+          console.error('❌ Erro ao salvar no Supabase:', JSON.stringify(error))
         } else {
           agendamentoId = agendamento.id
-          console.log('✅ Agendamento salvo:', agendamentoId, 'Protocolo:', protocolo)
+          console.log('✅ Agendamento salvo! ID:', agendamentoId, 'Protocolo:', protocolo)
         }
+      } else {
+        console.log('⚠️ Nenhum JSON com dados_coletados:true encontrado na resposta')
       }
-    } catch (err) {
-      // Se não conseguir parsear JSON, ignora (não é crítico)
-      console.log('Nenhum JSON encontrado na resposta da IA')
+    } catch (err: any) {
+      console.error('💥 Erro no processamento:', err.message)
     }
 
     return NextResponse.json({
