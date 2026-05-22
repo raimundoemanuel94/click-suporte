@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import Anthropic from '@anthropic-ai/sdk'
 
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-})
+const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions'
 
 const SYSTEM_PROMPT = `Você é o assistente virtual do Click Suporte, uma empresa de assistência técnica em Sorriso-MT.
 
@@ -59,20 +56,38 @@ export async function POST(request: NextRequest) {
   try {
     const { messages } = await request.json()
     
-    const response = await anthropic.messages.create({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 1024,
-      system: SYSTEM_PROMPT,
-      messages: messages,
+    // Groq usa formato OpenAI com system message no array
+    const groqMessages = [
+      { role: 'system', content: SYSTEM_PROMPT },
+      ...messages
+    ]
+
+    const response = await fetch(GROQ_API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.GROQ_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: 'llama-3.1-70b-versatile',
+        messages: groqMessages,
+        max_tokens: 1024,
+        temperature: 0.7
+      })
     })
 
-    const content = response.content[0]
-    const text = content.type === 'text' ? content.text : ''
+    const data = await response.json()
+
+    if (!response.ok) {
+      throw new Error(data.error?.message || 'Erro na API Groq')
+    }
+
+    const text = data.choices[0]?.message?.content || ''
 
     return NextResponse.json({
       success: true,
       message: text,
-      usage: response.usage
+      usage: data.usage
     })
   } catch (error: any) {
     console.error('Chat API Error:', error)
