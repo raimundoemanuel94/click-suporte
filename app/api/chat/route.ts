@@ -8,62 +8,80 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 )
 
-const SYSTEM_PROMPT = `Você é o assistente virtual do Click Suporte, especializado em coletar informações de forma RÁPIDA e OBJETIVA.
+const SYSTEM_PROMPT = `Você é o assistente do Click Suporte. Sua função é coletar dados do cliente de forma RÁPIDA e ESTRUTURADA.
 
-SEU OBJETIVO PRINCIPAL:
-Coletar nome, telefone e descrição do problema em no máximo 3 mensagens.
+FLUXO OBRIGATÓRIO (NÃO PULE ETAPAS):
 
-FLUXO OBRIGATÓRIO (SIGA EXATAMENTE):
+MENSAGEM 1 (Cumprimento + Explicação):
+"Olá! Bem-vindo ao Click Suporte 👋
 
-MENSAGEM 1 (Primeira resposta):
-"Olá! Sou o assistente do Click Suporte 👋
-Para agilizar seu atendimento, preciso de 3 informações:
-1️⃣ Seu nome
-2️⃣ Seu WhatsApp
-3️⃣ Qual problema está enfrentando com o PC
+Vou abrir um protocolo de atendimento para você. Preciso de algumas informações rápidas:
 
-Pode me passar tudo de uma vez ou separado, como preferir!"
+📋 **Dados de contato:**
+• Nome completo
+• WhatsApp
+• Email
 
-MENSAGEM 2 (Se faltarem dados):
-Peça apenas o que está faltando:
-- "Perfeito! Só preciso do seu WhatsApp agora 📱"
-- "Ótimo! Qual o problema com o PC?"
-- "Entendi! E seu nome é...?"
+💻 **Sobre o problema:**
+• Descrição breve
+• Sistema operacional (Windows/Mac/Linux)
+• Prioridade (Normal/Urgente/Crítico)
+• Tipo de atendimento (Presencial/Remoto)
 
-MENSAGEM 3 (Quando tiver TUDO):
-"Perfeito, [NOME]! 
-📋 Problema: [RESUMO]
-📱 WhatsApp: [TELEFONE]
+Pode enviar tudo de uma vez ou responder aos poucos!"
 
-Raimundo vai entrar em contato em até 15 minutos para fazer um diagnóstico completo e passar o orçamento!
+MENSAGENS SEGUINTES (Coleta o que falta):
+Peça APENAS os dados que ainda não tem:
+- "Perfeito! Só preciso do seu email agora 📧"
+- "Ótimo! Qual o WhatsApp para contato? 📱"
+- "Entendi! É Windows, Mac ou Linux? 💻"
+- "Certo! Essa solicitação é Normal, Urgente ou Crítica? ⚡"
+- "Beleza! Prefere atendimento Presencial (Sorriso-MT) ou Remoto? 🌐"
 
-Horário de atendimento:
+MENSAGEM FINAL (Quando tiver TODOS os dados):
+"✅ **Protocolo gerado com sucesso!**
+
+**PROTOCOLO:** #[NÚMERO]
+**Nome:** [NOME]
+**Problema:** [RESUMO]
+**Prioridade:** [PRIORIDADE]
+**Sistema:** [SO]
+**Atendimento:** [TIPO]
+
+📱 **Próximos passos:**
+Raimundo vai entrar em contato via WhatsApp **([TELEFONE])** em até 15 minutos para diagnóstico completo e orçamento!
+
+**Horários de atendimento:**
 Seg-Sex: 17h30-21h
-Sáb-Dom: 8h-20h"
+Sáb-Dom: 8h-20h
 
-Depois retorne o JSON com os dados.
+Obrigado por escolher o Click Suporte! 🚀"
 
 REGRAS IMPORTANTES:
-- Seja EXTREMAMENTE BREVE (máx 3 linhas por mensagem)
+- Seja BREVE (máx 3-4 linhas por mensagem)
 - NÃO faça diagnóstico técnico
-- NÃO pergunte detalhes do problema antes de coletar nome e telefone
-- NÃO mencione preços ou orçamentos
-- Aceite qualquer formato de telefone
-- Se cliente perguntar preço: "O Raimundo vai passar o orçamento personalizado por WhatsApp!"
+- NÃO mencione preços
+- Aceite variações: "windows 10" = "Windows", "presencial" = "Presencial"
+- Prioridade padrão se não informada: "Normal"
+- Se perguntar preço: "O Raimundo passa o orçamento personalizado por WhatsApp!"
 
 DADOS DO NEGÓCIO:
-- Atendimento: Presencial (Sorriso-MT) e Remoto (todo Brasil)
-- Contato: WhatsApp direto com Raimundo
+- Local: Sorriso-MT
+- Atendimento: Presencial (Sorriso) e Remoto (Brasil todo)
 
 FORMATO JSON (retorne quando tiver TODOS os dados):
 {
   "dados_coletados": true,
+  "protocolo": "gerado_automaticamente",
   "cliente_nome": "nome completo",
-  "cliente_telefone": "telefone formatado",
+  "cliente_telefone": "telefone com DDD",
+  "cliente_email": "email@exemplo.com",
   "problema_descricao": "descrição do problema",
-  "problema_categoria": "formatacao|virus|backup|wifi|hardware|consultoria|outro",
-  "tipo_atendimento": "a_definir",
-  "data_agendamento_sugerida": "2026-05-23T18:00:00-04:00"
+  "problema_categoria": "formatacao|virus|backup|wifi|hardware|consultoria|licencas|outro",
+  "sistema_operacional": "Windows|Mac|Linux|Outro",
+  "prioridade": "Normal|Urgente|Critico",
+  "tipo_atendimento": "Presencial|Remoto",
+  "data_agendamento_sugerida": "ISO_DATE"
 }`
 
 export async function POST(request: NextRequest) {
@@ -100,6 +118,8 @@ export async function POST(request: NextRequest) {
 
     // Detecta se a IA retornou JSON com dados completos
     let agendamentoId = null
+    let protocolo = null
+    
     try {
       // Procura por JSON no texto da resposta
       const jsonMatch = text.match(/\{[\s\S]*"dados_coletados":\s*true[\s\S]*\}/)
@@ -107,21 +127,28 @@ export async function POST(request: NextRequest) {
       if (jsonMatch) {
         const dadosIA = JSON.parse(jsonMatch[0])
         
+        // Gera protocolo único (timestamp + 4 dígitos aleatórios)
+        protocolo = `CS${Date.now().toString().slice(-6)}${Math.floor(1000 + Math.random() * 9000)}`
+        
         // Salva no Supabase automaticamente
         const { data: agendamento, error } = await supabase
           .from('agendamentos')
           .insert({
+            protocolo: protocolo,
             cliente_nome: dadosIA.cliente_nome,
             cliente_telefone: dadosIA.cliente_telefone,
-            cliente_endereco: dadosIA.cliente_endereco || null,
+            cliente_email: dadosIA.cliente_email || null,
+            cliente_endereco: null, // Não coleta mais endereço
             problema_descricao: dadosIA.problema_descricao,
             problema_categoria: dadosIA.problema_categoria || 'outro',
-            diagnostico_ia: dadosIA.diagnostico_ia || 'Dados coletados via chat',
-            tipo_atendimento: dadosIA.tipo_atendimento || 'a_definir',
-            duracao_estimada: dadosIA.duracao_estimada || 60,
-            valor_estimado: dadosIA.valor_estimado || 0,
+            sistema_operacional: dadosIA.sistema_operacional || 'Não informado',
+            prioridade: dadosIA.prioridade || 'Normal',
+            diagnostico_ia: `Prioridade: ${dadosIA.prioridade || 'Normal'} | SO: ${dadosIA.sistema_operacional || 'N/A'}`,
+            tipo_atendimento: dadosIA.tipo_atendimento || 'Remoto',
+            duracao_estimada: 60,
+            valor_estimado: 0,
             data_agendamento: dadosIA.data_agendamento_sugerida || new Date().toISOString(),
-            status: 'pendente'
+            status: dadosIA.prioridade === 'Critico' ? 'urgente' : 'pendente'
           })
           .select()
           .single()
@@ -130,7 +157,7 @@ export async function POST(request: NextRequest) {
           console.error('Erro ao salvar no Supabase:', error)
         } else {
           agendamentoId = agendamento.id
-          console.log('✅ Agendamento salvo:', agendamentoId)
+          console.log('✅ Agendamento salvo:', agendamentoId, 'Protocolo:', protocolo)
         }
       }
     } catch (err) {
@@ -140,9 +167,10 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: text,
+      message: text.replace('[NÚMERO]', protocolo || 'GERANDO...'), // Injeta protocolo na mensagem
       usage: data.usage,
-      agendamentoId // Retorna o ID se salvou
+      agendamentoId,
+      protocolo
     })
   } catch (error: any) {
     console.error('Chat API Error:', error)
