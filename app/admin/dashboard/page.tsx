@@ -128,12 +128,20 @@ export default function AdminDashboard() {
             </div>
           </div>
           
-          <button
-            onClick={handleLogout}
-            className="px-4 py-2 bg-background hover:bg-border text-white/70 hover:text-white text-sm font-medium rounded-xl transition"
-          >
-            Sair
-          </button>
+          <div className="flex gap-3">
+            <button
+              onClick={() => router.push('/admin/relatorios')}
+              className="px-4 py-2 bg-accent hover:bg-accent/90 text-black text-sm font-medium rounded-xl transition"
+            >
+              📊 Relatórios
+            </button>
+            <button
+              onClick={handleLogout}
+              className="px-4 py-2 bg-background hover:bg-border text-white/70 hover:text-white text-sm font-medium rounded-xl transition"
+            >
+              Sair
+            </button>
+          </div>
         </div>
       </div>
 
@@ -159,6 +167,7 @@ export default function AdminDashboard() {
       <DetailsModal
         agendamento={selectedAgendamento}
         onClose={() => setSelectedAgendamento(null)}
+        onUpdate={fetchAgendamentos}
       />
     </div>
   )
