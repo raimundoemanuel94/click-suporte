@@ -43,15 +43,23 @@ export default function AdminDashboard() {
 
   const handleUpdateStatus = async (id: string, status: string) => {
     try {
+      const token = localStorage.getItem('admin_token')
+      
       const res = await fetch(`/api/agendamentos/${id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
         body: JSON.stringify({ status })
       })
 
       if (res.ok) {
         toast.success(`Atendimento ${status === 'confirmado' ? 'confirmado' : 'rejeitado'}!`)
         fetchAgendamentos()
+      } else {
+        const data = await res.json()
+        toast.error(data.error || 'Erro ao atualizar')
       }
     } catch (error) {
       toast.error('Erro ao atualizar status')

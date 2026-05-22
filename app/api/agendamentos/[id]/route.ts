@@ -1,11 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
+import { requireAuth } from '@/lib/auth'
 
-// PUT - Atualizar agendamento (status, notas, etc)
+// PUT - Atualizar agendamento (status, notas, etc) - REQUER AUTH
 export async function PUT(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
+  // Verificar autenticação
+  const authError = requireAuth(request)
+  if (authError) return authError
+  
   try {
     const body = await request.json()
     const { id } = params
@@ -60,11 +65,15 @@ export async function GET(
   }
 }
 
-// DELETE - Deletar agendamento
+// DELETE - Deletar agendamento - REQUER AUTH
 export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
+  // Verificar autenticação
+  const authError = requireAuth(request)
+  if (authError) return authError
+  
   try {
     const { id } = params
     
