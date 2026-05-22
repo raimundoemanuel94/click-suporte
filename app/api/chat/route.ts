@@ -45,12 +45,14 @@ Qual seu nome?"
 8. Confirmação:
 "✅ Tudo certo, [NOME]!
 
-Protocolo: #[NÚMERO]
-Problema: [RESUMO]
+**Protocolo:** #[PROTOCOLO]
+**Problema:** [RESUMO]
 
 Raimundo vai te chamar no WhatsApp em até 15 minutos!
 
 Horários: Seg-Sex 17h30-21h | Sáb-Dom 8h-20h"
+
+IMPORTANTE: Substitua [PROTOCOLO] por um número único gerado automaticamente.
 
 DEPOIS dessa mensagem, SEMPRE retorne o JSON abaixo (não mostre para o usuário):
 
@@ -175,7 +177,11 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: text.replace('[NÚMERO]', protocolo || 'GERANDO...'), // Injeta protocolo na mensagem
+      message: text
+        .replace(/\[PROTOCOLO\]/g, protocolo || '001')
+        .replace(/\[NÚMERO\]/g, protocolo || '001')
+        .replace(/\{[\s\S]*"dados_coletados":\s*true[\s\S]*\}/g, '') // Remove JSON
+        .trim(),
       usage: data.usage,
       agendamentoId,
       protocolo
