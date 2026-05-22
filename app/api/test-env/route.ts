@@ -6,7 +6,7 @@ export async function GET() {
   const keyPrefix = process.env.GROQ_API_KEY?.substring(0, 10) || 'NOT_FOUND'
   
   // Testa a API do Groq
-  let apiTest = { status: 'not_tested', error: null, success: false }
+  let apiTest: any = { status: 'not_tested', error: null, success: false }
   
   if (hasKey) {
     try {
