@@ -44,18 +44,17 @@ MENSAGEM FINAL (Quando tiver TODOS os dados):
 **PROTOCOLO:** #[NÚMERO]
 **Nome:** [NOME]
 **Problema:** [RESUMO]
-**Prioridade:** [PRIORIDADE]
 **Sistema:** [SO]
+**Prioridade:** [PRIORIDADE]
 **Atendimento:** [TIPO]
 
-📱 **Próximos passos:**
-Raimundo vai entrar em contato via WhatsApp **([TELEFONE])** em até 15 minutos para diagnóstico completo e orçamento!
+📱 Raimundo vai entrar em contato em até 15 minutos!
 
-**Horários de atendimento:**
-Seg-Sex: 17h30-21h
-Sáb-Dom: 8h-20h
+**Horários:** Seg-Sex 17h30-21h | Sáb-Dom 8h-20h
 
 Obrigado por escolher o Click Suporte! 🚀"
+
+Depois retorne APENAS o JSON (sem exibir para o usuário).
 
 REGRAS IMPORTANTES:
 - Seja BREVE (máx 3-4 linhas por mensagem)
@@ -138,7 +137,7 @@ export async function POST(request: NextRequest) {
             cliente_nome: dadosIA.cliente_nome,
             cliente_telefone: dadosIA.cliente_telefone,
             cliente_email: dadosIA.cliente_email || null,
-            cliente_endereco: null, // Não coleta mais endereço
+            cliente_endereco: null,
             problema_descricao: dadosIA.problema_descricao,
             problema_categoria: dadosIA.problema_categoria || 'outro',
             sistema_operacional: dadosIA.sistema_operacional || 'Não informado',
@@ -148,7 +147,7 @@ export async function POST(request: NextRequest) {
             duracao_estimada: 60,
             valor_estimado: 0,
             data_agendamento: dadosIA.data_agendamento_sugerida || new Date().toISOString(),
-            status: dadosIA.prioridade === 'Critico' ? 'urgente' : 'pendente'
+            status: 'pendente' // Sempre pendente, independente da prioridade
           })
           .select()
           .single()
