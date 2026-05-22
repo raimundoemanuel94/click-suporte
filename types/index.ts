@@ -2,12 +2,15 @@ export interface Agendamento {
   id: string
   created_at: string
   updated_at: string
+  protocolo?: string
   cliente_nome: string
   cliente_telefone: string
   cliente_email?: string
   cliente_endereco?: string
   problema_descricao: string
   problema_categoria?: string
+  sistema_operacional?: string
+  prioridade?: string
   diagnostico_ia?: string
   data_agendamento: string
   duracao_estimada: number
